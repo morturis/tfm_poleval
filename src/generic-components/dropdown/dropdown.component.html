@@ -1,0 +1,14 @@
+<div [id]="id" class="row border">
+  <mat-label for="select" class="col">
+    {{ title }}
+  </mat-label>
+  <mat-select id="select" class="col border">
+    <mat-option *ngFor="let item of items" [value]="item">{{
+      item
+    }}</mat-option>
+  </mat-select>
+
+  <div class="col">
+    <app-info-icon [info]="info"></app-info-icon>
+  </div>
+</div>
