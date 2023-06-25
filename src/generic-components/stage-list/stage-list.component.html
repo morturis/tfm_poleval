@@ -1,0 +1,16 @@
+<mat-icon>insert_drive_file</mat-icon>
+<mat-stepper labelPosition="bottom">
+  <ng-template matStepperIcon="document">
+    <mat-icon>insert_drive_file</mat-icon>
+  </ng-template>
+
+  <mat-step
+    *ngFor="let stage of stages"
+    [completed]="stage.isDone"
+    [label]="stage.name"
+    [editable]="false"
+    [state]="stage.isDocument ? 'document' : 'none'"
+  >
+    <!--TODO inyectar formulario aqui-->
+  </mat-step>
+</mat-stepper>
