@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GenericComponentsModule } from 'src/generic-components/generic-components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     AppRoutingModule,
     GenericComponentsModule,
     BrowserAnimationsModule,
+    MatInputModule,
   ],
   providers: [
     //Allows for custom icons for stepper

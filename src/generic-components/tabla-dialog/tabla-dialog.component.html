@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<div>
+  <mat-dialog-content class="pb-0 row">
+    <form class="pe-0 ps-0 d-inline">
+      <!--TODO correct display size width-->
+      <div class="d-inline ps-1 pe-1" *ngFor="let column of columnConfig">
+        <app-input
+          [formControl]="getFormControl(column.field)"
+          [fieldConfig]="column"
+        >
+        </app-input>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="undefined">Cancelar</button>
+    <button
+      mat-button
+      [mat-dialog-close]="this.form.value"
+      [disabled]="this.form.status === 'INVALID'"
+      cdkFocusInitial
+    >
+      Añadir
+    </button>
+  </mat-dialog-actions>
+</div>

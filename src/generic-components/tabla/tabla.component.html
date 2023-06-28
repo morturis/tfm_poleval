@@ -1,0 +1,22 @@
+<mat-table [dataSource]="items" class="mat-elevation-z8 row mt-2">
+  <ng-container
+    *ngFor="let column of columnsConfig"
+    [matColumnDef]="column.field"
+  >
+    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element[column.field] }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <!--TODO css to this-->
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<div *ngIf="dynamic" class="mt-2" style="float: right">
+  <button mat-raised-button [disabled]="!items.length" (click)="removeItem()">
+    Eliminar último {{ itemName }}
+  </button>
+  <button mat-raised-button (click)="addItem()" class="ms-3 me-2">
+    Añadir {{ itemName }}
+  </button>
+</div>

@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class InfoIconComponent {
   @Input({ required: false }) info: string | undefined;
+  @Input({ required: false }) size: number = 16;
 }

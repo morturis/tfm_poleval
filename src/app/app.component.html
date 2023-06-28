@@ -5,9 +5,50 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<!-- * * * * * * * * * * * * * * * * * * * *
+    
+    
+    
 <app-dropdown id="id" title="titulo" [items]="['a', 'b', 'c']" info="abdeqwe">
 </app-dropdown>
 
 <app-stage-list [stages]="stages"></app-stage-list>
+    
+<app-dropdown id="id" title="titulo" [items]="['a', 'b', 'c']" info="abdeqwe">
+</app-dropdown>
+
+<app-stage-list [stages]="stages"></app-stage-list>
+
+
+<br />
+<app-input
+  [title]="inputData.title"
+  [hint]="inputData.hint"
+  [placeholder]="inputData.placeholder"
+  [info]="inputData.info"
+  [id]="inputData.id"
+>
+</app-input>
+
+<br />
+<app-input
+  [title]="inputData.title"
+  [hint]="inputData.hint"
+  [placeholder]="inputData.placeholder"
+  [info]="inputData.info"
+  [id]="inputData.id"
+>
+</app-input>
+<br />
+<app-tabla
+  [items]="itemsTabla"
+  [title]="titleTabla"
+  [itemName]="itemNameTabla"
+  [columnsConfig]="columnsTabla"
+  [dynamic]="true"
+></app-tabla>
+    
+    * * * * * * * * * * * -->
+
+<app-dropdown id="id" title="titulo" [items]="['a', 'b', 'c']" info="abdeqwe">
+</app-dropdown>

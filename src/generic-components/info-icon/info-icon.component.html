@@ -3,10 +3,10 @@
 <svg
   *ngIf="info"
   xmlns="http://www.w3.org/2000/svg"
-  width="16"
-  height="16"
+  [attr.height]="size"
+  [attr.width]="size"
   fill="currentColor"
-  class="bi bi-info-circle"
+  class="bi bi-info-circle ps-2"
   viewBox="0 0 16 16"
   [matTooltip]="info"
 >

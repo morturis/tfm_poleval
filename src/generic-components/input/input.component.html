@@ -1,0 +1,26 @@
+<div class="d-inline">
+  <mat-form-field>
+    <mat-label>{{ fieldConfig.header }}</mat-label>
+    <input
+      matInput
+      maxlength="256"
+      placeholder="{{ fieldConfig.placeholder }}"
+      [formControl]="formControl"
+    />
+
+    <mat-hint
+      class="text-danger text-nowrap"
+      *ngFor="let error of listOfErrors()"
+    >
+      {{ error }}
+    </mat-hint>
+    <!--
+    <mat-hint align="start">
+      <strong>{{ fieldConfig.hint }}</strong>
+    </mat-hint>
+    <br />
+    -->
+  </mat-form-field>
+  <app-info-icon [size]="32" [info]="fieldConfig.info"></app-info-icon>
+</div>
+<!--TODO css-->
