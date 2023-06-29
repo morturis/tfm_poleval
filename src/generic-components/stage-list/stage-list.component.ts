@@ -8,6 +8,27 @@ import { Stage } from 'src/app/types/Stage';
 })
 export class StageListComponent {
   @Input({ required: true }) stages: Stage[] = [];
+  currentStage: Stage | undefined;
+  currentStageIndex: number = 0;
 
-  //TODO set done when leaving stage
+  ngOnInit() {
+    //Set current stage
+    const firstNotDoneOrLastIndex =
+      this.stages.findIndex((stage) => !stage.isDone) || this.stages.length - 1;
+
+    this.currentStageIndex = firstNotDoneOrLastIndex;
+    this.currentStage = this.stages[this.currentStageIndex];
+  }
+
+  advanceOneStage() {
+    (this.currentStage as Stage).isDone = true;
+    this.currentStageIndex++;
+    this.currentStage = this.stages[this.currentStageIndex];
+  }
+
+  goBackOneStage() {
+    this.currentStageIndex--;
+    this.currentStage = this.stages[this.currentStageIndex];
+    (this.currentStage as Stage).isDone = false;
+  }
 }

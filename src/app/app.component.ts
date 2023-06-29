@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Stage } from './types/Stage';
 import { ColumnConfig } from './types/ColumnConfig';
 import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
+import { TestViewComponent } from 'src/views/test-view/test-view.component';
+import { TestViewDosComponent } from 'src/views/test-view-dos/test-view-dos.component';
 
 @Component({
   selector: 'app-root',
@@ -16,28 +18,34 @@ export class AppComponent {
     {
       name: 'fase1',
       isDone: true,
+      contents: TestViewComponent,
     },
     {
       name: 'fase2',
       isDone: true,
+      contents: TestViewDosComponent,
     },
     {
       name: 'doc-fase2',
       isDone: true,
       isDocument: true,
+      contents: TestViewComponent,
     },
     {
       name: 'fase3',
-      isDone: false,
+      isDone: true,
+      contents: TestViewDosComponent,
     },
     {
       name: 'doc-fase3',
       isDone: false,
       isDocument: true,
+      contents: TestViewComponent,
     },
     {
       name: 'fase4',
       isDone: false,
+      contents: TestViewDosComponent,
     },
   ];
 

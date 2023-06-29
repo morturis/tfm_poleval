@@ -1,16 +1,28 @@
-<mat-icon>insert_drive_file</mat-icon>
-<mat-stepper labelPosition="bottom">
+<mat-stepper labelPosition="bottom" linear animationDuration="0">
   <ng-template matStepperIcon="document">
     <mat-icon>insert_drive_file</mat-icon>
   </ng-template>
-
+  <ng-template matStepperIcon="notDone">
+    <mat-icon>edit</mat-icon>
+  </ng-template>
+  <!--TODO override 'done' icon-->
+  <!--TODO reduce padding of mat-step-header -->
   <mat-step
     *ngFor="let stage of stages"
     [completed]="stage.isDone"
     [label]="stage.name"
     [editable]="false"
-    [state]="stage.isDocument ? 'document' : 'none'"
+    [state]="stage.isDocument ? 'document' : 'notDone'"
   >
-    <!--TODO inyectar formulario aqui-->
+    <hr class="w-75 mx-auto my-0" />
+    <br />
+    <ng-template
+      matStepContent
+      dynamicComponentLoader
+      [component]="stage.contents"
+      #contents
+    >
+    </ng-template>
+    <!--TODO botones next/back -->
   </mat-step>
 </mat-stepper>

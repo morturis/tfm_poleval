@@ -16,6 +16,7 @@ import { InputComponent } from './input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DirectivesModule } from 'src/directives/directives.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    DirectivesModule,
   ],
   exports: [
     DropdownComponent,
