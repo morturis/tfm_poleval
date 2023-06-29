@@ -13,14 +13,16 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="undefined">Cancelar</button>
+    <button mat-button [mat-dialog-close]="undefined">
+      {{ this.ts.translate("button_cancel") }}
+    </button>
     <button
       mat-button
       [mat-dialog-close]="this.form.value"
       [disabled]="this.form.status === 'INVALID'"
       cdkFocusInitial
     >
-      Añadir
+      {{ this.ts.translate("button_add") }}
     </button>
   </mat-dialog-actions>
 </div>

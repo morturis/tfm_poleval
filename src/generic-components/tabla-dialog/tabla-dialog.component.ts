@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ColumnConfig } from 'src/app/types/ColumnConfig';
 import { DialogData } from 'src/app/types/DialogData';
+import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-tabla-dialog',
@@ -15,7 +16,8 @@ export class TablaDialogComponent {
   title: string = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) data: DialogData,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public ts: TranslationService
   ) {
     //Creating form
     this.form = this.fb.group(

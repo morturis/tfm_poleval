@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
 import { DialogData } from 'src/app/types/DialogData';
 import { firstValueFrom } from 'rxjs';
+import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-tabla',
@@ -23,7 +24,7 @@ export class TablaComponent {
   displayedColumns: string[] = [];
   id: string = '';
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public ts: TranslationService) {}
 
   ngOnInit() {
     this.id = `table-${uuidv4()}`;
@@ -34,7 +35,7 @@ export class TablaComponent {
     //Open a dialog to create a new item
     const dialogData: DialogData = {
       columnsConfig: this.columnsConfig,
-      title: `Añadir ${this.itemName}`,
+      title: `${this.ts.translate('button_add')} ${this.itemName}`,
     };
     const dialogRef = this.dialog.open(TablaDialogComponent, {
       width: 'auto',

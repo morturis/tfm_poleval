@@ -14,9 +14,9 @@
 
 <div *ngIf="dynamic" class="mt-2" style="float: right">
   <button mat-raised-button [disabled]="!items.length" (click)="removeItem()">
-    Eliminar último {{ itemName }}
+    {{ this.ts.translate("button_remove_last") }} {{ itemName }}
   </button>
   <button mat-raised-button (click)="addItem()" class="ms-3 me-2">
-    Añadir {{ itemName }}
+    {{ this.ts.translate("button_add_one") }} {{ itemName }}
   </button>
 </div>

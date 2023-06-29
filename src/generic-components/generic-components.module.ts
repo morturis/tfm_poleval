@@ -17,6 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DirectivesModule } from 'src/directives/directives.module';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ServicesModule } from 'src/services/services.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { DirectivesModule } from 'src/directives/directives.module';
     TablaComponent,
     TablaDialogComponent,
     InputComponent,
+    ToolbarComponent,
   ],
   imports: [
     CommonModule,
@@ -41,12 +45,15 @@ import { DirectivesModule } from 'src/directives/directives.module';
     MatInputModule,
     ReactiveFormsModule,
     DirectivesModule,
+    MatToolbarModule,
+    ServicesModule,
   ],
   exports: [
     DropdownComponent,
     StageListComponent,
     TablaComponent,
     InputComponent,
+    ToolbarComponent,
   ],
 })
 export class GenericComponentsModule {}
