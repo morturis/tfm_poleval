@@ -20,6 +20,7 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ServicesModule } from 'src/services/services.module';
+import { UnderbarComponent } from './underbar/underbar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ServicesModule } from 'src/services/services.module';
     TablaDialogComponent,
     InputComponent,
     ToolbarComponent,
+    UnderbarComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { ServicesModule } from 'src/services/services.module';
     TablaComponent,
     InputComponent,
     ToolbarComponent,
+    UnderbarComponent,
   ],
 })
 export class GenericComponentsModule {}

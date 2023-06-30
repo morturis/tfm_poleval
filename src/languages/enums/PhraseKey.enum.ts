@@ -10,4 +10,6 @@ export enum PhraseKey {
   toolbar_log_in = 'toolbar_log_in',
   toolbar_sign_up = 'toolbar_sign_up',
   new_eval = 'new_eval',
+  name_of_app = 'name_of_app',
+  back_to_top = 'back_to_top',
 }

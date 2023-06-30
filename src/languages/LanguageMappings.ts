@@ -14,6 +14,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.toolbar_log_in]: 'Identificarse',
     [PhraseKey.toolbar_sign_up]: 'Registrarse',
     [PhraseKey.new_eval]: 'Nueva evaluación',
+    [PhraseKey.name_of_app]: '@TFM',
+    [PhraseKey.back_to_top]: 'Volver arriba',
   },
   EN: {
     [PhraseKey.button_add]: 'Add',
@@ -27,5 +29,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.toolbar_log_in]: 'Log in',
     [PhraseKey.toolbar_sign_up]: 'Sign up',
     [PhraseKey.new_eval]: 'New evaluation',
+    [PhraseKey.name_of_app]: '@TFM',
+    [PhraseKey.back_to_top]: 'Back to top',
   },
 };
