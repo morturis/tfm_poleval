@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
 import { LanguageMappings } from '../languages/LanguageMappings';
-import { Language } from '../languages/enums/Language.enum';
 import { PhraseKey } from '../languages/enums/PhraseKey.enum';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TranslationService {
-  constructor() {}
+  constructor(private languageService: LanguageService) {}
 
-  localize = (phraseKey: keyof typeof PhraseKey): string => {
-    return LanguageMappings[this.getLanguage()][phraseKey];
-  };
-
-  translate = this.localize;
-
-  private getLanguage = (): keyof typeof Language => {
-    return Language.EN;
+  translate = (phraseKey: keyof typeof PhraseKey): string => {
+    return LanguageMappings[this.languageService.language][phraseKey];
   };
 }

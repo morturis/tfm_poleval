@@ -23,8 +23,17 @@
   <!--empty div -->
   <div class="col"></div>
 
-  <!--user registering-->
   <div class="">
+    <!--language-->
+    <button mat-button class="col w-10" (click)="changeLanguage()">
+      <img
+        src="/assets/img/flags/{{ this.languageCode }}.png"
+        height="24"
+        width="24"
+      />
+    </button>
+
+    <!--user registering-->
     <button mat-button class="col">
       <mat-icon>login</mat-icon>
       {{ this.ts.translate("toolbar_log_in") }}
