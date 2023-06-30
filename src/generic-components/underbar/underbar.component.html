@@ -1,19 +1,20 @@
-<p>underbar works!</p>
-<mat-toolbar class="sticky-top">
-  <div>
-    <div class="col">
-      {{ this.ts.translate("name_of_app") }}
+<footer class="w-100 mt-2">
+  <mat-toolbar>
+    <div>
+      <div class="col">
+        {{ this.ts.translate("name_of_app") }}
+      </div>
     </div>
-  </div>
 
-  <!--empty div -->
-  <div class="col"></div>
+    <!--empty div -->
+    <div class="col"></div>
 
-  <!--user registering-->
-  <div>
-    <button mat-button class="col">
-      <mat-icon>north</mat-icon>
-      {{ this.ts.translate("back_to_top") }}
-    </button>
-  </div>
-</mat-toolbar>
+    <!--user registering-->
+    <div>
+      <button mat-button class="col">
+        <mat-icon>north</mat-icon>
+        {{ this.ts.translate("back_to_top") }}
+      </button>
+    </div>
+  </mat-toolbar>
+</footer>

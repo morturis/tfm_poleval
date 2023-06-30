@@ -1,4 +1,4 @@
-<mat-table [dataSource]="items" class="mat-elevation-z8 row mt-2">
+<mat-table [dataSource]="items" class="mat-elevation-z8 mt-2 w-100">
   <ng-container
     *ngFor="let column of columnsConfig"
     [matColumnDef]="column.field"
@@ -12,7 +12,7 @@
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 
-<div *ngIf="dynamic" class="mt-2" style="float: right">
+<div *ngIf="dynamic" class="mt-2 me-2 d-flex flex-row-reverse">
   <button mat-raised-button [disabled]="!items.length" (click)="removeItem()">
     {{ this.ts.translate("button_remove_last") }} {{ itemName }}
   </button>
