@@ -1,20 +1,20 @@
 <mat-toolbar class="sticky-top">
   <div>
-    <button mat-button class="col">
+    <button mat-button routerLink="" class="col">
       <mat-icon>home</mat-icon>
       {{ this.ts.translate("toolbar_home") }}
     </button>
 
-    <button mat-button class="col">
+    <button mat-button routerLink="about" class="col">
       <mat-icon>psychology_alt</mat-icon>
       {{ this.ts.translate("toolbar_we_are") }}
     </button>
 
-    <button mat-button class="col">
+    <button mat-button routerLink="contact" class="col">
       <mat-icon>phone</mat-icon>
       {{ this.ts.translate("toolbar_contact") }}
     </button>
-    <button mat-button class="col">
+    <button mat-button routerLink="eval" class="col">
       <mat-icon>add</mat-icon>
       {{ this.ts.translate("new_eval") }}
     </button>

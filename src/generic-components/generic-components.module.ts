@@ -21,6 +21,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ServicesModule } from 'src/services/services.module';
 import { UnderbarComponent } from './underbar/underbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UnderbarComponent } from './underbar/underbar.component';
     DirectivesModule,
     MatToolbarModule,
     ServicesModule,
+    RouterModule,
   ],
   exports: [
     DropdownComponent,
