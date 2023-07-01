@@ -11,7 +11,7 @@
 
     <!--user registering-->
     <div>
-      <button mat-button class="col">
+      <button mat-button (click)="scrollToTop()" class="col">
         <mat-icon>north</mat-icon>
         {{ this.ts.translate("back_to_top") }}
       </button>

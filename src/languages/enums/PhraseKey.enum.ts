@@ -12,4 +12,14 @@ export enum PhraseKey {
   new_eval = 'new_eval',
   name_of_app = 'name_of_app',
   back_to_top = 'back_to_top',
+  back = 'back',
+  next = 'next',
+
+  //stages
+  first_stage = 'first_stage',
+  document_terms_of_reference = 'document_terms_of_reference',
+  second_stage = 'second_stage',
+  third_stage = 'third_stage',
+  fourth_stage = 'fourth_stage',
+  document_final_report = 'document_final_report',
 }

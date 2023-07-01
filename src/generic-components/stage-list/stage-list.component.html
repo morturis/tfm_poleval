@@ -1,17 +1,33 @@
-<mat-stepper labelPosition="bottom" linear animationDuration="0">
+<mat-stepper labelPosition="bottom" animationDuration="0" #stepper>
+  <!--ICON OVERRIDES-->
   <ng-template matStepperIcon="document">
     <mat-icon>insert_drive_file</mat-icon>
   </ng-template>
   <ng-template matStepperIcon="notDone">
     <mat-icon>edit</mat-icon>
   </ng-template>
-  <!--TODO override 'done' icon-->
-  <!--TODO reduce padding of mat-step-header -->
+  <ng-template matStepperIcon="edit" let-index="index">
+    <mat-icon *ngIf="this.stepper.steps.get(index)?.state == 'document'"
+      >insert_drive_file</mat-icon
+    >
+    <mat-icon *ngIf="!(this.stepper.steps.get(index)?.state == 'document')">
+      edit
+    </mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="done" let-index="index">
+    <mat-icon *ngIf="this.stepper.steps.get(index)?.state == 'document'"
+      >insert_drive_file</mat-icon
+    >
+    <mat-icon *ngIf="!(this.stepper.steps.get(index)?.state == 'document')">
+      done
+    </mat-icon>
+  </ng-template>
+  <!--END ICON OVERRIDES-->
+
   <mat-step
     *ngFor="let stage of stages"
     [completed]="stage.isDone"
-    [label]="stage.name"
-    [editable]="false"
+    [label]="this.ts.translate(stage.name)"
     [state]="stage.isDocument ? 'document' : 'notDone'"
   >
     <hr class="w-75 mx-auto my-0" />
@@ -23,6 +39,13 @@
       #contents
     >
     </ng-template>
-    <!--TODO botones next/back -->
+
+    <div class="d-flex">
+      <button mat-button matStepperPrevious>
+        {{ this.ts.translate("back") }}
+      </button>
+      <div class="col"></div>
+      <button mat-button matStepperNext>{{ this.ts.translate("next") }}</button>
+    </div>
   </mat-step>
 </mat-stepper>

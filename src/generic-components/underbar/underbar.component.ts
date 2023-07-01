@@ -8,4 +8,8 @@ import { TranslationService } from 'src/services/translation-service.service';
 })
 export class UnderbarComponent {
   constructor(public ts: TranslationService) {}
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 }

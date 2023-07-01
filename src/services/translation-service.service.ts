@@ -9,7 +9,9 @@ import { LanguageService } from './language.service';
 export class TranslationService {
   constructor(private languageService: LanguageService) {}
 
-  translate = (phraseKey: keyof typeof PhraseKey): string => {
-    return LanguageMappings[this.languageService.language][phraseKey];
+  translate = (phraseKey: string): string => {
+    return LanguageMappings[this.languageService.language][
+      phraseKey as keyof typeof PhraseKey
+    ];
   };
 }

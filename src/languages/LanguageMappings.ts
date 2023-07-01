@@ -16,6 +16,15 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.new_eval]: 'Nueva evaluación',
     [PhraseKey.name_of_app]: '@TFM',
     [PhraseKey.back_to_top]: 'Volver arriba',
+    //Stage names
+    [PhraseKey.first_stage]: 'Análisis y planificación',
+    [PhraseKey.document_terms_of_reference]: 'Informe preliminar',
+    [PhraseKey.second_stage]: 'Contexto de la intervención',
+    [PhraseKey.third_stage]: 'Diseño de la evaluación',
+    [PhraseKey.fourth_stage]: 'Trabajo de campo',
+    [PhraseKey.document_final_report]: 'Informe final',
+    [PhraseKey.back]: 'Atrás',
+    [PhraseKey.next]: 'Siguiente',
   },
   EN: {
     [PhraseKey.button_add]: 'Add',
@@ -31,5 +40,14 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.new_eval]: 'New evaluation',
     [PhraseKey.name_of_app]: '@TFM',
     [PhraseKey.back_to_top]: 'Back to top',
+    //Stage names
+    [PhraseKey.first_stage]: 'Analysis and planning',
+    [PhraseKey.document_terms_of_reference]: 'Terms of reference',
+    [PhraseKey.second_stage]: 'Intervention context',
+    [PhraseKey.third_stage]: 'Evaluation design',
+    [PhraseKey.fourth_stage]: 'Field work',
+    [PhraseKey.document_final_report]: 'Final report',
+    [PhraseKey.back]: 'Back',
+    [PhraseKey.next]: 'Next',
   },
 };
