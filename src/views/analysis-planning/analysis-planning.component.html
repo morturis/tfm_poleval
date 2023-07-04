@@ -1,1 +1,9 @@
-<p>analysis-planning works!</p>
+<form>
+  <app-input
+    class="row"
+    *ngFor="let input of fieldsConfig"
+    [fieldConfig]="input"
+    [formControl]="getFormControl(input.field)"
+  >
+  </app-input>
+</form>

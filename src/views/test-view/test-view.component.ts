@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { ColumnConfig } from 'src/app/types/ColumnConfig';
+import { ColumnConfig } from 'src/app/types/FieldConfig';
 import { Stage } from 'src/app/types/Stage';
 import { TestViewDosComponent } from '../test-view-dos/test-view-dos.component';
 import { TranslationService } from 'src/services/translation-service.service';

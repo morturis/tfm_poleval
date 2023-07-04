@@ -1,26 +1,28 @@
 <div class="d-inline">
+  <label *ngIf="fieldConfig.labelOnLeftSide">{{
+    this.ts.translate(fieldConfig.header)
+  }}</label>
+  <label *ngIf="fieldConfig.labelOnLeftSide && fieldIsRequired">*</label>
   <mat-form-field>
-    <mat-label>{{ fieldConfig.header }}</mat-label>
+    <mat-label *ngIf="!fieldConfig.labelOnLeftSide">{{
+      this.ts.translate(fieldConfig.header)
+    }}</mat-label>
     <input
       matInput
-      maxlength="256"
-      placeholder="{{ fieldConfig.placeholder }}"
+      placeholder="{{ this.ts.translate(fieldConfig.placeholder) }}"
       [formControl]="formControl"
     />
-
     <mat-hint
       class="text-danger text-nowrap"
       *ngFor="let error of listOfErrors()"
     >
-      {{ error }}
+      {{ error
+      }}<!--TODO translate errors-->
     </mat-hint>
-    <!--
-    <mat-hint align="start">
-      <strong>{{ fieldConfig.hint }}</strong>
-    </mat-hint>
-    <br />
-    -->
   </mat-form-field>
-  <app-info-icon [size]="32" [info]="fieldConfig.info"></app-info-icon>
+  <app-info-icon
+    [size]="32"
+    [info]="this.ts.translate(fieldConfig.info)"
+  ></app-info-icon>
 </div>
 <!--TODO css-->

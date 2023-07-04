@@ -1,1 +1,8 @@
-<p>intervention-context works!</p>
+<form>
+  <app-input
+    *ngFor="let input of columnsConfig"
+    [fieldConfig]="input"
+    [formControl]="getFormControl(input.field)"
+  >
+  </app-input>
+</form>

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ColumnConfig } from 'src/app/types/ColumnConfig';
+import { ColumnConfig } from 'src/app/types/FieldConfig';
 import { DialogData } from 'src/app/types/DialogData';
 import { TranslationService } from 'src/services/translation-service.service';
 

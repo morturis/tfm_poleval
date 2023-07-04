@@ -15,6 +15,31 @@ export enum PhraseKey {
   back = 'back',
   next = 'next',
 
+  //Analysis stage
+  intervention_name = 'intervention_name',
+  intervention_name_placeholder = 'intervention_name_placeholder',
+  intervention_name_info = 'intervention_name_info',
+
+  evaluation_org = 'evaluation_org',
+  evaluation_org_placeholder = 'evaluation_org_placeholder',
+  evaluation_org_info = 'evaluation_org_info',
+
+  evaluation_objective = 'evaluation_objective',
+  evaluation_objective_placeholder = 'evaluation_objective_placeholder',
+  evaluation_objectivee_info = 'evaluation_objectivee_info',
+
+  evaluation_reasoning = 'evaluation_reasoning',
+  evaluation_reasoning_placeholder = 'evaluation_reasoning_placeholder',
+  evaluation_reasoning_info = 'evaluation_reasoning_info',
+
+  evaluation_utility = 'evaluation_utility',
+  evaluation_utility_placeholder = 'evaluation_utility_placeholder',
+  evaluation_utility_info = 'evaluation_utility_info',
+
+  other_delimitations = 'other_delimitations',
+  other_delimitations_placeholder = 'other_delimitations_placeholder',
+  other_delimitations_info = 'other_delimitations_info',
+
   //stages
   first_stage = 'first_stage',
   document_terms_of_reference = 'document_terms_of_reference',

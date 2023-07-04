@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { ColumnConfig } from 'src/app/types/ColumnConfig';
+import { ColumnConfig } from 'src/app/types/FieldConfig';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
 import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
