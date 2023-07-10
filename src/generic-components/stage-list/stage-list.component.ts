@@ -1,9 +1,6 @@
-import { CdkStep } from '@angular/cdk/stepper';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { pairwise } from 'rxjs/internal/operators/pairwise';
 import { Stage } from 'src/app/types/Stage';
-import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-stage-list',
@@ -16,7 +13,7 @@ export class StageListComponent {
   currentStage!: Stage; //Definite assignment
   currentStageIndex: number = 0;
 
-  constructor(public ts: TranslationService) {}
+  constructor() {}
 
   ngAfterViewInit() {
     this.currentStageIndex = this.stepper.selectedIndex;

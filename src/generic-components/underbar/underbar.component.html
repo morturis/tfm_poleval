@@ -2,7 +2,7 @@
   <mat-toolbar>
     <div>
       <div class="col">
-        {{ this.ts.translate("name_of_app") }}
+        {{ "name_of_app" | translate }}
       </div>
     </div>
 
@@ -13,7 +13,7 @@
     <div>
       <button mat-button (click)="scrollToTop()" class="col">
         <mat-icon>north</mat-icon>
-        {{ this.ts.translate("back_to_top") }}
+        {{ "back_to_top" | translate }}
       </button>
     </div>
   </mat-toolbar>

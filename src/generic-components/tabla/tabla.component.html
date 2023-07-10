@@ -1,6 +1,7 @@
+<h6>{{ title }}</h6>
 <mat-table [dataSource]="items" class="mat-elevation-z8 mt-2 w-100">
   <ng-container
-    *ngFor="let column of columnsConfig"
+    *ngFor="let column of fieldsConfig"
     [matColumnDef]="column.field"
   >
     <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
@@ -8,15 +9,15 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <!--TODO css to this-->
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 
-<div *ngIf="dynamic" class="mt-2 me-2 d-flex flex-row-reverse">
+<div *ngIf="canAddRemove" class="mt-2 me-2 d-flex flex-row-reverse">
   <button mat-raised-button [disabled]="!items.length" (click)="removeItem()">
-    {{ this.ts.translate("button_remove_last") }} {{ itemName }}
+    {{ "button_remove_last" | translate }} {{ itemName }}
   </button>
   <button mat-raised-button (click)="addItem()" class="ms-3 me-2">
-    {{ this.ts.translate("button_add_one") }} {{ itemName }}
+    {{ "button_add_one" | translate }} {{ itemName }}
   </button>
 </div>
+<div class="mb-4"></div>

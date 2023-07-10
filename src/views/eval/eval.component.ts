@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { Stage } from 'src/app/types/Stage';
-import { PhraseKey } from 'src/languages/enums/PhraseKey.enum';
-import { TranslationService } from 'src/services/translation-service.service';
-import { TestViewDosComponent } from '../test-view-dos/test-view-dos.component';
 import { AnalysisPlanningComponent } from '../analysis-planning/analysis-planning.component';
 import { TermsOfReferenceComponent } from '../terms-of-reference/terms-of-reference.component';
 import { InterventionContextComponent } from '../intervention-context/intervention-context.component';
@@ -16,7 +13,7 @@ import { FinalReportComponent } from '../final-report/final-report.component';
   styleUrls: ['./eval.component.scss'],
 })
 export class EvalComponent {
-  constructor(private ts: TranslationService) {}
+  constructor() {}
 
   //TODO make stage names dynamic
   stages: Stage[] = [

@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { ColumnConfig } from 'src/app/types/FieldConfig';
+import { InputConfig, TableConfig } from 'src/app/types/FieldConfig';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
 import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
@@ -14,12 +14,14 @@ import { TranslationService } from 'src/services/translation-service.service';
   styleUrls: ['./tabla.component.scss'],
 })
 export class TablaComponent {
-  @Input({ required: true }) title: string = '';
-  @Input({ required: true }) items: any[] = [];
-  @Input({ required: true }) itemName: string = '';
-  @Input({ required: true }) columnsConfig: ColumnConfig[] = [];
-  @Input({ required: false }) dynamic: boolean = false;
+  @Input({ required: true }) config!: TableConfig; //definite assignment
   @ViewChild(MatTable) table!: MatTable<any>; //Definitive assignment operator, compiler trust me
+
+  title: string = '';
+  items: any[] = [];
+  itemName: string = '';
+  fieldsConfig: InputConfig[] = [];
+  canAddRemove: boolean = false;
 
   displayedColumns: string[] = [];
   id: string = '';
@@ -27,14 +29,19 @@ export class TablaComponent {
   constructor(public dialog: MatDialog, public ts: TranslationService) {}
 
   ngOnInit() {
+    this.title = this.config.header;
+    this.items = this.config.defaultValue || [];
+    this.itemName = this.config.itemName;
+    this.fieldsConfig = this.config.columns;
+    this.canAddRemove = this.config.canAddRemove;
     this.id = `table-${uuidv4()}`;
-    this.displayedColumns = this.columnsConfig.map((c) => c.field);
+    this.displayedColumns = this.fieldsConfig.map((c) => c.field);
   }
 
   async addItem() {
     //Open a dialog to create a new item
     const dialogData: DialogData = {
-      columnsConfig: this.columnsConfig,
+      inputsConfig: this.fieldsConfig,
       title: `${this.ts.translate('button_add')} ${this.itemName}`,
     };
     const dialogRef = this.dialog.open(TablaDialogComponent, {

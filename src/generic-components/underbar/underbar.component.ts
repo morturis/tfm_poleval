@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-underbar',
@@ -7,8 +6,6 @@ import { TranslationService } from 'src/services/translation-service.service';
   styleUrls: ['./underbar.component.scss'],
 })
 export class UnderbarComponent {
-  constructor(public ts: TranslationService) {}
-
   scrollToTop() {
     window.scrollTo(0, 0);
   }

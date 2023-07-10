@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ColumnConfig } from 'src/app/types/FieldConfig';
+import { InputConfig } from 'src/app/types/FieldConfig';
 import { DialogData } from 'src/app/types/DialogData';
-import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-tabla-dialog',
@@ -12,16 +11,15 @@ import { TranslationService } from 'src/services/translation-service.service';
 })
 export class TablaDialogComponent {
   form!: FormGroup; //definite assignment operator
-  columnConfig: ColumnConfig[] = [];
+  fieldsConfig: InputConfig[] = [];
   title: string = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) data: DialogData,
-    private fb: FormBuilder,
-    public ts: TranslationService
+    private fb: FormBuilder
   ) {
     //Creating form
     this.form = this.fb.group(
-      data.columnsConfig.reduce((accum, column: ColumnConfig) => {
+      data.inputsConfig.reduce((accum, column: InputConfig) => {
         return {
           ...accum,
           [column.field]: [
@@ -32,7 +30,7 @@ export class TablaDialogComponent {
       }, {} as any)
     );
 
-    this.columnConfig = data.columnsConfig;
+    this.fieldsConfig = data.inputsConfig;
     this.title = data.title;
   }
 

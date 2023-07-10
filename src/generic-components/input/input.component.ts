@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { InputConfig } from 'src/app/types/FieldConfig';
-import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-input',
@@ -9,12 +8,14 @@ import { TranslationService } from 'src/services/translation-service.service';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent {
-  @Input({ required: true }) formControl!: FormControl; //Definite assignment
+  @Input({ required: true }) control!: FormControl; //Definite assignment //Cant use formControl as name
   @Input({ required: true }) fieldConfig!: InputConfig; //definite assignment
 
   fieldIsRequired: boolean = false;
 
-  constructor(public ts: TranslationService) {}
+  constructor() {
+    const k = 1;
+  }
 
   ngOnInit() {
     this.fieldIsRequired =
@@ -22,19 +23,19 @@ export class InputComponent {
   }
 
   listOfErrors() {
-    if (!this.formControl.errors || !this.fieldConfig.errorMessages) return [];
+    if (!this.control.errors || !this.fieldConfig.errorMessages) return [];
 
     const k = { a: 'abc', d: 'def' };
     const j = Object.keys(k);
 
-    const errors = Object.keys(this.formControl.errors).map((err) =>
+    const errors = Object.keys(this.control.errors).map((err) =>
       (this.fieldConfig.errorMessages as Record<string, Function>)[err](
-        this.formControl.getError(err)
+        this.control.getError(err)
       )
     );
-    return Object.keys(this.formControl.errors).map((err) =>
+    return Object.keys(this.control.errors).map((err) =>
       (this.fieldConfig.errorMessages as Record<string, Function>)[err](
-        this.formControl.getError(err)
+        this.control.getError(err)
       )
     );
   }

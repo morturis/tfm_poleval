@@ -1,6 +1,6 @@
-import { ColumnConfig } from './FieldConfig';
+import { InputConfig } from './FieldConfig';
 
 export type DialogData = {
-  columnsConfig: ColumnConfig[];
+  inputsConfig: InputConfig[];
   title: string;
 };

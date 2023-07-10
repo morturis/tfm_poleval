@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from 'src/services/language.service';
-import { TranslationService } from 'src/services/translation-service.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,11 +9,7 @@ import { TranslationService } from 'src/services/translation-service.service';
 })
 export class ToolbarComponent {
   languageCode: string = this.ls.language;
-  constructor(
-    public ts: TranslationService,
-    public ls: LanguageService,
-    public router: Router
-  ) {}
+  constructor(public ls: LanguageService, public router: Router) {}
 
   changeLanguage() {
     this.ls.nextLanguage();

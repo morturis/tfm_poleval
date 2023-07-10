@@ -2,21 +2,21 @@
   <div>
     <button mat-button routerLink="" class="col">
       <mat-icon>home</mat-icon>
-      {{ this.ts.translate("toolbar_home") }}
+      {{ "toolbar_home" | translate }}
     </button>
 
     <button mat-button routerLink="about" class="col">
       <mat-icon>psychology_alt</mat-icon>
-      {{ this.ts.translate("toolbar_we_are") }}
+      {{ "toolbar_we_are" | translate }}
     </button>
 
     <button mat-button routerLink="contact" class="col">
       <mat-icon>phone</mat-icon>
-      {{ this.ts.translate("toolbar_contact") }}
+      {{ "toolbar_contact" | translate }}
     </button>
     <button mat-button routerLink="eval" class="col">
       <mat-icon>add</mat-icon>
-      {{ this.ts.translate("new_eval") }}
+      {{ "new_eval" | translate }}
     </button>
   </div>
 
@@ -36,11 +36,11 @@
     <!--user registering-->
     <button mat-button class="col">
       <mat-icon>login</mat-icon>
-      {{ this.ts.translate("toolbar_log_in") }}
+      {{ "toolbar_log_in" | translate }}
     </button>
     <button mat-button class="col">
       <mat-icon>person</mat-icon>
-      {{ this.ts.translate("toolbar_sign_up") }}
+      {{ "toolbar_sign_up" | translate }}
     </button>
   </div>
 </mat-toolbar>

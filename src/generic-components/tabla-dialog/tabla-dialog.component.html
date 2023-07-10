@@ -3,10 +3,10 @@
   <mat-dialog-content class="pb-0 row">
     <form class="pe-0 ps-0 d-inline">
       <!--TODO correct display size width-->
-      <div class="d-inline ps-1 pe-1" *ngFor="let column of columnConfig">
+      <div class="d-inline ps-1 pe-1" *ngFor="let field of fieldsConfig">
         <app-input
-          [formControl]="getFormControl(column.field)"
-          [fieldConfig]="column"
+          [control]="getFormControl(field.field)"
+          [fieldConfig]="field"
         >
         </app-input>
       </div>
@@ -14,7 +14,7 @@
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button [mat-dialog-close]="undefined">
-      {{ this.ts.translate("button_cancel") }}
+      {{ "button_cancel" | translate }}
     </button>
     <button
       mat-button
@@ -22,7 +22,7 @@
       [disabled]="this.form.status === 'INVALID'"
       cdkFocusInitial
     >
-      {{ this.ts.translate("button_add") }}
+      {{ "button_add" | translate }}
     </button>
   </mat-dialog-actions>
 </div>
