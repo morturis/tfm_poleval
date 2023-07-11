@@ -13,10 +13,6 @@ export class InputComponent {
 
   fieldIsRequired: boolean = false;
 
-  constructor() {
-    const k = 1;
-  }
-
   ngOnInit() {
     this.fieldIsRequired =
       this.fieldConfig.validators?.includes(Validators.required) || false;

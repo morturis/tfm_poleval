@@ -5,8 +5,9 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    //"strictPropertyInitialization": false, //Prevents input not assigned compilation error
+    //"strictPropertyInitialization": false, //when false, prevents input not assigned compilation error
     "strict": true,
+    "noUnusedLocals": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

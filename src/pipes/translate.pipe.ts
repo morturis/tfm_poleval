@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform, Signal } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { TranslationService } from 'src/services/translation-service.service';
 
 @Pipe({

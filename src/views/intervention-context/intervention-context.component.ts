@@ -101,23 +101,24 @@ export class InterventionContextComponent {
     },
 
     {
-      header: 'intervention_life_cycle',
-      field: 'intervention_life_cycle',
+      header: 'intervention_implementation_level',
+      field: 'intervention_implementation_level',
       fieldType: 'dropdown',
       viewOnly: false,
       defaultValue: undefined,
       labelOnLeftSide: true,
-      info: 'intervention_life_cycle_info',
+      info: 'intervention_implementation_level_info',
       items: [
-        'intervention_life_cycle_1',
-        'intervention_life_cycle_2',
-        'intervention_life_cycle_3',
+        'intervention_implementation_level_1',
+        'intervention_implementation_level_2',
+        'intervention_implementation_level_3',
       ],
       validators: [Validators.required],
       errorMessages: {
         required: () => 'This field is required',
       },
     },
+
     {
       header: 'intervention_unexpected_interruptions',
       field: 'intervention_unexpected_interruptions',
@@ -128,7 +129,7 @@ export class InterventionContextComponent {
       placeholder: 'intervention_unexpected_interruptions_placeholder',
       info: 'intervention_unexpected_interruptions_info',
     },
-    //Actores tabla TODO
+    //Actores tabla TODO ? no se qué va aquí
     this.interventionIndicatorsTableConfig,
   ];
 

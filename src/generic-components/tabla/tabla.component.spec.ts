@@ -1,12 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TablaComponent } from './tabla.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { of } from 'rxjs';
-import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
 import { GenericComponentsModule } from '../generic-components.module';
-import { Validators, FormControl } from '@angular/forms';
-import { TranslationService } from 'src/services/translation-service.service';
+import { TablaComponent } from './tabla.component';
 
 describe('TablaComponent', () => {
   let rendered;

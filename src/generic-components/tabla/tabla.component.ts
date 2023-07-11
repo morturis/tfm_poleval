@@ -1,12 +1,12 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
-import { InputConfig, TableConfig } from 'src/app/types/FieldConfig';
-import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
-import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
-import { DialogData } from 'src/app/types/DialogData';
+import { MatTable } from '@angular/material/table';
 import { firstValueFrom } from 'rxjs';
+import { DialogData } from 'src/app/types/DialogData';
+import { InputConfig, TableConfig } from 'src/app/types/FieldConfig';
 import { TranslationService } from 'src/services/translation-service.service';
+import { v4 as uuidv4 } from 'uuid';
+import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
 
 @Component({
   selector: 'app-tabla',
@@ -26,9 +26,7 @@ export class TablaComponent {
   displayedColumns: string[] = [];
   id: string = '';
 
-  constructor(public dialog: MatDialog, public ts: TranslationService) {
-    const k = 1;
-  }
+  constructor(public dialog: MatDialog, public ts: TranslationService) {}
 
   ngOnInit() {
     this.title = this.config.header;
@@ -44,10 +42,9 @@ export class TablaComponent {
     //Open a dialog to create a new item
     const dialogData: DialogData = {
       inputsConfig: this.fieldsConfig,
-      //title: `${this.ts.translate('button_add')} ${this.itemName}`,
-      title: `button_add ${this.itemName}`,
+      title: `${this.ts.translate('button_add')} ${this.itemName}`,
+      //title: `button_add ${this.itemName}`,
     };
-    const k = this.dialog.open;
     const dialogRef = this.dialog.open(TablaDialogComponent, {
       width: 'auto',
       disableClose: true,

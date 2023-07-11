@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import {
-  AnyFieldConfig,
-  TableConfig,
-  InputConfig,
-  DropdownConfig,
-} from '../../app/types/FieldConfig';
-import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import {
+  AnyFieldConfig,
+  DropdownConfig,
+  InputConfig,
+  TableConfig,
+} from '../../app/types/FieldConfig';
 
 @Component({
   selector: 'app-analysis-planning',
@@ -18,11 +18,11 @@ import {
   styleUrls: ['./analysis-planning.component.scss'],
 })
 export class AnalysisPlanningComponent {
-  studiedActorsTableConfig: TableConfig = {
+  delimitationActorsTableConfig: TableConfig = {
     header: 'actor_table',
     field: 'actor_table',
     fieldType: 'table',
-    itemName: 'actor',
+    itemName: 'actor_unit',
     canAddRemove: true,
     columns: [
       {
@@ -44,7 +44,7 @@ export class AnalysisPlanningComponent {
     header: 'team_manager_table',
     field: 'team_manager_table',
     fieldType: 'table',
-    itemName: 'Manager',
+    itemName: 'manager_unit',
     canAddRemove: true,
     columns: [
       {
@@ -75,7 +75,6 @@ export class AnalysisPlanningComponent {
       },
     ],
   };
-
   teamMembersTableConfig: TableConfig = {
     header: 'team_member_table',
     field: 'team_member_table',
@@ -111,12 +110,11 @@ export class AnalysisPlanningComponent {
       },
     ],
   };
-
   otherParticipantsTableConfig: TableConfig = {
     header: 'other_participants_table',
     field: 'other_participants_table',
     fieldType: 'table',
-    itemName: 'member', //TODO translate
+    itemName: 'member_unit',
     canAddRemove: true,
     columns: [
       {
@@ -147,7 +145,6 @@ export class AnalysisPlanningComponent {
       },
     ],
   };
-
   toolsTableConfig: TableConfig = {
     header: 'tools_table',
     field: 'tools_table',
@@ -213,7 +210,25 @@ export class AnalysisPlanningComponent {
         required: () => 'This field is required',
       },
     },
-    //TODO fase del ciclo
+
+    {
+      header: 'intervention_life_cycle',
+      field: 'intervention_life_cycle',
+      fieldType: 'dropdown',
+      viewOnly: false,
+      defaultValue: undefined,
+      labelOnLeftSide: true,
+      info: 'intervention_life_cycle_info',
+      items: [
+        'intervention_life_cycle_1',
+        'intervention_life_cycle_2',
+        'intervention_life_cycle_3',
+      ],
+      validators: [Validators.required],
+      errorMessages: {
+        required: () => 'This field is required',
+      },
+    },
     {
       header: 'evaluation_objective',
       field: 'evaluation_objective',
@@ -256,11 +271,10 @@ export class AnalysisPlanningComponent {
         required: () => 'This field is required',
       },
     },
-    this.studiedActorsTableConfig,
     //Delimitar TODO
-    //zona geografica
-    this.studiedActorsTableConfig,
-    //tiempo
+    // --zona geografica
+    this.delimitationActorsTableConfig,
+    // --tiempo
 
     {
       header: 'other_delimitations',
@@ -272,7 +286,18 @@ export class AnalysisPlanningComponent {
       placeholder: 'other_delimitations_placeholder',
       info: 'other_delimitations_info',
     },
-    //Estrategia TODO
+
+    {
+      header: 'eval_strategy',
+      field: 'eval_strategy',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      labelOnLeftSide: true,
+      placeholder: 'eval_strategy_placeholder',
+      info: 'eval_strategy_info',
+    },
+
     this.teamManagersTableConfig,
     this.teamMembersTableConfig,
     this.otherParticipantsTableConfig,
@@ -290,7 +315,6 @@ export class AnalysisPlanningComponent {
         };
       }, {} as any)
     );
-    const k = this.fieldsConfig;
   }
 
   getFormControl(name: string) {
