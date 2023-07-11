@@ -1,18 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { ViewsModule } from '../views.module';
 import { FinalReportComponent } from './final-report.component';
 
 describe('FinalReportComponent', () => {
+  let rendered;
   let component: FinalReportComponent;
-  let fixture: ComponentFixture<FinalReportComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [FinalReportComponent]
-    });
-    fixture = TestBed.createComponent(FinalReportComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async () => {
+    await MockBuilder(FinalReportComponent, ViewsModule);
+    rendered = MockRender(FinalReportComponent);
+    component = rendered.point.componentInstance;
   });
 
   it('should create', () => {

@@ -1,18 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EvalDesignComponent } from './eval-design.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { ViewsModule } from '../views.module';
 
 describe('EvalDesignComponent', () => {
+  let rendered;
   let component: EvalDesignComponent;
-  let fixture: ComponentFixture<EvalDesignComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [EvalDesignComponent]
-    });
-    fixture = TestBed.createComponent(EvalDesignComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async () => {
+    await MockBuilder(EvalDesignComponent, ViewsModule);
+    rendered = MockRender(EvalDesignComponent);
+    component = rendered.point.componentInstance;
   });
 
   it('should create', () => {

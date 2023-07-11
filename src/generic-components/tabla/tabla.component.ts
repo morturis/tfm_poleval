@@ -26,7 +26,9 @@ export class TablaComponent {
   displayedColumns: string[] = [];
   id: string = '';
 
-  constructor(public dialog: MatDialog, public ts: TranslationService) {}
+  constructor(public dialog: MatDialog, public ts: TranslationService) {
+    const k = 1;
+  }
 
   ngOnInit() {
     this.title = this.config.header;
@@ -42,8 +44,10 @@ export class TablaComponent {
     //Open a dialog to create a new item
     const dialogData: DialogData = {
       inputsConfig: this.fieldsConfig,
-      title: `${this.ts.translate('button_add')} ${this.itemName}`,
+      //title: `${this.ts.translate('button_add')} ${this.itemName}`,
+      title: `button_add ${this.itemName}`,
     };
+    const k = this.dialog.open;
     const dialogRef = this.dialog.open(TablaDialogComponent, {
       width: 'auto',
       disableClose: true,

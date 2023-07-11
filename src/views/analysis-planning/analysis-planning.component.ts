@@ -80,7 +80,7 @@ export class AnalysisPlanningComponent {
     header: 'team_member_table',
     field: 'team_member_table',
     fieldType: 'table',
-    itemName: 'member', //TODO translate
+    itemName: 'member_unit',
     canAddRemove: true,
     columns: [
       {
@@ -152,7 +152,7 @@ export class AnalysisPlanningComponent {
     header: 'tools_table',
     field: 'tools_table',
     fieldType: 'table',
-    itemName: 'tool', //TODO translate
+    itemName: 'tool_unit',
     canAddRemove: true,
     columns: [
       {
@@ -290,6 +290,7 @@ export class AnalysisPlanningComponent {
         };
       }, {} as any)
     );
+    const k = this.fieldsConfig;
   }
 
   getFormControl(name: string) {

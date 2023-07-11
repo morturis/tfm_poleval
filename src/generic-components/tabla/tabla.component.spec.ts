@@ -1,30 +1,101 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TablaComponent } from './tabla.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { of } from 'rxjs';
+import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
+import { GenericComponentsModule } from '../generic-components.module';
+import { Validators, FormControl } from '@angular/forms';
+import { TranslationService } from 'src/services/translation-service.service';
 
 describe('TablaComponent', () => {
+  let rendered;
   let component: TablaComponent;
-  let fixture: ComponentFixture<TablaComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [TablaComponent],
+  const mockTableConfig = {
+    header: 'intervention_indicators',
+    field: 'intervention_indicators',
+    fieldType: 'table',
+    itemName: 'indicator_unit', //TODO translate
+    canAddRemove: true,
+    columns: [
+      {
+        header: 'intervention_indicators_name',
+        field: 'intervention_indicators_name',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'intervention_indicators_name_placeholder',
+        info: 'intervention_indicators_name_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'This field is required',
+        },
+      },
+      {
+        header: 'intervention_indicators_value',
+        field: 'intervention_indicators_value',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'intervention_indicators_value_placeholder',
+        info: 'intervention_indicators_value_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'This field is required',
+        },
+      },
+    ],
+  };
+
+  beforeEach(async () => {
+    await MockBuilder(TablaComponent, GenericComponentsModule);
+    rendered = MockRender(TablaComponent, {
+      config: mockTableConfig,
     });
-    fixture = TestBed.createComponent(TablaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = rendered.point.componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  //TODO test functions
-  it('should have more items if dialog is closed successfully', () => {
+  it('should have no items on init', () => {
+    expect(component.items.length).toBe(0);
+  });
+
+  it('should have more items if dialog is closed successfully', async () => {
+    //mocks the dialog closing successfully
     spyOn(component.dialog, 'open').and.returnValue({
-      afterClosed: () => of(true),
+      afterClosed: () => of('testItem'),
     } as MatDialogRef<typeof component>);
+
+    await component.addItem();
+
+    expect(component.items.length).toBe(1);
+    expect(component.items[0]).toBe('testItem');
+  });
+
+  it('should have same number of items if dialog is canceled', async () => {
+    //mocks the dialog closing successfully
+    spyOn(component.dialog, 'open').and.returnValue({
+      afterClosed: () => of(undefined),
+    } as MatDialogRef<typeof component>);
+
+    await component.addItem();
+    expect(component.items.length).toBe(0);
+  });
+
+  it('should remove items', async () => {
+    //mocks the dialog closing successfully
+    spyOn(component.dialog, 'open').and.returnValue({
+      afterClosed: () => of('testItem'),
+    } as MatDialogRef<typeof component>);
+
+    await component.addItem();
+    expect(component.items.length).toBe(1);
+
+    component.removeItem();
+    expect(component.items.length).toBe(0);
   });
 });

@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StageListComponent } from './stage-list.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { GenericComponentsModule } from '../generic-components.module';
 
 describe('StageListComponent', () => {
+  let rendered;
   let component: StageListComponent;
-  let fixture: ComponentFixture<StageListComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [StageListComponent]
-    });
-    fixture = TestBed.createComponent(StageListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async () => {
+    await MockBuilder(StageListComponent, GenericComponentsModule);
+    rendered = MockRender(StageListComponent);
+    component = rendered.point.componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //TODO test advancing/returning methods
 });

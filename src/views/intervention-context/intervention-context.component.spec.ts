@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InterventionContextComponent } from './intervention-context.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { ViewsModule } from '../views.module';
+import { FormBuilder } from '@angular/forms';
 
 describe('InterventionContextComponent', () => {
+  let rendered;
   let component: InterventionContextComponent;
-  let fixture: ComponentFixture<InterventionContextComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [InterventionContextComponent]
-    });
-    fixture = TestBed.createComponent(InterventionContextComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async () => {
+    await MockBuilder(InterventionContextComponent, ViewsModule).keep(
+      FormBuilder
+    );
+    rendered = MockRender(InterventionContextComponent);
+    component = rendered.point.componentInstance;
   });
 
   it('should create', () => {

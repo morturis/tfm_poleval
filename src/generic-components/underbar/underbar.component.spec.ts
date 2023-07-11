@@ -1,18 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UnderbarComponent } from './underbar.component';
+import { MockBuilder, MockRender } from 'ng-mocks';
+import { GenericComponentsModule } from '../generic-components.module';
 
 describe('UnderbarComponent', () => {
+  let rendered;
   let component: UnderbarComponent;
-  let fixture: ComponentFixture<UnderbarComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [UnderbarComponent]
-    });
-    fixture = TestBed.createComponent(UnderbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(async () => {
+    await MockBuilder(UnderbarComponent, GenericComponentsModule);
+    rendered = MockRender(UnderbarComponent);
+    component = rendered.point.componentInstance;
   });
 
   it('should create', () => {

@@ -25,14 +25,6 @@ export class InputComponent {
   listOfErrors() {
     if (!this.control.errors || !this.fieldConfig.errorMessages) return [];
 
-    const k = { a: 'abc', d: 'def' };
-    const j = Object.keys(k);
-
-    const errors = Object.keys(this.control.errors).map((err) =>
-      (this.fieldConfig.errorMessages as Record<string, Function>)[err](
-        this.control.getError(err)
-      )
-    );
     return Object.keys(this.control.errors).map((err) =>
       (this.fieldConfig.errorMessages as Record<string, Function>)[err](
         this.control.getError(err)
