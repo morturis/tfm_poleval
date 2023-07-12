@@ -25,7 +25,7 @@
   <!--END ICON OVERRIDES-->
 
   <mat-step
-    *ngFor="let stage of stages"
+    *ngFor="let stage of stages; let indexOfelement = index"
     [completed]="stage.isDone"
     [label]="stage.name | translate"
     [state]="stage.isDocument ? 'document' : 'notDone'"
@@ -35,17 +35,23 @@
     <ng-template
       matStepContent
       dynamicComponentLoader
-      [component]="stage.contents"
+      [componentType]="stage.contents"
+      (output)="handleChildOutput(indexOfelement, $event)"
       #contents
     >
+      <div class="d-flex">
+        <button mat-button matStepperPrevious>
+          {{ "back" | translate }}
+        </button>
+        <div class="col"></div>
+        <button
+          mat-button
+          [disabled]="this.childOutput[indexOfelement]?.status == 'INVALID'"
+          matStepperNext
+        >
+          {{ "next" | translate }}
+        </button>
+      </div>
     </ng-template>
-
-    <div class="d-flex">
-      <button mat-button matStepperPrevious>
-        {{ "back" | translate }}
-      </button>
-      <div class="col"></div>
-      <button mat-button matStepperNext>{{ "next" | translate }}</button>
-    </div>
   </mat-step>
 </mat-stepper>

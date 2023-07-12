@@ -10,12 +10,8 @@ export class LanguageService {
     Language.ES
   );
 
-  constructor() {
-    sessionStorage.setItem('language', 'ES');
-  }
-
   get language(): keyof typeof Language {
-    return sessionStorage.getItem('language') as Language;
+    return this.currentLanguage;
   }
 
   get languageSignal(): Signal<keyof typeof Language> {
@@ -25,12 +21,10 @@ export class LanguageService {
   nextLanguage() {
     switch (this.currentLanguage) {
       case 'ES':
-        sessionStorage.setItem('language', 'EN');
         this.currentLanguage = 'EN';
         this.currentLanguageSignal = signal(this.currentLanguage);
         return;
       case 'EN':
-        sessionStorage.setItem('language', 'ES');
         this.currentLanguage = 'ES';
         this.currentLanguageSignal = signal(this.currentLanguage);
         return;

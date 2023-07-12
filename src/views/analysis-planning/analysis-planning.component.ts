@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs';
+import { StorageService } from 'src/services/storage.service';
 import {
   AnyFieldConfig,
   DropdownConfig,
@@ -18,6 +20,8 @@ import {
   styleUrls: ['./analysis-planning.component.scss'],
 })
 export class AnalysisPlanningComponent {
+  @Output() outputEvent = new EventEmitter<any>();
+
   delimitationActorsTableConfig: TableConfig = {
     header: 'actor_table',
     field: 'actor_table',
@@ -306,7 +310,7 @@ export class AnalysisPlanningComponent {
 
   form!: FormGroup; //definite assignment
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private storage: StorageService) {
     this.form = this.fb.group(
       this.fieldsConfig.reduce((accum, field: AnyFieldConfig) => {
         return {
@@ -315,6 +319,25 @@ export class AnalysisPlanningComponent {
         };
       }, {} as any)
     );
+  }
+
+  ngOnInit() {
+    //When the validity of the form changes, I throw EventEmitter
+    this.form.statusChanges.pipe(distinctUntilChanged()).subscribe((status) => {
+      this.outputEvent.emit({ status: status });
+    });
+    this.outputEvent.emit({ status: this.form.status });
+
+    //Whenever I make a change to this form, I save it in the storage
+    this.form.valueChanges.subscribe((val) =>
+      this.storage.setObject<typeof val>('analysis-planning', val)
+    );
+
+    //Whenever I enter this form, I check for previously saved values
+    //NOTE: this does not get the value from storage when moving between stages
+    const savedValue =
+      this.storage.getObject<Record<string, any>>('analysis-planning');
+    if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
   }
 
   getFormControl(name: string) {

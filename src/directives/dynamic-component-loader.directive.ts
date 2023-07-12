@@ -1,14 +1,34 @@
-import { Directive, Input, Type, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  Input,
+  Output,
+  Type,
+  ViewContainerRef,
+} from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Directive({
   selector: '[dynamicComponentLoader]',
 })
-export class DynamicComponentLoaderDirective {
-  @Input({ required: false }) component!: Type<unknown>;
+export class DynamicComponentLoaderDirective<T> {
+  @Input({ required: false }) componentType!: Type<T>;
+
+  @Output() output = new EventEmitter<unknown>();
 
   constructor(public _vcr: ViewContainerRef) {}
 
   ngOnInit() {
-    if (this.component) this._vcr.createComponent(this.component);
+    if (!this.componentType) return;
+    const component = this._vcr.createComponent(this.componentType)
+      .instance as T & {
+      outputEvent: Observable<any>;
+      handleEventFromParent: (event?: any) => {};
+    };
+
+    //when the child component outputs an outputevent, I pass it upwards to the parent
+    component.outputEvent?.subscribe((val: unknown) => {
+      this.output.emit(val);
+    });
   }
 }

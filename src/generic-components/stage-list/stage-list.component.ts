@@ -9,9 +9,12 @@ import { Stage } from 'src/app/types/Stage';
 })
 export class StageListComponent {
   @ViewChild('stepper') private stepper!: MatStepper; //Definite assignment
+
   @Input({ required: true }) stages: Stage[] = [];
   currentStage!: Stage; //Definite assignment
   currentStageIndex: number = 0;
+
+  childOutput: any = {};
 
   constructor() {}
 
@@ -34,5 +37,9 @@ export class StageListComponent {
     this.currentStageIndex = newIndex;
     this.currentStage = this.stages[this.currentStageIndex];
     (this.currentStage as Stage).isDone = false;
+  }
+
+  handleChildOutput(index: number, output: any) {
+    this.childOutput[index] = output;
   }
 }
