@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Stage } from 'src/app/types/Stage';
 import { AnalysisPlanningComponent } from '../analysis-planning/analysis-planning.component';
-import { TermsOfReferenceComponent } from '../terms-of-reference/terms-of-reference.component';
-import { InterventionContextComponent } from '../intervention-context/intervention-context.component';
 import { EvalDesignComponent } from '../eval-design/eval-design.component';
 import { FieldWorkComponent } from '../field-work/field-work.component';
 import { FinalReportComponent } from '../final-report/final-report.component';
+import { InterventionContextComponent } from '../intervention-context/intervention-context.component';
+import { TermsOfReferenceComponent } from '../terms-of-reference/terms-of-reference.component';
 
 @Component({
   selector: 'app-eval',
@@ -20,6 +20,7 @@ export class EvalComponent {
     {
       name: 'first_stage',
       isDone: false,
+      isActive: true,
       contents: AnalysisPlanningComponent,
     },
     {

@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import {
-  Validators,
-  FormGroup,
   FormBuilder,
   FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
 import {
-  TableConfig,
   AnyFieldConfig,
-  InputConfig,
   DropdownConfig,
+  InputConfig,
+  TableConfig,
 } from 'src/app/types/FieldConfig';
+import { StorageService } from 'src/services/storage.service';
 
 @Component({
   selector: 'app-terms-of-reference',
@@ -281,7 +282,7 @@ export class TermsOfReferenceComponent {
 
   form!: FormGroup; //definite assignment
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private storage: StorageService) {
     this.form = this.fb.group(
       this.fieldsConfig.reduce((accum, field: AnyFieldConfig) => {
         return {
@@ -290,6 +291,14 @@ export class TermsOfReferenceComponent {
         };
       }, {} as any)
     );
+  }
+
+  ngOnInit() {
+    //Whenever I enter this form, I check for previously saved values
+    //NOTE: this does not get the value from storage when moving between stages
+    const savedValue =
+      this.storage.getObject<Record<string, any>>('analysis-planning');
+    if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
   }
 
   getFormControl(name: string) {

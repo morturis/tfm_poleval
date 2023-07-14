@@ -28,15 +28,19 @@ export class StageListComponent {
   }
 
   advanceOneStage(newIndex: number) {
+    this.currentStage.isActive = false;
     (this.currentStage as Stage).isDone = true;
     this.currentStageIndex = newIndex;
     this.currentStage = this.stages[this.currentStageIndex];
+    this.currentStage.isActive = true;
   }
 
   goBackOneStage(newIndex: number) {
+    this.currentStage.isActive = false;
     this.currentStageIndex = newIndex;
     this.currentStage = this.stages[this.currentStageIndex];
     (this.currentStage as Stage).isDone = false;
+    this.currentStage.isActive = true;
   }
 
   handleChildOutput(index: number, output: any) {

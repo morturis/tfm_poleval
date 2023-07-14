@@ -32,15 +32,17 @@
   >
     <hr class="w-75 mx-auto my-0" />
     <br />
-    <ng-template
-      matStepContent
-      dynamicComponentLoader
-      [componentType]="stage.contents"
-      (output)="handleChildOutput(indexOfelement, $event)"
-      #contents
-    >
+    <ng-template matStepContent>
+      <ng-template
+        *ngIf="stage.isActive"
+        dynamicComponentLoader
+        [componentType]="stage.contents"
+        (output)="handleChildOutput(indexOfelement, $event)"
+        #contents
+      >
+      </ng-template>
       <div class="d-flex">
-        <button mat-button matStepperPrevious>
+        <button mat-button matStepperPrevious [disabled]="indexOfelement == 0">
           {{ "back" | translate }}
         </button>
         <div class="col"></div>
