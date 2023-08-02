@@ -91,14 +91,20 @@ export class FormDragAndDropComponent {
   };
 
   saveForm() {
-    const createdForm: any[] = this.result.map((div) =>
+    //TODO dont use undefined
+    const createdForm: (AnyFieldConfig | undefined)[] = this.result.map((div) =>
       div.componentInstance?.getForm()
     );
 
     const thereAreErrors: boolean = createdForm.includes(undefined);
 
     if (!thereAreErrors) {
-      this.storage.setObject('created-form', createdForm);
+      //5 random chars, starting with 36 ('a')
+      const formCode = (Math.random().toString(36) + '0000000')
+        .slice(2, 7)
+        .toUpperCase();
+      this.storage.setObject(`created-form-${formCode}`, createdForm);
+      alert(`Your code is ${formCode}`);
       this.statusOutput.emit({ status: 'SAVED' });
     }
   }

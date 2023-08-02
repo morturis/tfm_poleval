@@ -13,6 +13,7 @@ import { InterventionContextComponent } from './intervention-context/interventio
 import { TermsOfReferenceComponent } from './terms-of-reference/terms-of-reference.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
 import { FormMakerComponent } from './form-maker/form-maker.component';
+import { FillFormComponent } from './fill-form/fill-form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormMakerComponent } from './form-maker/form-maker.component';
     FieldWorkComponent,
     FinalReportComponent,
     FormMakerComponent,
+    FillFormComponent,
   ],
   imports: [CommonModule, ServicesModule, GenericComponentsModule, PipesModule],
   exports: [],

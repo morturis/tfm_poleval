@@ -19,16 +19,6 @@ export class EvalComponent {
   //TODO make stage names dynamic
   stages: Stage[] = [
     {
-      name: 'form_maker_stage',
-      isDone: false,
-      contents: FormMakerComponent,
-    },
-    {
-      name: 'form_maker_stage',
-      isDone: false,
-      contents: FormMakerComponent,
-    },
-    {
       name: 'first_stage',
       isDone: false,
       isActive: true,
