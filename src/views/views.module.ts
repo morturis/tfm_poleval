@@ -12,6 +12,7 @@ import { FinalReportComponent } from './final-report/final-report.component';
 import { InterventionContextComponent } from './intervention-context/intervention-context.component';
 import { TermsOfReferenceComponent } from './terms-of-reference/terms-of-reference.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
+import { FormMakerComponent } from './form-maker/form-maker.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
     EvalDesignComponent,
     FieldWorkComponent,
     FinalReportComponent,
+    FormMakerComponent,
   ],
   imports: [CommonModule, ServicesModule, GenericComponentsModule, PipesModule],
   exports: [],

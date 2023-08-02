@@ -1,0 +1,57 @@
+<div class="d-flex align-items-center mh-100">
+  <div class="col-3 px-4">
+    <div class="d-flex flex-column align-items-center p-3 h-100 bg-light">
+      <h5 class="text-center w-100">
+        {{ "drag_to_add_to_form" | translate }}
+      </h5>
+      <div
+        cdkDropList
+        #optionsList="cdkDropList"
+        class="w-100"
+        [cdkDropListData]="options"
+        [cdkDropListConnectedTo]="[resultList]"
+        (cdkDropListDropped)="droppedInOptionsList($event)"
+      >
+        <div class="border bg-white" *ngFor="let item of options" cdkDrag>
+          <p class="text-center">{{ item.text | translate }}</p>
+          <div
+            dynamicComponentLoader
+            [componentType]="item.componentType"
+          ></div>
+
+          <!-- drag placeholder -->
+          <div class="drag-drop-placeholder" *cdkDragPlaceholder></div>
+          <!--drag preview -->
+          <div *cdkDragPreview>aaaaaaaaaaaaaa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9 border h-100">
+    <div
+      cdkDropList
+      #resultList="cdkDropList"
+      [cdkDropListData]="result"
+      [cdkDropListConnectedTo]="[optionsList]"
+      (cdkDropListDropped)="droppedInResultList($event)"
+    >
+      <div class="border" *ngFor="let item of result" cdkDrag>
+        <div
+          dynamicComponentLoader
+          [componentType]="item.componentType"
+          (componentInstance)="item.componentInstance = $event"
+          [extraBehaviour]="setInResult"
+        ></div>
+
+        <!-- drag placeholder -->
+        <div class="drag-drop-placeholder" *cdkDragPlaceholder></div>
+        <!--drag preview -->
+        <div *cdkDragPreview>aaaaaaaaaaaaaa</div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<button mat-button (click)="saveForm()">
+  {{ "save_form" | translate }}
+</button>

@@ -1,28 +1,40 @@
-import { NgModule } from '@angular/core';
+import {
+  CdkDrag,
+  CdkDragPlaceholder,
+  CdkDragPreview,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { DropdownComponent } from './dropdown/dropdown.component';
-import { InfoIconComponent } from './info-icon/info-icon.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSelectModule } from '@angular/material/select';
-import { StageListComponent } from './stage-list/stage-list.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { TablaComponent } from './tabla/tabla.component';
-import { MatButtonModule } from '@angular/material/button';
-import { TablaDialogComponent } from './tabla-dialog/tabla-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { InputComponent } from './input/input.component';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DirectivesModule } from 'src/directives/directives.module';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ServicesModule } from 'src/services/services.module';
-import { UnderbarComponent } from './underbar/underbar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
+import { DirectivesModule } from 'src/directives/directives.module';
 import { PipesModule } from 'src/pipes/pipes.module';
+import { ServicesModule } from 'src/services/services.module';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import {
+  DragDropDropdownComponent,
+  DragDropInputComponent,
+  DragDropTextComponent,
+  FormDragAndDropComponent,
+} from './form-drag-and-drop/form-drag-and-drop.component';
+import { InfoIconComponent } from './info-icon/info-icon.component';
+import { InputComponent } from './input/input.component';
+import { StageListComponent } from './stage-list/stage-list.component';
+import { TablaDialogComponent } from './tabla-dialog/tabla-dialog.component';
+import { TablaComponent } from './tabla/tabla.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { UnderbarComponent } from './underbar/underbar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +46,10 @@ import { PipesModule } from 'src/pipes/pipes.module';
     InputComponent,
     ToolbarComponent,
     UnderbarComponent,
+    FormDragAndDropComponent,
+    DragDropInputComponent,
+    DragDropTextComponent,
+    DragDropDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +69,10 @@ import { PipesModule } from 'src/pipes/pipes.module';
     ServicesModule,
     RouterModule,
     PipesModule,
+    CdkDropList,
+    CdkDrag,
+    CdkDragPreview,
+    CdkDragPlaceholder,
   ],
   exports: [
     DropdownComponent,
@@ -61,6 +81,7 @@ import { PipesModule } from 'src/pipes/pipes.module';
     InputComponent,
     ToolbarComponent,
     UnderbarComponent,
+    FormDragAndDropComponent,
   ],
 })
 export class GenericComponentsModule {}

@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslationService } from './translation-service.service';
+import { NgModule } from '@angular/core';
 import { LanguageService } from './language.service';
+import { StorageService } from './storage.service';
+import { TranslationService } from './translation-service.service';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  providers: [TranslationService, LanguageService],
+  providers: [TranslationService, LanguageService, StorageService],
 })
 export class ServicesModule {}

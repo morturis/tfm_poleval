@@ -13,8 +13,10 @@ import { Observable } from 'rxjs';
 })
 export class DynamicComponentLoaderDirective<T> {
   @Input({ required: false }) componentType!: Type<T>;
+  @Input({ required: false }) extraBehaviour!: (component: T) => void;
 
   @Output() output = new EventEmitter<unknown>();
+  @Output() componentInstance = new EventEmitter<T>();
 
   constructor(public _vcr: ViewContainerRef) {}
 
@@ -30,5 +32,11 @@ export class DynamicComponentLoaderDirective<T> {
     component.outputEvent?.subscribe((val: unknown) => {
       this.output.emit(val);
     });
+
+    //Apply extra behaviour
+    if (!this.extraBehaviour) return;
+    this.extraBehaviour(component);
+
+    this.componentInstance.emit(component);
   }
 }
