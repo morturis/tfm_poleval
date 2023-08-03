@@ -8,12 +8,14 @@ import { ContactComponent } from './contact/contact.component';
 import { EvalDesignComponent } from './eval-design/eval-design.component';
 import { EvalComponent } from './eval/eval.component';
 import { FieldWorkComponent } from './field-work/field-work.component';
+import { FillFormComponent } from './fill-form/fill-form.component';
 import { FinalReportComponent } from './final-report/final-report.component';
+import { FormMakerComponent } from './form-maker/form-maker.component';
 import { InterventionContextComponent } from './intervention-context/intervention-context.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { TermsOfReferenceComponent } from './terms-of-reference/terms-of-reference.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
-import { FormMakerComponent } from './form-maker/form-maker.component';
-import { FillFormComponent } from './fill-form/fill-form.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,24 @@ import { FillFormComponent } from './fill-form/fill-form.component';
     FinalReportComponent,
     FormMakerComponent,
     FillFormComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [CommonModule, ServicesModule, GenericComponentsModule, PipesModule],
-  exports: [],
+  exports: [
+    ContactComponent,
+    WhoWeAreComponent,
+    EvalComponent,
+    AnalysisPlanningComponent,
+    TermsOfReferenceComponent,
+    InterventionContextComponent,
+    EvalDesignComponent,
+    FieldWorkComponent,
+    FinalReportComponent,
+    FormMakerComponent,
+    FillFormComponent,
+    LoginComponent,
+    RegisterComponent,
+  ],
 })
 export class ViewsModule {}

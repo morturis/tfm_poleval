@@ -14,21 +14,25 @@
       <mat-icon>phone</mat-icon>
       {{ "toolbar_contact" | translate }}
     </button>
-    <button mat-button routerLink="eval" class="col">
+    <button
+      mat-button
+      routerLink="eval"
+      class="col"
+      *ngIf="showButton('ADD_NEW_EVAL')"
+    >
       <mat-icon>add</mat-icon>
       {{ "new_eval" | translate }}
     </button>
 
     <!--TODO debug only-->
-    <button mat-button routerLink="form-maker" class="col">
+    <button
+      mat-button
+      routerLink="fill-form"
+      class="col"
+      *ngIf="showButton('FILL_FORM')"
+    >
       <mat-icon>add</mat-icon>
-      {{ "form-maker" }}
-    </button>
-
-    <!--TODO debug only-->
-    <button mat-button routerLink="fill-form" class="col">
-      <mat-icon>add</mat-icon>
-      {{ "fill-form" }}
+      {{ "fill_form" | translate }}
     </button>
   </div>
 
@@ -46,13 +50,17 @@
     </button>
 
     <!--user registering-->
-    <button mat-button class="col">
+    <button mat-button routerLink="login" class="col" *ngIf="!isLoggedIn()">
       <mat-icon>login</mat-icon>
       {{ "toolbar_log_in" | translate }}
     </button>
-    <button mat-button class="col">
+    <button mat-button routerLink="register" class="col" *ngIf="!isLoggedIn()">
       <mat-icon>person</mat-icon>
       {{ "toolbar_sign_up" | translate }}
+    </button>
+    <button mat-button class="col" *ngIf="isLoggedIn()" (click)="logout()">
+      <mat-icon>cancel</mat-icon>
+      {{ "toolbar_log_out" | translate }}
     </button>
   </div>
 </mat-toolbar>

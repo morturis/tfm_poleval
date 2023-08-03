@@ -1,0 +1,23 @@
+<h4>{{ "register" | translate }}</h4>
+<form>
+  <app-input
+    class="row"
+    [fieldConfig]="usernameConfig"
+    [control]="getFormControl(usernameConfig.field)"
+  >
+  </app-input>
+  <app-input
+    class="row"
+    [fieldConfig]="passwordConfig"
+    [control]="getFormControl(passwordConfig.field)"
+  >
+  </app-input>
+
+  <button
+    mat-button
+    (click)="register()"
+    [disabled]="this.form.status === 'INVALID'"
+  >
+    {{ "toolbar_sign_in" | translate }}
+  </button>
+</form>
