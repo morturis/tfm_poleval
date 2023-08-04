@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'eval', component: EvalComponent },
   { path: 'form-maker', component: FormMakerComponent },
   { path: 'fill-form', component: FillFormComponent },
+  { path: 'fill-form/:code', component: FillFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
