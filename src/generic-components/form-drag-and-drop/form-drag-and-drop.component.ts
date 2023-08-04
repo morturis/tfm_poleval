@@ -152,6 +152,7 @@ export class DragDropInputComponent extends DragDropBaseComponent {
     const fc: InputConfig = {
       fieldType: 'input',
       header: this.header,
+      placeholder: undefined,
       labelOnLeftSide: true,
       field: uuidv4(),
     };

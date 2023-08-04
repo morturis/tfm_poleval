@@ -45,4 +45,15 @@ export class LoginService {
   logout() {
     this.storage.setObject('token', undefined);
   }
+
+  isLoggedIn(): boolean {
+    return !!this.storage.getObject('token');
+  }
+  getLoggedInUsername(): string {
+    const token: string = this.storage.getObject('token');
+    if (!token) return 'ERROR - NOT LOGGED IN'; //Should never show
+    const loginObject: LoginObject = JSON.parse(atob(token));
+
+    return loginObject.username;
+  }
 }

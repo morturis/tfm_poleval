@@ -18,7 +18,7 @@
       mat-button
       routerLink="eval"
       class="col"
-      *ngIf="showButton('ADD_NEW_EVAL')"
+      *ngIf="userHasPermissions('ADD_NEW_EVAL')"
     >
       <mat-icon>add</mat-icon>
       {{ "new_eval" | translate }}
@@ -29,7 +29,7 @@
       mat-button
       routerLink="fill-form"
       class="col"
-      *ngIf="showButton('FILL_FORM')"
+      *ngIf="userHasPermissions('FILL_FORM')"
     >
       <mat-icon>add</mat-icon>
       {{ "fill_form" | translate }}
@@ -50,15 +50,34 @@
     </button>
 
     <!--user registering-->
-    <button mat-button routerLink="login" class="col" *ngIf="!isLoggedIn()">
+    <button
+      mat-button
+      routerLink="login"
+      class="col"
+      *ngIf="!this.loginService.isLoggedIn()"
+    >
       <mat-icon>login</mat-icon>
       {{ "toolbar_log_in" | translate }}
     </button>
-    <button mat-button routerLink="register" class="col" *ngIf="!isLoggedIn()">
+    <button
+      mat-button
+      routerLink="register"
+      class="col"
+      *ngIf="!this.loginService.isLoggedIn()"
+    >
       <mat-icon>person</mat-icon>
       {{ "toolbar_sign_up" | translate }}
     </button>
-    <button mat-button class="col" *ngIf="isLoggedIn()" (click)="logout()">
+    <button mat-button class="col" *ngIf="this.loginService.isLoggedIn()">
+      <mat-icon>person</mat-icon>
+      {{ this.loginService.getLoggedInUsername() }}
+    </button>
+    <button
+      mat-button
+      class="col"
+      *ngIf="this.loginService.isLoggedIn()"
+      (click)="logout()"
+    >
       <mat-icon>cancel</mat-icon>
       {{ "toolbar_log_out" | translate }}
     </button>

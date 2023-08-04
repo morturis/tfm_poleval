@@ -39,7 +39,7 @@ export class InterventionContextComponent {
         info: 'intervention_indicators_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -52,7 +52,7 @@ export class InterventionContextComponent {
         info: 'intervention_indicators_value_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -69,7 +69,7 @@ export class InterventionContextComponent {
       info: 'intervention_objective_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
 
@@ -119,7 +119,7 @@ export class InterventionContextComponent {
       ],
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
 

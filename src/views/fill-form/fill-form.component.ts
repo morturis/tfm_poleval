@@ -17,12 +17,14 @@ export class FillFormComponent extends DynamicFormView {
     fieldType: 'input',
     header: 'code',
     field: 'code',
+    placeholder: 'code_placeholder',
+    info: 'code_info',
     labelOnLeftSide: true,
     viewOnly: false,
 
     validators: [Validators.required],
     errorMessages: {
-      required: () => 'This field is required',
+      required: () => 'error_required_field',
     },
   };
 

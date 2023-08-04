@@ -42,7 +42,7 @@ export class TablaComponent {
     //Open a dialog to create a new item
     const dialogData: DialogData = {
       inputsConfig: this.fieldsConfig,
-      title: `${this.ts.translate('button_add')} ${this.itemName}`,
+      itemName: this.itemName,
       //title: `button_add ${this.itemName}`,
     };
     const dialogRef = this.dialog.open(TablaDialogComponent, {

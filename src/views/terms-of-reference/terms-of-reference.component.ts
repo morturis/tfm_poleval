@@ -36,7 +36,7 @@ export class TermsOfReferenceComponent {
         info: 'actor_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -58,7 +58,7 @@ export class TermsOfReferenceComponent {
         info: 'manager_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -71,7 +71,7 @@ export class TermsOfReferenceComponent {
         info: 'manager_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -94,7 +94,7 @@ export class TermsOfReferenceComponent {
         info: 'team_member_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -107,7 +107,7 @@ export class TermsOfReferenceComponent {
         info: 'team_member_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -130,7 +130,7 @@ export class TermsOfReferenceComponent {
         info: 'other_participants_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -143,7 +143,7 @@ export class TermsOfReferenceComponent {
         info: 'other_participants_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -166,7 +166,7 @@ export class TermsOfReferenceComponent {
         info: 'tools_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -179,7 +179,7 @@ export class TermsOfReferenceComponent {
         info: 'tools_brief_description_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -197,7 +197,7 @@ export class TermsOfReferenceComponent {
       info: 'intervention_name_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -211,7 +211,7 @@ export class TermsOfReferenceComponent {
       info: 'evaluation_org_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     //TODO fase del ciclo
@@ -226,7 +226,7 @@ export class TermsOfReferenceComponent {
       info: 'evaluation_objective_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -240,7 +240,7 @@ export class TermsOfReferenceComponent {
       info: 'evaluation_reasoning_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -254,7 +254,7 @@ export class TermsOfReferenceComponent {
       info: 'evaluation_utility_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     this.studiedActorsTableConfig,

@@ -39,7 +39,7 @@ export class AnalysisPlanningComponent {
         info: 'actor_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -61,7 +61,7 @@ export class AnalysisPlanningComponent {
         info: 'manager_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -74,7 +74,7 @@ export class AnalysisPlanningComponent {
         info: 'manager_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -96,7 +96,7 @@ export class AnalysisPlanningComponent {
         info: 'team_member_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -109,7 +109,7 @@ export class AnalysisPlanningComponent {
         info: 'team_member_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -131,7 +131,7 @@ export class AnalysisPlanningComponent {
         info: 'other_participants_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -144,7 +144,7 @@ export class AnalysisPlanningComponent {
         info: 'other_participants_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -166,7 +166,7 @@ export class AnalysisPlanningComponent {
         info: 'tools_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -179,7 +179,7 @@ export class AnalysisPlanningComponent {
         info: 'tools_brief_description_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],
@@ -197,7 +197,7 @@ export class AnalysisPlanningComponent {
       info: 'intervention_name_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -211,7 +211,7 @@ export class AnalysisPlanningComponent {
       info: 'evaluation_org_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
 
@@ -230,7 +230,7 @@ export class AnalysisPlanningComponent {
       ],
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -244,7 +244,7 @@ export class AnalysisPlanningComponent {
       info: 'evaluation_objective_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -258,7 +258,7 @@ export class AnalysisPlanningComponent {
       info: 'evaluation_reasoning_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     {
@@ -272,7 +272,7 @@ export class AnalysisPlanningComponent {
       info: 'evaluation_utility_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'This field is required',
+        required: () => 'error_required_field',
       },
     },
     //Delimitar TODO

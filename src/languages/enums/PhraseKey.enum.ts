@@ -9,11 +9,27 @@ export enum PhraseKey {
   toolbar_we_are = 'toolbar_we_are',
   toolbar_log_in = 'toolbar_log_in',
   toolbar_sign_up = 'toolbar_sign_up',
+  toolbar_log_out = 'toolbar_log_out',
   new_eval = 'new_eval',
   name_of_app = 'name_of_app',
   back_to_top = 'back_to_top',
   back = 'back',
   next = 'next',
+  username = 'username',
+  password = 'password',
+  username_placeholder = 'username_placeholder',
+  password_placeholder = 'password_placeholder',
+  username_info = 'username_info',
+  password_info = 'password_info',
+
+  //Fill form
+  code = 'code',
+  code_placeholder = 'code_placeholder',
+  code_info = 'code_info',
+  fill_form = 'fill_form',
+
+  //Errors
+  error_required_field = 'error_required_field',
 
   //Analysis stage
   intervention_name = 'intervention_name',
@@ -26,7 +42,7 @@ export enum PhraseKey {
 
   evaluation_objective = 'evaluation_objective',
   evaluation_objective_placeholder = 'evaluation_objective_placeholder',
-  evaluation_objectivee_info = 'evaluation_objectivee_info',
+  evaluation_objective_info = 'evaluation_objective_info',
 
   evaluation_reasoning = 'evaluation_reasoning',
   evaluation_reasoning_placeholder = 'evaluation_reasoning_placeholder',
@@ -39,6 +55,16 @@ export enum PhraseKey {
   other_delimitations = 'other_delimitations',
   other_delimitations_placeholder = 'other_delimitations_placeholder',
   other_delimitations_info = 'other_delimitations_info',
+
+  intervention_life_cycle = 'intervention_life_cycle',
+  intervention_life_cycle_1 = 'intervention_life_cycle_1',
+  intervention_life_cycle_2 = 'intervention_life_cycle_2',
+  intervention_life_cycle_3 = 'intervention_life_cycle_3',
+  intervention_life_cycle_info = 'intervention_life_cycle_info',
+
+  eval_strategy = 'eval_strategy',
+  eval_strategy_placeholder = 'eval_strategy_placeholder',
+  eval_strategy_info = 'eval_strategy_info',
 
   //stages
   first_stage = 'first_stage',

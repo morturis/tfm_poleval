@@ -9,6 +9,13 @@ export class TranslatePipe implements PipeTransform {
   constructor(private ts: TranslationService) {}
 
   transform(value: string | undefined): string {
-    return this.ts.translate(value) || `NOT TRANSLATED ${value}`;
+    const translatedValue = this.ts.translate(value);
+
+    //If translatedValue is undefined, that means the translation is not yet set. Return "NOT TRANSLATED `${value}`"
+    //Else return translated value
+
+    if (typeof translatedValue === 'undefined')
+      return `NOT TRANSLATED ${value}`;
+    return translatedValue;
   }
 }

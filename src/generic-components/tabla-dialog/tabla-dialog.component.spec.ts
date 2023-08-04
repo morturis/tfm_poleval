@@ -1,9 +1,9 @@
-import { TablaDialogComponent } from './tabla-dialog.component';
-import { GenericComponentsModule } from '../generic-components.module';
-import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from 'src/app/types/DialogData';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MockBuilder, MockInstance, MockRender } from 'ng-mocks';
+import { DialogData } from 'src/app/types/DialogData';
+import { GenericComponentsModule } from '../generic-components.module';
+import { TablaDialogComponent } from './tabla-dialog.component';
 
 describe('TablaDialogComponent', () => {
   let rendered;
@@ -22,7 +22,7 @@ describe('TablaDialogComponent', () => {
         info: 'mock_input_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],

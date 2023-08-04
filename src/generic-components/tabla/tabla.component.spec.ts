@@ -26,7 +26,7 @@ describe('TablaComponent', () => {
         info: 'intervention_indicators_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
       {
@@ -39,7 +39,7 @@ describe('TablaComponent', () => {
         info: 'intervention_indicators_value_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'This field is required',
+          required: () => 'error_required_field',
         },
       },
     ],

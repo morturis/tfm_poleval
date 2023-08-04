@@ -15,12 +15,14 @@ export class RegisterComponent extends DynamicFormView {
     fieldType: 'input',
     header: 'username',
     field: 'username',
+    placeholder: 'username_placeholder',
+    info: 'username_info',
     labelOnLeftSide: true,
     viewOnly: false,
 
     validators: [Validators.required],
     errorMessages: {
-      required: () => 'This field is required',
+      required: () => 'error_required_field',
     },
   };
 
@@ -28,12 +30,14 @@ export class RegisterComponent extends DynamicFormView {
     fieldType: 'input',
     header: 'password',
     field: 'password',
+    placeholder: 'password_placeholder',
+    info: 'password_info',
     labelOnLeftSide: true,
     viewOnly: false,
 
     validators: [Validators.required],
     errorMessages: {
-      required: () => 'This field is required',
+      required: () => 'error_required_field',
     },
   };
 

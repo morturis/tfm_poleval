@@ -16,7 +16,7 @@ export class ToolbarComponent {
     public ls: LanguageService,
     public router: Router,
     private storage: StorageService,
-    private loginService: LoginService
+    public loginService: LoginService
   ) {}
 
   changeLanguage() {
@@ -24,16 +24,12 @@ export class ToolbarComponent {
     this.languageCode = this.ls.language;
   }
 
-  showButton(buttonPermission: string): boolean {
+  userHasPermissions(buttonPermission: string): boolean {
     const token: string = this.storage.getObject('token');
     if (!token) return false;
     const loginObject: LoginObject = JSON.parse(atob(token));
 
     return loginObject.permissions.includes(buttonPermission);
-  }
-
-  isLoggedIn(): boolean {
-    return !!this.storage.getObject('token');
   }
 
   async logout() {
