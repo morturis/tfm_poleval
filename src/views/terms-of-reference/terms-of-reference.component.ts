@@ -1,24 +1,17 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import {
-  AnyFieldConfig,
-  DropdownConfig,
-  InputConfig,
-  TableConfig,
-} from 'src/app/types/FieldConfig';
-import { StorageService } from 'src/services/storage.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { DynamicFormView } from 'src/app/types/DynamicFormView';
+import { EvaluationProperties } from 'src/app/types/Evaluation';
+import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
+import { EvaluationService } from 'src/services/evaluation.service';
 
 @Component({
   selector: 'app-terms-of-reference',
   templateUrl: './terms-of-reference.component.html',
   styleUrls: ['./terms-of-reference.component.scss'],
 })
-export class TermsOfReferenceComponent {
+export class TermsOfReferenceComponent extends DynamicFormView {
   studiedActorsTableConfig: TableConfig = {
     header: 'actor_table',
     field: 'actor_table',
@@ -185,7 +178,7 @@ export class TermsOfReferenceComponent {
     ],
   };
 
-  fieldsConfig: AnyFieldConfig[] = [
+  override fieldsConfig: AnyFieldConfig[] = [
     {
       header: 'intervention_name',
       field: 'intervention_name',
@@ -280,46 +273,26 @@ export class TermsOfReferenceComponent {
     this.toolsTableConfig,
   ];
 
-  form!: FormGroup; //definite assignment
-
-  constructor(private fb: FormBuilder, private storage: StorageService) {
-    this.form = this.fb.group(
-      this.fieldsConfig.reduce((accum, field: AnyFieldConfig) => {
-        return {
-          ...accum,
-          [field.field]: [field.defaultValue, { validators: field.validators }],
-        };
-      }, {} as any)
-    );
+  constructor(
+    fb: FormBuilder,
+    private evalService: EvaluationService,
+    private route: ActivatedRoute
+  ) {
+    super(fb);
+    this.buildForm(this.fieldsConfig);
   }
 
   ngOnInit() {
+    const formCode = this.route.snapshot.paramMap.get('code');
+    if (!formCode)
+      throw new Error('Please create a new evaluation from the beginning'); //should never trigger
+
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
     const savedValue =
-      this.storage.getObject<Record<string, any>>('analysis-planning');
+      this.evalService.get(formCode)?.[
+        EvaluationProperties['analysis-planning']
+      ];
     if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
-  }
-
-  getFormControl(name: string) {
-    return this.form.get(name) as FormControl;
-  }
-
-  //Publish types for template
-  public TableConfig!: TableConfig;
-  public InputConfig!: InputConfig;
-  public DropdownConfig!: DropdownConfig;
-  isInput(field: AnyFieldConfig) {
-    return field.fieldType == 'input' ? (field as InputConfig) : undefined;
-  }
-
-  isTable(field: AnyFieldConfig) {
-    return field.fieldType == 'table' ? (field as TableConfig) : undefined;
-  }
-
-  isDropdown(field: AnyFieldConfig) {
-    return field.fieldType == 'dropdown'
-      ? (field as DropdownConfig)
-      : undefined;
   }
 }

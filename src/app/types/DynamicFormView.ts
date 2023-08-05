@@ -6,7 +6,7 @@ import {
   TableConfig,
 } from '../../app/types/FieldConfig';
 
-export class DynamicFormView {
+export abstract class DynamicFormView {
   fieldsConfig!: AnyFieldConfig[];
   form!: FormGroup; //definite assignment
 

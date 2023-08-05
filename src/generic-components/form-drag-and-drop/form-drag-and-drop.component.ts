@@ -4,12 +4,14 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Output, Type } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EvaluationProperties } from 'src/app/types/Evaluation';
 import {
   AnyFieldConfig,
   DropdownConfig,
   InputConfig,
 } from 'src/app/types/FieldConfig';
-import { StorageService } from 'src/services/storage.service';
+import { EvaluationService } from 'src/services/evaluation.service';
 import { v4 as uuidv4 } from 'uuid';
 
 interface DragDropDivConfig<T> {
@@ -42,7 +44,10 @@ export class FormDragAndDropComponent {
     },
   ];
 
-  constructor(private storage: StorageService) {}
+  constructor(
+    private evalService: EvaluationService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.statusOutput.emit({ status: 'INVALID' });
@@ -91,34 +96,33 @@ export class FormDragAndDropComponent {
   };
 
   saveForm() {
-    //TODO dont use undefined
-    const createdForm: (AnyFieldConfig | undefined)[] = this.result.map((div) =>
-      div.componentInstance?.getForm()
-    );
-
-    const thereAreErrors: boolean = createdForm.includes(undefined);
-
-    if (!thereAreErrors) {
+    try {
+      const createdForm: AnyFieldConfig[] = this.result.map((div) => {
+        if (!div.componentInstance) throw new Error('component not instanced'); //should never trigger
+        return div.componentInstance.getForm(); //could throw errors
+      });
       //5 random chars, starting with 36 ('a')
-      const formCode = (Math.random().toString(36) + '0000000')
-        .slice(2, 7)
-        .toUpperCase();
-      this.storage.setObject(`created-form-${formCode}`, createdForm);
-      alert(`Your code is ${formCode}`);
+      const formCode = this.route.snapshot.paramMap.get('code');
+      if (!formCode)
+        throw new Error('Please create a new evaluation from the beginning'); //should never trigger
+      this.evalService.update(
+        formCode as string,
+        EvaluationProperties.form,
+        createdForm
+      );
       this.statusOutput.emit({ status: 'SAVED' });
+    } catch (e) {
+      //Catch possible errors in the form
+      alert(e);
     }
   }
 }
 
 //Sub components for all types of questions + text fields
-class DragDropBaseComponent {
+abstract class DragDropBaseComponent {
   isInResult: boolean = false;
   error: boolean = false;
-  getForm!: () => AnyFieldConfig | undefined;
-
-  showError() {
-    this.error = true;
-  }
+  getForm!: () => AnyFieldConfig;
 }
 @Component({
   selector: 'drag-and-drop-input',
@@ -146,8 +150,8 @@ export class DragDropInputComponent extends DragDropBaseComponent {
   header = '';
   override getForm = () => {
     if (this.header.length < 1) {
-      this.showError();
-      return;
+      this.error = true;
+      throw new Error('field not filled');
     }
     const fc: InputConfig = {
       fieldType: 'input',
@@ -219,8 +223,8 @@ export class DragDropDropdownComponent extends DragDropBaseComponent {
   items: string = '';
   override getForm = () => {
     if (this.header.length < 1 || this.items.length < 1) {
-      this.showError();
-      return;
+      this.error = true;
+      throw new Error('field not filled');
     }
     const fc: DropdownConfig = {
       fieldType: 'dropdown',

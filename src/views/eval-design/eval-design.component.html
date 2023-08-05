@@ -1,1 +1,21 @@
-<p>eval-design works!</p>
+<form>
+  <div *ngFor="let field of fieldsConfig">
+    <app-input
+      *ngIf="isInput(field)"
+      class="row"
+      [fieldConfig]="field | cast : InputConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-input>
+
+    <app-tabla *ngIf="isTable(field)" [config]="field | cast : TableConfig">
+    </app-tabla>
+
+    <app-dropdown
+      *ngIf="isDropdown(field)"
+      [fieldConfig]="field | cast : DropdownConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-dropdown>
+  </div>
+</form>

@@ -1,25 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
-import { StorageService } from 'src/services/storage.service';
-import {
-  AnyFieldConfig,
-  DropdownConfig,
-  InputConfig,
-  TableConfig,
-} from '../../app/types/FieldConfig';
+import { DynamicFormView } from 'src/app/types/DynamicFormView';
+import { EvaluationProperties } from 'src/app/types/Evaluation';
+import { EvaluationService } from 'src/services/evaluation.service';
+import { AnyFieldConfig, TableConfig } from '../../app/types/FieldConfig';
 
 @Component({
   selector: 'app-analysis-planning',
   templateUrl: './analysis-planning.component.html',
   styleUrls: ['./analysis-planning.component.scss'],
 })
-export class AnalysisPlanningComponent {
+export class AnalysisPlanningComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
 
   delimitationActorsTableConfig: TableConfig = {
@@ -185,7 +178,7 @@ export class AnalysisPlanningComponent {
     ],
   };
 
-  fieldsConfig: AnyFieldConfig[] = [
+  override fieldsConfig: AnyFieldConfig[] = [
     {
       header: 'intervention_name',
       field: 'intervention_name',
@@ -308,17 +301,13 @@ export class AnalysisPlanningComponent {
     this.toolsTableConfig,
   ];
 
-  form!: FormGroup; //definite assignment
-
-  constructor(private fb: FormBuilder, private storage: StorageService) {
-    this.form = this.fb.group(
-      this.fieldsConfig.reduce((accum, field: AnyFieldConfig) => {
-        return {
-          ...accum,
-          [field.field]: [field.defaultValue, { validators: field.validators }],
-        };
-      }, {} as any)
-    );
+  constructor(
+    fb: FormBuilder,
+    private evalService: EvaluationService,
+    private route: ActivatedRoute
+  ) {
+    super(fb);
+    this.buildForm(this.fieldsConfig);
   }
 
   ngOnInit() {
@@ -328,37 +317,25 @@ export class AnalysisPlanningComponent {
     });
     this.outputEvent.emit({ status: this.form.status });
 
+    const formCode = this.route.snapshot.paramMap.get('code');
+    if (!formCode)
+      throw new Error('Please create a new evaluation from the beginning'); //should never trigger
+
     //Whenever I make a change to this form, I save it in the storage
-    this.form.valueChanges.subscribe((val) =>
-      this.storage.setObject<typeof val>('analysis-planning', val)
-    );
+    this.form.valueChanges.subscribe((val) => {
+      this.evalService.update(
+        formCode as string,
+        EvaluationProperties['analysis-planning'],
+        val
+      );
+    });
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
     const savedValue =
-      this.storage.getObject<Record<string, any>>('analysis-planning');
+      this.evalService.get(formCode)?.[
+        EvaluationProperties['analysis-planning']
+      ];
     if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
-  }
-
-  getFormControl(name: string) {
-    return this.form.get(name) as FormControl;
-  }
-
-  //Publish types for template
-  public TableConfig!: TableConfig;
-  public InputConfig!: InputConfig;
-  public DropdownConfig!: DropdownConfig;
-  isInput(field: AnyFieldConfig) {
-    return field.fieldType == 'input' ? (field as InputConfig) : undefined;
-  }
-
-  isTable(field: AnyFieldConfig) {
-    return field.fieldType == 'table' ? (field as TableConfig) : undefined;
-  }
-
-  isDropdown(field: AnyFieldConfig) {
-    return field.fieldType == 'dropdown'
-      ? (field as DropdownConfig)
-      : undefined;
   }
 }
