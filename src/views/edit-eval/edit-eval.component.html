@@ -1,0 +1,15 @@
+<form>
+  <app-input
+    class="row"
+    [fieldConfig]="selectFormCodeInputConfig"
+    [control]="getFormControl(selectFormCodeInputConfig.field)"
+  >
+  </app-input>
+  <button
+    mat-button
+    [disabled]="this.form.status === 'INVALID'"
+    (click)="selectCode()"
+  >
+    {{ "enter_code_button" | translate }}
+  </button>
+</form>

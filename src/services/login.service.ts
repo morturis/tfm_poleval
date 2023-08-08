@@ -13,12 +13,16 @@ export class LoginService {
   users: Record<string, any> = {
     dev: {
       username: 'dev',
-      permissions: [Permissions.ADD_NEW_EVAL, Permissions.FILL_FORM],
+      permissions: [
+        Permissions.ADD_NEW_EVAL,
+        Permissions.FILL_FORM,
+        Permissions.EDIT_EVAL,
+      ],
       expires_at: new Date(Date.now() + 1000 * 60 * 10),
     },
     juanito: {
       username: 'juanito',
-      permissions: [Permissions.ADD_NEW_EVAL, Permissions.FILL_FORM],
+      permissions: [Permissions.FILL_FORM],
       expires_at: new Date(Date.now() + 1000 * 60 * 10),
     },
   };

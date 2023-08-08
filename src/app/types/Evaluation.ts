@@ -3,6 +3,7 @@ export type Evaluation = {
   'intervention-context': Record<string, any>;
   'eval-design': Record<string, any>;
   form: Record<string, any>;
+  responses: any[];
   'field-work': Record<string, any>;
   'eval-conclusions': Record<string, any>;
 };
@@ -12,6 +13,7 @@ export enum EvaluationProperties {
   'intervention-context' = 'intervention-context',
   'eval-design' = 'eval-design',
   form = 'form',
+  responses = 'responses',
   'field-work' = 'field-work',
   'eval-conclusions' = 'eval-conclusions',
 }

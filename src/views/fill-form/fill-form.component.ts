@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
+import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, InputConfig } from 'src/app/types/FieldConfig';
+import { EvaluationService } from 'src/services/evaluation.service';
 import { StorageService } from 'src/services/storage.service';
 
 @Component({
@@ -31,6 +33,7 @@ export class FillFormComponent extends DynamicFormView {
   constructor(
     fb: FormBuilder,
     private storage: StorageService,
+    private evalService: EvaluationService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -53,15 +56,25 @@ export class FillFormComponent extends DynamicFormView {
 
   selectCode() {
     const codeOfTheFormToFill = this.form.value.code;
+
+    if (!this.evalService.get(codeOfTheFormToFill)) {
+      alert('There is no evaluation with that code');
+      return;
+    }
     this.router.navigate([`/fill-form/${codeOfTheFormToFill}`]);
   }
 
   saveResponse() {
-    const allResponses =
-      this.storage.getObject<any[]>(`response-${this.code}`) || [];
+    if (!this.code) return; //should never trigger
+    const allResponses = this.evalService.get(this.code)?.responses;
+    if (!allResponses) return; //should never trigger, responses defaults to []
 
     const newResponse = this.form.value;
     allResponses.push(newResponse);
-    this.storage.setObject(`response-${this.code}`, allResponses);
+    this.evalService.update(
+      this.code,
+      EvaluationProperties.responses,
+      allResponses
+    );
   }
 }

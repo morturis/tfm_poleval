@@ -11,6 +11,7 @@ export enum PhraseKey {
   toolbar_sign_up = 'toolbar_sign_up',
   toolbar_log_out = 'toolbar_log_out',
   new_eval = 'new_eval',
+  edit_eval = 'edit_eval',
   name_of_app = 'name_of_app',
   back_to_top = 'back_to_top',
   back = 'back',
@@ -21,6 +22,7 @@ export enum PhraseKey {
   password_placeholder = 'password_placeholder',
   username_info = 'username_info',
   password_info = 'password_info',
+  enter_code_button = 'enter_code_button',
 
   //Fill form
   code = 'code',

@@ -24,6 +24,16 @@
       {{ "new_eval" | translate }}
     </button>
 
+    <button
+      mat-button
+      routerLink="edit-eval"
+      class="col"
+      *ngIf="userHasPermissions('EDIT_EVAL')"
+    >
+      <mat-icon>edit</mat-icon>
+      {{ "edit_eval" | translate }}
+    </button>
+
     <!--TODO debug only-->
     <button
       mat-button

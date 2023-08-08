@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TermsOfReferenceComponent } from './terms-of-reference/terms-of-reference.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
+import { EditEvalComponent } from './edit-eval/edit-eval.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
     FillFormComponent,
     LoginComponent,
     RegisterComponent,
+    EditEvalComponent,
   ],
   imports: [CommonModule, ServicesModule, GenericComponentsModule, PipesModule],
   exports: [

@@ -9,7 +9,7 @@ export class EvaluationService {
   constructor(private storage: StorageService) {}
 
   get(code: string): Evaluation | undefined {
-    const evaluation = this.storage.getObject<Evaluation>('code');
+    const evaluation = this.storage.getObject<Evaluation>(code);
     return evaluation;
   }
 
@@ -19,6 +19,7 @@ export class EvaluationService {
       'intervention-context': {},
       'eval-design': {},
       form: [],
+      responses: [],
       'field-work': {},
       'eval-conclusions': {},
     };

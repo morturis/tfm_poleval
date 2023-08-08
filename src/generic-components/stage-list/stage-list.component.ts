@@ -46,4 +46,8 @@ export class StageListComponent {
   handleChildOutput(index: number, output: any) {
     this.childOutput[index] = output;
   }
+
+  childIsValid(index: number) {
+    return this.childOutput[index]?.status == 'VALID';
+  }
 }
