@@ -19,7 +19,7 @@ export class InterventionContextComponent extends DynamicFormView {
     header: 'intervention_indicators',
     field: 'intervention_indicators',
     fieldType: 'table',
-    itemName: 'indicator_unit', //TODO translate
+    itemName: 'indicator_unit',
     canAddRemove: true,
     columns: [
       {
@@ -126,7 +126,6 @@ export class InterventionContextComponent extends DynamicFormView {
       placeholder: 'intervention_unexpected_interruptions_placeholder',
       info: 'intervention_unexpected_interruptions_info',
     },
-    //Actores tabla TODO ? no se qué va aquí
     this.interventionIndicatorsTableConfig,
   ];
 

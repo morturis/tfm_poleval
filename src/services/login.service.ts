@@ -8,33 +8,45 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private storage: StorageService) {}
+  defaultExpirationTimeFunction = () => new Date(Date.now() + 1000 * 60 * 10);
 
-  users: Record<string, any> = {
-    dev: {
+  defaultUsers: LoginObject[] = [
+    {
       username: 'dev',
+      password: 'dev',
       permissions: [
         Permissions.ADD_NEW_EVAL,
         Permissions.FILL_FORM,
         Permissions.EDIT_EVAL,
       ],
-      expires_at: new Date(Date.now() + 1000 * 60 * 10),
+      expires_at: this.defaultExpirationTimeFunction(),
     },
-    juanito: {
+    {
       username: 'juanito',
+      password: 'juanitoPassword',
       permissions: [Permissions.FILL_FORM],
-      expires_at: new Date(Date.now() + 1000 * 60 * 10),
+      expires_at: this.defaultExpirationTimeFunction(),
     },
-  };
+  ];
+
+  constructor(private storage: StorageService) {
+    this.defaultUsers.forEach((user) => {
+      this.storage.setObject(`user-${user.username}`, user);
+    });
+  }
 
   async login(loginInfo: UserAccount): Promise<LoginResponse> {
-    const loginObject: LoginObject = this.users[
-      loginInfo.username
-    ] as LoginObject;
+    const user = this.storage.getObject<LoginObject>(
+      `user-${loginInfo.username}`
+    );
 
-    if (!loginObject) return { access_token: 'error' };
+    if (!user || user.password != loginInfo.password) {
+      alert('error');
+      return { access_token: 'error' };
+    }
 
-    const token = btoa(JSON.stringify(loginObject));
+    const token = btoa(JSON.stringify(user));
+
     this.storage.setObject('token', token);
 
     return {
@@ -43,7 +55,14 @@ export class LoginService {
   }
 
   async register(loginInfo: UserAccount): Promise<LoginResponse> {
-    return this.login(loginInfo); //TODO dev code
+    const newUser: LoginObject = {
+      username: loginInfo.username,
+      password: loginInfo.password,
+      permissions: [Permissions.FILL_FORM],
+      expires_at: this.defaultExpirationTimeFunction(),
+    };
+    this.storage.setObject(`user-${newUser.username}`, newUser);
+    return await this.login(newUser);
   }
 
   logout() {
@@ -53,6 +72,7 @@ export class LoginService {
   isLoggedIn(): boolean {
     return !!this.storage.getObject('token');
   }
+
   getLoggedInUsername(): string {
     const token: string = this.storage.getObject('token');
     if (!token) return 'ERROR - NOT LOGGED IN'; //Should never show

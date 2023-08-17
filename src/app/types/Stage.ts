@@ -5,5 +5,5 @@ export type Stage = {
   isDone: boolean;
   isActive?: boolean;
   isDocument?: boolean;
-  contents: Type<unknown>; //TODO Type of the component to display
+  contents: Type<unknown>; //Type of the component to display
 };

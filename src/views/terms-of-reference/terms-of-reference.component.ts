@@ -12,11 +12,11 @@ import { EvaluationService } from 'src/services/evaluation.service';
   styleUrls: ['./terms-of-reference.component.scss'],
 })
 export class TermsOfReferenceComponent extends DynamicFormView {
-  studiedActorsTableConfig: TableConfig = {
+  delimitationActorsTableConfig: TableConfig = {
     header: 'actor_table',
     field: 'actor_table',
     fieldType: 'table',
-    itemName: 'actor',
+    itemName: 'actor_unit',
     canAddRemove: false,
     columns: [
       {
@@ -69,12 +69,11 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       },
     ],
   };
-
   teamMembersTableConfig: TableConfig = {
     header: 'team_member_table',
     field: 'team_member_table',
     fieldType: 'table',
-    itemName: 'member', //TODO translate
+    itemName: 'member',
     canAddRemove: false,
     columns: [
       {
@@ -105,12 +104,11 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       },
     ],
   };
-
   otherParticipantsTableConfig: TableConfig = {
     header: 'other_participants_table',
     field: 'other_participants_table',
     fieldType: 'table',
-    itemName: 'member', //TODO translate
+    itemName: 'member',
     canAddRemove: false,
     columns: [
       {
@@ -141,12 +139,11 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       },
     ],
   };
-
   toolsTableConfig: TableConfig = {
     header: 'tools_table',
     field: 'tools_table',
     fieldType: 'table',
-    itemName: 'tool', //TODO translate
+    itemName: 'tool',
     canAddRemove: false,
     columns: [
       {
@@ -207,7 +204,24 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         required: () => 'error_required_field',
       },
     },
-    //TODO fase del ciclo
+    {
+      header: 'intervention_life_cycle',
+      field: 'intervention_life_cycle',
+      fieldType: 'dropdown',
+      viewOnly: true,
+      defaultValue: undefined,
+      labelOnLeftSide: true,
+      info: 'intervention_life_cycle_info',
+      items: [
+        'intervention_life_cycle_1',
+        'intervention_life_cycle_2',
+        'intervention_life_cycle_3',
+      ],
+      validators: [Validators.required],
+      errorMessages: {
+        required: () => 'error_required_field',
+      },
+    },
     {
       header: 'evaluation_objective',
       field: 'evaluation_objective',
@@ -250,23 +264,48 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         required: () => 'error_required_field',
       },
     },
-    this.studiedActorsTableConfig,
-    //Delimitar TODO
-    //zona geografica
-    this.studiedActorsTableConfig,
-    //tiempo
-
+    //Delimitaciones
+    {
+      header: 'delimitations_geo',
+      field: 'delimitations_geo',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      labelOnLeftSide: true,
+      placeholder: 'delimitations_geo_placeholder',
+      info: 'delimitations_geo_info',
+    },
+    {
+      header: 'delimitations_time_period',
+      field: 'delimitations_time_period',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      labelOnLeftSide: true,
+      placeholder: 'delimitations_time_period_placeholder',
+      info: 'delimitations_time_period_info',
+    },
+    this.delimitationActorsTableConfig,
     {
       header: 'other_delimitations',
       field: 'other_delimitations',
       fieldType: 'input',
       defaultValue: undefined,
-      viewOnly: true,
+      viewOnly: false,
       labelOnLeftSide: true,
       placeholder: 'other_delimitations_placeholder',
       info: 'other_delimitations_info',
     },
-    //Estrategia TODO
+    {
+      header: 'eval_strategy',
+      field: 'eval_strategy',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: true,
+      labelOnLeftSide: true,
+      placeholder: 'eval_strategy_placeholder',
+      info: 'eval_strategy_info',
+    },
     this.teamManagersTableConfig,
     this.teamMembersTableConfig,
     this.otherParticipantsTableConfig,

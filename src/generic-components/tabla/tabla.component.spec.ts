@@ -13,7 +13,7 @@ describe('TablaComponent', () => {
     header: 'intervention_indicators',
     field: 'intervention_indicators',
     fieldType: 'table',
-    itemName: 'indicator_unit', //TODO translate
+    itemName: 'indicator_unit',
     canAddRemove: true,
     columns: [
       {

@@ -68,6 +68,11 @@ export enum PhraseKey {
   eval_strategy_placeholder = 'eval_strategy_placeholder',
   eval_strategy_info = 'eval_strategy_info',
 
+  //Field work
+  field_work_no_code = 'field_work_no_code',
+  make_code_available_text = 'make_code_available_text',
+  field_work_phase_description = 'field_work_phase_description',
+
   //stages
   first_stage = 'first_stage',
   document_terms_of_reference = 'document_terms_of_reference',

@@ -79,6 +79,13 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.eval_strategy]: 'Estrategia de la evaluación',
     [PhraseKey.eval_strategy_placeholder]: 'e.g. //TODO',
     [PhraseKey.eval_strategy_info]: '//TODO',
+
+    //FIeld work
+    [PhraseKey.field_work_no_code]: 'No se ha generado código',
+    [PhraseKey.make_code_available_text]:
+      'Los respondentes pueden acceder al cuestionario usando este código',
+    [PhraseKey.field_work_phase_description]:
+      'Adicionalmente, esta pantalla permite visualizar los resultados de las respuestas hasta el momento:',
   },
   EN: {
     [PhraseKey.button_add]: 'Add',
@@ -155,5 +162,12 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.eval_strategy]: 'Evaluation strategy',
     [PhraseKey.eval_strategy_placeholder]: 'e.g. //TODO',
     [PhraseKey.eval_strategy_info]: '//TODO',
+
+    //Field work
+    [PhraseKey.field_work_no_code]: 'No code was generated',
+    [PhraseKey.make_code_available_text]:
+      'Respondents can access this questionaire by using this code:',
+    [PhraseKey.field_work_phase_description]:
+      'Aditionally, this screen shows a breakdown of the responses so far',
   },
 };

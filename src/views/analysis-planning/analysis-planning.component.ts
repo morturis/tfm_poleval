@@ -268,11 +268,28 @@ export class AnalysisPlanningComponent extends DynamicFormView {
         required: () => 'error_required_field',
       },
     },
-    //Delimitar TODO
-    // --zona geografica
+    //Delimitaciones
+    {
+      header: 'delimitations_geo',
+      field: 'delimitations_geo',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      labelOnLeftSide: true,
+      placeholder: 'delimitations_geo_placeholder',
+      info: 'delimitations_geo_info',
+    },
+    {
+      header: 'delimitations_time_period',
+      field: 'delimitations_time_period',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      labelOnLeftSide: true,
+      placeholder: 'delimitations_time_period_placeholder',
+      info: 'delimitations_time_period_info',
+    },
     this.delimitationActorsTableConfig,
-    // --tiempo
-
     {
       header: 'other_delimitations',
       field: 'other_delimitations',
@@ -283,7 +300,6 @@ export class AnalysisPlanningComponent extends DynamicFormView {
       placeholder: 'other_delimitations_placeholder',
       info: 'other_delimitations_info',
     },
-
     {
       header: 'eval_strategy',
       field: 'eval_strategy',
