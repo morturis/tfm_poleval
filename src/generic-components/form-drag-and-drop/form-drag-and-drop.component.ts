@@ -64,7 +64,7 @@ export class FormDragAndDropComponent {
     }
 
     //Result -> Options means remove from Result
-    if (event.previousContainer !== event.container) {
+    if (event.previousContainer !== event.container && this.result.length > 1) {
       //event.previousContainer.removeItem(event.item);
       this.result.splice(event.previousIndex, 1);
     }

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
+import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
 import { EvaluationService } from 'src/services/evaluation.service';
 
 @Component({
@@ -13,6 +14,120 @@ import { EvaluationService } from 'src/services/evaluation.service';
 })
 export class EvalDesignComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
+
+  toolsTableConfig: TableConfig = {
+    header: 'tools_table',
+    field: 'tools_table',
+    fieldType: 'table',
+    itemName: 'tool_unit',
+    canAddRemove: true,
+    columns: [
+      {
+        header: 'tools_name',
+        field: 'tools_name',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'tools_name_placeholder',
+        info: 'tools_name_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'error_required_field',
+        },
+      },
+      {
+        header: 'tools_brief_description',
+        field: 'tools_brief_description',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'tools_brief_description_placeholder',
+        info: 'tools_brief_description_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'error_required_field',
+        },
+      },
+      {
+        header: 'tools_use_case',
+        field: 'tools_use_case',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'tools_use_case_placeholder',
+        info: 'tools_use_case_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'error_required_field',
+        },
+      },
+    ],
+  };
+
+  criterionTableConfig: TableConfig = {
+    header: 'criterion_table',
+    field: 'criterion_table',
+    fieldType: 'table',
+    itemName: 'criterion_unit',
+    canAddRemove: true,
+    columns: [
+      {
+        header: 'criterion_description',
+        field: 'criterion_description',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'criterion_description_placeholder',
+        info: 'criterion_description_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'error_required_field',
+        },
+      },
+    ],
+  };
+
+  indicatorsTableConfig: TableConfig = {
+    header: 'eval_indicators_table',
+    field: 'eval_indicators_table',
+    fieldType: 'table',
+    itemName: 'indicator_unit',
+    canAddRemove: true,
+    columns: [
+      {
+        header: 'eval_indicator_name',
+        field: 'eval_indicator_name',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'eval_indicator_name_placeholder',
+        info: 'eval_indicator_name_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'error_required_field',
+        },
+      },
+      {
+        header: 'eval_indicators_value',
+        field: 'eval_indicators_value',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'eval_indicators_value_placeholder',
+        info: 'eval_indicators_value_info',
+        validators: [Validators.required],
+        errorMessages: {
+          required: () => 'error_required_field',
+        },
+      },
+    ],
+  };
+
+  override fieldsConfig: AnyFieldConfig[] = [
+    this.toolsTableConfig,
+    this.criterionTableConfig,
+    this.indicatorsTableConfig,
+  ];
 
   constructor(
     fb: FormBuilder,

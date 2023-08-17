@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { firstValueFrom } from 'rxjs';
@@ -14,6 +15,7 @@ import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
   styleUrls: ['./tabla.component.scss'],
 })
 export class TablaComponent {
+  @Input({ required: true }) control!: FormControl; //Definite assignment //Cant use formControl as name
   @Input({ required: true }) config!: TableConfig; //definite assignment
   @ViewChild(MatTable) table!: MatTable<any>; //Definitive assignment operator, compiler trust me
 
@@ -38,6 +40,14 @@ export class TablaComponent {
     this.displayedColumns = this.fieldsConfig.map((c) => c.field);
   }
 
+  ngAfterViewInit() {
+    if (this.control.value) {
+      Object.entries(this.control.value).forEach(([key, value]) =>
+        this.items.push(value)
+      );
+      this.table.renderRows();
+    }
+  }
   async addItem() {
     //Open a dialog to create a new item
     const dialogData: DialogData = {
@@ -54,11 +64,13 @@ export class TablaComponent {
     //On dialog close
     const addedItem = await firstValueFrom(dialogRef.afterClosed());
     if (addedItem) this.items.push(addedItem); //returns false if no item was added
+    this.control.setValue({ ...this.items }, { emitEvent: true });
     this.table.renderRows();
   }
 
   removeItem() {
     this.items.pop();
+    this.control.setValue({ ...this.items }, { emitEvent: true });
     this.table.renderRows();
   }
 }

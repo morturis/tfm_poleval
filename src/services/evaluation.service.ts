@@ -22,7 +22,6 @@ export class EvaluationService {
       team_manager_table: null,
       team_member_table: null,
       other_participants_table: null,
-      tools_table: null,
     },
     'intervention-context': {
       intervention_objective: 'Prohibir el uso de Luces Halógenas',
@@ -42,7 +41,8 @@ export class EvaluationService {
   };
 
   constructor(private storage: StorageService) {
-    this.storage.setObject('DEFAULT', this.defaultEval);
+    if (!this.storage.getObject('DEFAULT'))
+      this.storage.setObject('DEFAULT', this.defaultEval);
   }
 
   get(code: string): Evaluation | undefined {

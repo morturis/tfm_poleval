@@ -25,7 +25,11 @@
     >
     </app-input>
 
-    <app-tabla *ngIf="isTable(field)" [config]="field | cast : TableConfig">
+    <app-tabla
+      *ngIf="isTable(field)"
+      [config]="field | cast : TableConfig"
+      [control]="getFormControl(field.field)"
+    >
     </app-tabla>
 
     <app-dropdown

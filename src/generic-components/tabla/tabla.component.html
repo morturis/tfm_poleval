@@ -15,10 +15,15 @@
 </mat-table>
 
 <div *ngIf="canAddRemove" class="mt-2 me-2 d-flex flex-row-reverse">
-  <button mat-raised-button [disabled]="!items.length" (click)="removeItem()">
+  <button
+    mat-raised-button
+    [disabled]="!items.length"
+    (click)="removeItem()"
+    type="button"
+  >
     {{ "button_remove_last" | translate }} {{ itemName | translate }}
   </button>
-  <button mat-raised-button (click)="addItem()" class="ms-3 me-2">
+  <button mat-raised-button (click)="addItem()" class="ms-3 me-2" type="button">
     {{ "button_add_one" | translate }} {{ itemName | translate }}
   </button>
 </div>
