@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { distinctUntilChanged } from 'rxjs';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
@@ -12,6 +13,8 @@ import { EvaluationService } from 'src/services/evaluation.service';
   styleUrls: ['./terms-of-reference.component.scss'],
 })
 export class TermsOfReferenceComponent extends DynamicFormView {
+  @Output() outputEvent = new EventEmitter<any>();
+
   delimitationActorsTableConfig: TableConfig = {
     header: 'actor_table',
     field: 'actor_table',
@@ -322,9 +325,16 @@ export class TermsOfReferenceComponent extends DynamicFormView {
   }
 
   ngOnInit() {
+    //When the validity of the form changes, I throw EventEmitter
+    this.form.statusChanges.pipe(distinctUntilChanged()).subscribe((status) => {
+      this.outputEvent.emit({ status: status });
+    });
+    this.outputEvent.emit({ status: this.form.status });
+
     const formCode = this.route.snapshot.paramMap.get('code');
     if (!formCode)
       throw new Error('Please create a new evaluation from the beginning'); //should never trigger
+    //this.form.updateValueAndValidity();
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
@@ -333,5 +343,6 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         EvaluationProperties['analysis-planning']
       ];
     if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
+    this.form.updateValueAndValidity();
   }
 }
