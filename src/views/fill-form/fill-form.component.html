@@ -9,6 +9,7 @@
     mat-button
     [disabled]="this.form.status === 'INVALID'"
     (click)="selectCode()"
+    type="button"
   >
     {{ "enter_code_button" | translate }}
   </button>
@@ -40,7 +41,12 @@
     </app-dropdown>
   </div>
 
-  <button mat-button (click)="saveResponse()">
+  <button
+    mat-button
+    (click)="saveResponse()"
+    type="button"
+    [disabled]="this.form.status === 'INVALID'"
+  >
     {{ "save_response" | translate }}
   </button>
 </form>

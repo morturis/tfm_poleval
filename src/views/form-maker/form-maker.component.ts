@@ -66,13 +66,17 @@ export class FormMakerComponent {
     const formCode = this.route.snapshot.paramMap.get('code');
     if (!formCode)
       throw new Error('Please create a new evaluation from the beginning'); //should never trigger
+
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
     const savedValue =
       this.evalService.get(formCode)?.[EvaluationProperties['form']];
     if (!savedValue) return;
 
+    //Empty results. This is to avoid contamination
     this.result.splice(0, this.result.length);
+
+    //Fill form with previously saved values
     savedValue.forEach((fieldConfig: AnyFieldConfig) => {
       if (fieldConfig.fieldType === 'input') {
         this.result.push({
@@ -94,6 +98,8 @@ export class FormMakerComponent {
         });
       }
     });
+    //Tell parent component we are valid to go to next step
+    this.outputEvent.emit({ status: 'VALID' });
   }
 
   droppedInOptionsList(event: CdkDragDrop<any>) {
@@ -154,6 +160,7 @@ export class FormMakerComponent {
         EvaluationProperties.form,
         createdForm
       );
+      //Tell parent component we are valid to go to next step
       this.outputEvent.emit({ status: 'VALID' });
     } catch (e) {
       //Catch possible errors in the form
@@ -238,6 +245,7 @@ export class DragDropInputComponent extends DragDropBaseComponent {
       placeholder: undefined,
       labelOnLeftSide: true,
       field: uuidv4(),
+      disableTranslation: true,
     };
     return fc;
   };
@@ -317,6 +325,7 @@ export class DragDropDropdownComponent extends DragDropBaseComponent {
       header: this.form.value['header'],
       labelOnLeftSide: true,
       field: uuidv4(),
+      disableTranslation: true,
       items: this.form.value['items']
         .split('\n')
         .filter((str: string | any[]) => str && str.length > 0), //removes empties

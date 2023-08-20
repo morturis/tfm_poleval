@@ -72,6 +72,7 @@ export enum PhraseKey {
   field_work_no_code = 'field_work_no_code',
   make_code_available_text = 'make_code_available_text',
   field_work_phase_description = 'field_work_phase_description',
+  save_response = 'save_response',
 
   //stages
   first_stage = 'first_stage',

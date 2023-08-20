@@ -34,6 +34,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.code_placeholder]: 'e.g. KHMMZ',
     [PhraseKey.code_info]: '',
     [PhraseKey.fill_form]: 'Rellenar cuestionario',
+    [PhraseKey.save_response]: 'Guardar respuesta',
 
     //Stage names
     [PhraseKey.first_stage]: 'Análisis y planificación',
@@ -133,6 +134,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.code_placeholder]: 'e.g. KHMMZ',
     [PhraseKey.code_info]: '',
     [PhraseKey.fill_form]: 'Fill a questionnaire',
+    [PhraseKey.save_response]: 'Guardar respuesta',
+
     //Stage names
     [PhraseKey.first_stage]: 'Analysis and planning',
     [PhraseKey.document_terms_of_reference]: 'Terms of reference',

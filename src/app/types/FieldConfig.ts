@@ -3,6 +3,7 @@ import { ValidatorFn } from '@angular/forms';
 interface BaseFieldConfig {
   header: string; //Title
   field: string; //Identifier for the form they are part in
+  disableTranslation?: boolean;
   fieldType: string;
   viewOnly?: boolean;
   defaultValue?: any;

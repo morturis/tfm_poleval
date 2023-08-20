@@ -1,17 +1,31 @@
 <div class="d-inline-flex align-items-center pb-1">
   <div *ngIf="fieldConfig.labelOnLeftSide" class="pb-4 pe-1">
-    <label>{{ fieldConfig.header | translate }} </label>
+    <label>
+      {{
+        fieldConfig.disableTranslation
+          ? fieldConfig.header
+          : (fieldConfig.header | translate)
+      }}
+    </label>
     <label *ngIf="fieldIsRequired">*</label>
   </div>
   <mat-form-field class="col">
-    <mat-label *ngIf="!fieldConfig.labelOnLeftSide">{{
-      fieldConfig.header | translate
-    }}</mat-label>
+    <mat-label *ngIf="!fieldConfig.labelOnLeftSide">
+      {{
+        fieldConfig.disableTranslation
+          ? fieldConfig.header
+          : (fieldConfig.header | translate)
+      }}
+    </mat-label>
     <input
-      readonly="{{ fieldConfig.viewOnly }}"
+      [readonly]="fieldConfig.viewOnly"
       class=""
       matInput
-      placeholder="{{ fieldConfig.placeholder | translate }}"
+      placeholder="{{
+        fieldConfig.disableTranslation
+          ? fieldConfig.placeholder
+          : (fieldConfig.placeholder | translate)
+      }}"
       [formControl]="control"
     />
     <mat-hint
@@ -26,6 +40,10 @@
   <app-info-icon
     class="pb-4"
     [size]="32"
-    [info]="fieldConfig.info | translate"
+    [info]="
+      fieldConfig.disableTranslation
+        ? fieldConfig.info
+        : (fieldConfig.info | translate)
+    "
   ></app-info-icon>
 </div>

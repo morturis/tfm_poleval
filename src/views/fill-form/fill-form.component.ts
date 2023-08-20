@@ -3,9 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
-import { AnyFieldConfig, InputConfig } from 'src/app/types/FieldConfig';
+import { InputConfig } from 'src/app/types/FieldConfig';
 import { EvaluationService } from 'src/services/evaluation.service';
-import { StorageService } from 'src/services/storage.service';
 
 @Component({
   selector: 'app-fill-form',
@@ -32,7 +31,6 @@ export class FillFormComponent extends DynamicFormView {
 
   constructor(
     fb: FormBuilder,
-    private storage: StorageService,
     private evalService: EvaluationService,
     private route: ActivatedRoute,
     private router: Router
@@ -42,15 +40,29 @@ export class FillFormComponent extends DynamicFormView {
   }
 
   ngOnInit() {
-    const formJson = this.storage.getObject<AnyFieldConfig[]>(
-      `created-form-${this.code}`
-    );
-
-    if (formJson) {
-      this.buildForm(formJson);
+    //Case where no code is selected
+    if (!this.code) {
+      this.buildForm([this.selectFormCodeInputConfig]);
       return;
     }
 
+    const formJson = this.evalService.get(this.code)?.[
+      EvaluationProperties['form']
+    ];
+    if (formJson) {
+      //Add required to all fields
+      const processedForm = formJson.map((field) => {
+        return {
+          ...field,
+          validators: [Validators.required],
+          errorMessages: {
+            required: () => 'error_required_field',
+          },
+        };
+      });
+      this.buildForm(processedForm);
+      return;
+    }
     this.buildForm([this.selectFormCodeInputConfig]);
   }
 
@@ -76,5 +88,7 @@ export class FillFormComponent extends DynamicFormView {
       EvaluationProperties.responses,
       allResponses
     );
+    alert('saved');
+    this.router.navigate(['']);
   }
 }
