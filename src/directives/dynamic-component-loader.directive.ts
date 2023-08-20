@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class DynamicComponentLoaderDirective<T> {
   @Input({ required: false }) componentType!: Type<T>;
-  @Input({ required: false }) extraBehaviour!: (component: T) => void;
+  @Input({ required: false }) extraBehaviour?: ((component: T) => void)[];
 
   @Output() output = new EventEmitter<unknown>();
   @Output() componentInstance = new EventEmitter<T>();
@@ -35,7 +35,7 @@ export class DynamicComponentLoaderDirective<T> {
 
     //Apply extra behaviour
     if (!this.extraBehaviour) return;
-    this.extraBehaviour(component);
+    this.extraBehaviour.forEach((func) => func(component));
 
     this.componentInstance.emit(component);
   }

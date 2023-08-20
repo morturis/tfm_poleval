@@ -1,9 +1,3 @@
-import {
-  CdkDrag,
-  CdkDragPlaceholder,
-  CdkDragPreview,
-  CdkDropList,
-} from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,12 +16,6 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { PipesModule } from 'src/pipes/pipes.module';
 import { ServicesModule } from 'src/services/services.module';
 import { DropdownComponent } from './dropdown/dropdown.component';
-import {
-  DragDropDropdownComponent,
-  DragDropInputComponent,
-  DragDropTextComponent,
-  FormDragAndDropComponent,
-} from './form-drag-and-drop/form-drag-and-drop.component';
 import { InfoIconComponent } from './info-icon/info-icon.component';
 import { InputComponent } from './input/input.component';
 import { StageListComponent } from './stage-list/stage-list.component';
@@ -46,10 +34,6 @@ import { UnderbarComponent } from './underbar/underbar.component';
     InputComponent,
     ToolbarComponent,
     UnderbarComponent,
-    FormDragAndDropComponent,
-    DragDropInputComponent,
-    DragDropTextComponent,
-    DragDropDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -69,10 +53,6 @@ import { UnderbarComponent } from './underbar/underbar.component';
     ServicesModule,
     RouterModule,
     PipesModule,
-    CdkDropList,
-    CdkDrag,
-    CdkDragPreview,
-    CdkDragPlaceholder,
   ],
   exports: [
     DropdownComponent,
@@ -81,7 +61,6 @@ import { UnderbarComponent } from './underbar/underbar.component';
     InputComponent,
     ToolbarComponent,
     UnderbarComponent,
-    FormDragAndDropComponent,
   ],
 })
 export class GenericComponentsModule {}

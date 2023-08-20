@@ -22,6 +22,7 @@ export class EvaluationService {
       team_manager_table: null,
       team_member_table: null,
       other_participants_table: null,
+      tools_table: null,
     },
     'intervention-context': {
       intervention_objective: 'Prohibir el uso de Luces Halógenas',
@@ -33,8 +34,37 @@ export class EvaluationService {
         'Sentencia 24 / 87 del Tribunal Constitucional',
       intervention_indicators: null,
     },
-    'eval-design': {},
-    form: [],
+    'eval-design': {
+      tools_table: {
+        '0': {
+          tools_name: 'Herramienta bonita',
+          tools_brief_description: 'Es una herramienta bonita que quiero usar',
+          tools_use_case: 'Uso misceláneo',
+        },
+      },
+      criterion_table: null,
+      eval_indicators_table: null,
+    },
+    form: [
+      {
+        fieldType: 'input',
+        labelOnLeftSide: true,
+        header: 'Pregunta 1',
+        field: '544c1b22-9003-4454-be24-8639cc6061ed',
+      },
+      {
+        fieldType: 'input',
+        labelOnLeftSide: true,
+        header: 'Pregunta 2',
+        field: 'dd20447f-a24b-49b9-9eab-72538ca0d022',
+      },
+      {
+        fieldType: 'input',
+        labelOnLeftSide: true,
+        header: 'Pregunta 3',
+        field: 'b12ffbcb-5b3b-4f47-af4f-8343d82dcadc',
+      },
+    ],
     responses: [],
     'field-work': {},
     'eval-conclusions': {},

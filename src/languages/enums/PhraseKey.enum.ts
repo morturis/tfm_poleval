@@ -80,4 +80,17 @@ export enum PhraseKey {
   third_stage = 'third_stage',
   fourth_stage = 'fourth_stage',
   document_final_report = 'document_final_report',
+
+  //Form builder
+  form_maker_stage = 'form_maker_stage',
+  save_form = 'save_form',
+  drag_to_add_to_form = 'drag_to_add_to_form',
+  drag_drop_input = 'drag_drop_input',
+  drag_drop_input_placeholder = 'drag_drop_input_placeholder',
+  drag_drop_input_header = 'drag_drop_input_header',
+  drag_drop_input_answer = 'drag_drop_input_answer',
+  drag_drop_dropdown = 'drag_drop_dropdown',
+  drag_drop_dropdown_placeholder = 'drag_drop_dropdown_placeholder',
+  drag_drop_dropdown_separate_lines = 'drag_drop_dropdown_separate_lines',
+  drag_drop_dropdown_options = 'drag_drop_dropdown_options',
 }

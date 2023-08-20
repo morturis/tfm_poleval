@@ -1,8 +1,10 @@
+import { AnyFieldConfig } from './FieldConfig';
+
 export type Evaluation = {
   'analysis-planning': Record<string, any>;
   'intervention-context': Record<string, any>;
   'eval-design': Record<string, any>;
-  form: Record<string, any>;
+  form: AnyFieldConfig[];
   responses: any[];
   'field-work': Record<string, any>;
   'eval-conclusions': Record<string, any>;

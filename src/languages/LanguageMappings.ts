@@ -86,6 +86,20 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Los respondentes pueden acceder al cuestionario usando este código',
     [PhraseKey.field_work_phase_description]:
       'Adicionalmente, esta pantalla permite visualizar los resultados de las respuestas hasta el momento:',
+
+    //Form builder
+    [PhraseKey.form_maker_stage]: 'Crear cuestionario',
+    [PhraseKey.save_form]: 'Guardar cuestionario',
+    [PhraseKey.drag_to_add_to_form]: 'Arrastre para añadir al cuestionario',
+    [PhraseKey.drag_drop_input]: 'Pregunta de texto libre',
+    [PhraseKey.drag_drop_input_placeholder]: 'e.g. ¿Cómo ha ido el día?',
+    [PhraseKey.drag_drop_input_header]: 'Título',
+    [PhraseKey.drag_drop_input_answer]: 'Respuesta',
+    [PhraseKey.drag_drop_dropdown]: 'Pregunta de elección única',
+    [PhraseKey.drag_drop_dropdown_placeholder]: 'e.g. Azul \ne.g. Rojo',
+    [PhraseKey.drag_drop_dropdown_separate_lines]:
+      'Introduzca cada opción en una línea separada',
+    [PhraseKey.drag_drop_dropdown_options]: 'Opciones',
   },
   EN: {
     [PhraseKey.button_add]: 'Add',
@@ -169,5 +183,19 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Respondents can access this questionaire by using this code:',
     [PhraseKey.field_work_phase_description]:
       'Aditionally, this screen shows a breakdown of the responses so far',
+
+    //Form builder
+    [PhraseKey.form_maker_stage]: 'Create questionaire',
+    [PhraseKey.save_form]: 'Save questionaire',
+    [PhraseKey.drag_to_add_to_form]: 'Drag to add to the questionnaire',
+    [PhraseKey.drag_drop_input]: 'Free text question',
+    [PhraseKey.drag_drop_input_placeholder]: 'e.g. ¿How was your day?',
+    [PhraseKey.drag_drop_input_header]: 'Title',
+    [PhraseKey.drag_drop_input_answer]: 'Answer',
+    [PhraseKey.drag_drop_dropdown]: 'Single-choice question',
+    [PhraseKey.drag_drop_dropdown_placeholder]: 'e.g. Blue \ne.g. Red',
+    [PhraseKey.drag_drop_dropdown_separate_lines]:
+      'Please enter each option in a separate line',
+    [PhraseKey.drag_drop_dropdown_options]: 'Options',
   },
 };

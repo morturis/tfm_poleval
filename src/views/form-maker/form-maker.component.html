@@ -1,2 +1,75 @@
-<app-form-drag-and-drop (statusOutput)="this.outputEvent.emit($event)">
-</app-form-drag-and-drop>
+<div class="d-flex align-items-center mh-100">
+  <div class="col-4 px-4">
+    <div class="d-flex flex-column align-items-center p-3 h-100 bg-light">
+      <h5 class="text-center w-100">
+        {{ "drag_to_add_to_form" | translate }}
+      </h5>
+      <div
+        cdkDropList
+        #optionsList="cdkDropList"
+        class="w-100"
+        [cdkDropListData]="options"
+        [cdkDropListConnectedTo]="[resultList]"
+        (cdkDropListDropped)="droppedInOptionsList($event)"
+      >
+        <div
+          class="border rounded bg-white mb-2 mt-2"
+          *ngFor="let item of options"
+          cdkDrag
+          [cdkDragData]="item"
+        >
+          <div class="text-center">
+            <b>{{ item.text | translate }}</b>
+          </div>
+          <div
+            dynamicComponentLoader
+            [componentType]="item.componentType"
+            (componentInstance)="
+              item.componentInstance = item.componentInstance || $event
+            "
+            [extraBehaviour]="[item.buildFromConfig]"
+          ></div>
+
+          <!-- drag placeholder -->
+          <div class="drag-drop-placeholder" *cdkDragPlaceholder></div>
+          <!--drag preview -->
+          <div *cdkDragPreview>aaaaaaaaaaaaaa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8 h-100">
+    <div
+      cdkDropList
+      #resultList="cdkDropList"
+      [cdkDropListData]="result"
+      [cdkDropListConnectedTo]="[optionsList]"
+      (cdkDropListDropped)="droppedInResultList($event)"
+    >
+      <div
+        class="mb-2 mt-2"
+        *ngFor="let item of result"
+        cdkDrag
+        [cdkDragData]="item"
+      >
+        <div
+          dynamicComponentLoader
+          [componentType]="item.componentType"
+          (componentInstance)="
+            item.componentInstance = item.componentInstance || $event
+          "
+          [extraBehaviour]="[item.buildFromConfig, setInResult]"
+        ></div>
+
+        <!-- drag placeholder -->
+        <div class="drag-drop-placeholder" *cdkDragPlaceholder></div>
+        <!--drag preview -->
+        <div *cdkDragPreview>aaaaaaaaaaaaaa</div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<button mat-button (click)="saveForm()">
+  {{ "save_form" | translate }}
+</button>
