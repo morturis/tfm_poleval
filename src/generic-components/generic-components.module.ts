@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { PipesModule } from 'src/pipes/pipes.module';
 import { ServicesModule } from 'src/services/services.module';
+import { ChartsModule } from './charts/charts.module';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { InfoIconComponent } from './info-icon/info-icon.component';
 import { InputComponent } from './input/input.component';
@@ -53,6 +54,7 @@ import { UnderbarComponent } from './underbar/underbar.component';
     ServicesModule,
     RouterModule,
     PipesModule,
+    ChartsModule,
   ],
   exports: [
     DropdownComponent,
@@ -61,6 +63,7 @@ import { UnderbarComponent } from './underbar/underbar.component';
     InputComponent,
     ToolbarComponent,
     UnderbarComponent,
+    ChartsModule,
   ],
 })
 export class GenericComponentsModule {}

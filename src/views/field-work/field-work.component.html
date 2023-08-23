@@ -1,8 +1,35 @@
 <div class="ms-4 me-4">
   <!--TODO make centered -->
-  <p>{{ make_code_available_text | translate }}</p>
+  <p>{{ "field_work_phase_description" | translate }}</p>
   <p>
     <b>{{ form_code_to_show }}</b>
   </p>
-  <p>{{ phase_description | translate }}</p>
+  <p>{{ "field_work_phase_description" | translate }}</p>
+</div>
+
+<div class="pb-4">
+  <mat-accordion>
+    <div *ngFor="let question of this.formQuestions">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ question.header }} </mat-panel-title>
+          <mat-panel-description>
+            {{ mappedFieldTypes[question.fieldType] | translate }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-template [ngIf]="question.fieldType === 'dropdown'">
+          <histogram
+            [dataset]="question.responses ? question.responses : []"
+            [header]="question.header"
+          >
+          </histogram>
+        </ng-template>
+
+        <ng-template [ngIf]="question.fieldType === 'input'">
+          {{ question.responses?.join(" ") }}
+        </ng-template>
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
 </div>
