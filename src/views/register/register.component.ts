@@ -30,6 +30,7 @@ export class RegisterComponent extends DynamicFormView {
     fieldType: 'input',
     header: 'password',
     field: 'password',
+    inputType: 'password',
     placeholder: 'password_placeholder',
     info: 'password_info',
     labelOnLeftSide: true,

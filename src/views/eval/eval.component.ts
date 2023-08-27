@@ -3,9 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Stage } from 'src/app/types/Stage';
 import { EvaluationService } from 'src/services/evaluation.service';
 import { AnalysisPlanningComponent } from '../analysis-planning/analysis-planning.component';
+import { EvalDesignComponent } from '../eval-design/eval-design.component';
 import { FieldWorkComponent } from '../field-work/field-work.component';
 import { FinalReportComponent } from '../final-report/final-report.component';
 import { FormMakerComponent } from '../form-maker/form-maker.component';
+import { InterventionContextComponent } from '../intervention-context/intervention-context.component';
+import { TermsOfReferenceComponent } from '../terms-of-reference/terms-of-reference.component';
 
 @Component({
   selector: 'app-eval',
@@ -20,7 +23,7 @@ export class EvalComponent {
       isActive: true,
       contents: AnalysisPlanningComponent,
     },
-    /*
+
     {
       name: 'document_terms_of_reference',
       isDone: false,
@@ -39,7 +42,7 @@ export class EvalComponent {
       isDone: false,
       contents: EvalDesignComponent,
     },
-    */
+
     {
       name: 'form_maker_stage',
       isDone: false,

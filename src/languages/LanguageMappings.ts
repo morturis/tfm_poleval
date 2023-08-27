@@ -81,6 +81,68 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.eval_strategy_placeholder]: 'e.g. //TODO',
     [PhraseKey.eval_strategy_info]: '//TODO',
 
+    [PhraseKey.delimitations_geo]: 'Delimitación geográfica',
+    [PhraseKey.delimitations_geo_placeholder]: 'e.g. Provincia de Sevilla',
+    [PhraseKey.delimitations_geo_info]:
+      'La delimitación geográfica puede ser a nivel extremadamente local, como un único barrio, o incluso a nivel supranacional, como la península ibérica o la Unión Europea.',
+
+    [PhraseKey.actor_table]:
+      'Actores sobre los que se desea evaluar la intervención',
+    [PhraseKey.actor_unit]: 'actor',
+    [PhraseKey.actor_name]: 'Nombre del grupo de actores',
+    [PhraseKey.actor_name_placeholder]: 'e.g. Funcionarios del ayuntamiento',
+    [PhraseKey.actor_name_info]:
+      'Actores de la evaluación que queremos evaluar. No es necesario recoger todos los actores, sólo aquellos para los que se desee realizar la evaluación.',
+
+    [PhraseKey.delimitations_time_period]: 'Delimitación de periodo temporal',
+    [PhraseKey.delimitations_time_period_placeholder]:
+      'e.g. Desde Enero 2020 hasta Febrero 2021',
+    [PhraseKey.delimitations_time_period_info]:
+      'Periodo de la intervención que se desea evaluar. Si se deja vacío, se asume que se desea evaluar la totalidad de la intervención.',
+
+    [PhraseKey.team_manager_table]: 'Líder a cargo de la evaluación',
+    [PhraseKey.manager_unit]: 'líder',
+    [PhraseKey.manager_name]: 'Nombre del gestor',
+    [PhraseKey.manager_name_placeholder]: 'e.g. Juan Pérez',
+    [PhraseKey.manager_name_info]:
+      'Nombre de la/s persona/s a cargo de la evaluación.',
+    [PhraseKey.manager_role]: 'Rol',
+    [PhraseKey.manager_role_placeholder]: 'e.g. Entrevistador',
+    [PhraseKey.manager_role_info]:
+      'Rol o cargo de la persona en el proceso de evaluación.',
+
+    [PhraseKey.team_member_table]: 'Miembros del equipo de evaluación',
+    [PhraseKey.member_unit]: 'miembro del equipo',
+    [PhraseKey.team_member_name]: 'Nombre',
+    [PhraseKey.team_member_name_placeholder]: 'e.g. Juan Pérez',
+    [PhraseKey.team_member_name_info]: '',
+    [PhraseKey.team_member_role]: 'Rol',
+    [PhraseKey.team_member_role_placeholder]: 'e.g. Entrevistador',
+    [PhraseKey.team_member_role_info]:
+      'Rol o cargo de la persona en el proceso de evaluación.',
+
+    [PhraseKey.other_participants_table]:
+      'Otros miembros del equipo de evaluación, como podrían ser terceras partes',
+    [PhraseKey.other_participants_unit]: 'participante',
+    [PhraseKey.other_participants_name]: 'Nombre',
+    [PhraseKey.other_participants_name_placeholder]: 'e.g. Juan Pérez',
+    [PhraseKey.other_participants_name_info]: '',
+    [PhraseKey.other_participants_role]: 'Rol',
+    [PhraseKey.other_participants_role_placeholder]: 'e.g. Interviewer',
+    [PhraseKey.other_participants_role_info]:
+      'Rol o cargo de la persona en el proceso de evaluación.',
+
+    [PhraseKey.tools_table]: 'Herramientas o técnicas a utilizar',
+    [PhraseKey.tool_unit]: 'herramienta o técnica',
+    [PhraseKey.tools_name]: 'Nombre',
+    [PhraseKey.tools_name_placeholder]: 'e.g. Análisis DAFO',
+    [PhraseKey.tools_name_info]: '',
+    [PhraseKey.tools_brief_description]: 'Descripción breve',
+    [PhraseKey.tools_brief_description_placeholder]:
+      'e.g. Técnica de planificación estratégica',
+    [PhraseKey.tools_brief_description_info]:
+      'Breve descripción de la herramienta. No es necesario indicar el uso que se le dará, pues esta información se introducirá más adelante.',
+
     //FIeld work
     [PhraseKey.field_work_no_code]: 'No se ha generado código',
     [PhraseKey.make_code_available_text]:
@@ -101,6 +163,27 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.drag_drop_dropdown_separate_lines]:
       'Introduzca cada opción en una línea separada',
     [PhraseKey.drag_drop_dropdown_options]: 'Opciones',
+
+    //Contexto de la intervención
+    [PhraseKey.intervention_problem_to_solve]:
+      'Problema que la intervención pretendía resolver',
+    [PhraseKey.intervention_problem_to_solve_placeholder]:
+      'e.g. Reducir el número de accidentes de tráfico mortales',
+    [PhraseKey.intervention_problem_to_solve_info]:
+      'Por norma general, el texto de la intervención especificará en el preámbulo qué problema busca resolver.',
+
+    [PhraseKey.intervention_upper_level_strategy]:
+      'Plan estratégico que contiene la intervención',
+    [PhraseKey.intervention_upper_level_strategy_placeholder]:
+      'e.g. Plan XIII de seguridad vial',
+    [PhraseKey.intervention_upper_level_strategy_info]:
+      'Existen intervenciones que podrían quedar enmarcadas dentro de una estrategia superior. Esta estrategia podría surgir de la misma entidad que realiza la intervención, pero también de entidades superiores, como la Unión Europea.',
+
+    [PhraseKey.intervention_simultaneous]: 'Otras intervenciones simultáneas',
+    [PhraseKey.intervention_simultaneous_placeholder]:
+      'e.g. Plan de renovación de carreteras 2018',
+    [PhraseKey.intervention_simultaneous_info]:
+      'Dada la naturaleza compleja de las políticas públicas, es común que varias intervenciones simultáneas en el tiempo interactúen entre sí. Esto podría afectar positiva o negativamente la consecución de objetivos de la intervención a evaluar.',
   },
   EN: {
     [PhraseKey.button_add]: 'Add',
@@ -156,7 +239,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.evaluation_org_info]: '',
     [PhraseKey.evaluation_objective]: 'The objective of this evaluation is',
     [PhraseKey.evaluation_objective_placeholder]:
-      'e.g. measuring the effectivenes of mask distribution procedures',
+      'e.g. measuring the effectivenes of surgical mask distribution procedures',
     [PhraseKey.evaluation_objective_info]: '',
     [PhraseKey.evaluation_reasoning]: 'The reasoning behind this evaluation is',
     [PhraseKey.evaluation_reasoning_placeholder]:
@@ -180,6 +263,68 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.eval_strategy_placeholder]: 'e.g. //TODO',
     [PhraseKey.eval_strategy_info]: '//TODO',
 
+    [PhraseKey.delimitations_geo]: 'Geographical delimitacion',
+    [PhraseKey.delimitations_geo_placeholder]: 'e.g. City of Madrid',
+    [PhraseKey.delimitations_geo_info]:
+      'Interventions may be delimited from a very local level, such as a single neighbourhood, to a supranational level, such as the European Union.',
+
+    [PhraseKey.actor_table]:
+      'Actors over which the intervention should be evaluated',
+    [PhraseKey.actor_unit]: 'actor',
+    [PhraseKey.actor_name]: 'Group of actors',
+    [PhraseKey.actor_name_placeholder]: 'e.g. City hall employees',
+    [PhraseKey.actor_name_info]:
+      'Actors involved in the intervention to be evaluated. Only those we wish to evaluate should be included.',
+
+    [PhraseKey.delimitations_time_period]: 'Time period delimitation',
+    [PhraseKey.delimitations_time_period_placeholder]:
+      'e.g. From 18th of January 2020 to 19th of March 2021',
+    [PhraseKey.delimitations_time_period_info]:
+      'Period of the intervention we wish to evaluate. If left empty, it is assumed the entirety of the intervention period should be evaluated.',
+
+    [PhraseKey.team_manager_table]: 'Manager in charge of the evaluation',
+    [PhraseKey.manager_unit]: 'manager',
+    [PhraseKey.manager_name]: 'Manager name',
+    [PhraseKey.manager_name_placeholder]: 'e.g. Juan Pérez',
+    [PhraseKey.manager_name_info]:
+      'Name of the people in charge of the evaluation team.',
+    [PhraseKey.manager_role]: 'Role',
+    [PhraseKey.manager_role_placeholder]: 'e.g. Interviewer',
+    [PhraseKey.manager_role_info]:
+      'Role or position of the person within the evaluation team.',
+
+    [PhraseKey.team_member_table]: 'Members of the evaluation team',
+    [PhraseKey.member_unit]: 'team member',
+    [PhraseKey.team_member_name]: 'Name',
+    [PhraseKey.team_member_name_placeholder]: 'e.g. Juan Pérez',
+    [PhraseKey.team_member_name_info]: '',
+    [PhraseKey.team_member_role]: 'Role',
+    [PhraseKey.team_member_role_placeholder]: 'e.g. Interviewer',
+    [PhraseKey.team_member_role_info]:
+      'Role or position of the person within the evaluation team.',
+
+    [PhraseKey.other_participants_table]:
+      'Other members of the evaluation team, such as third parties',
+    [PhraseKey.other_participants_unit]: 'participant',
+    [PhraseKey.other_participants_name]: 'Name',
+    [PhraseKey.other_participants_name_placeholder]: 'e.g. Juan Pérez',
+    [PhraseKey.other_participants_name_info]: '',
+    [PhraseKey.other_participants_role]: 'Role',
+    [PhraseKey.other_participants_role_placeholder]: 'e.g. Interviewer',
+    [PhraseKey.other_participants_role_info]:
+      'Role or position of the person within the evaluation team.',
+
+    [PhraseKey.tools_table]: 'Tools or techniques to be used',
+    [PhraseKey.tool_unit]: 'tool or technique',
+    [PhraseKey.tools_name]: 'Name',
+    [PhraseKey.tools_name_placeholder]: 'e.g. SWOT analysis',
+    [PhraseKey.tools_name_info]: '',
+    [PhraseKey.tools_brief_description]: 'Brief description',
+    [PhraseKey.tools_brief_description_placeholder]:
+      'e.g. Strategic planning technique',
+    [PhraseKey.tools_brief_description_info]:
+      'Brief description of the tool or technique. It is not necessary to describe what use it will have, since that information will be collected at a later point.',
+
     //Field work
     [PhraseKey.field_work_no_code]: 'No code was generated',
     [PhraseKey.make_code_available_text]:
@@ -200,5 +345,26 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.drag_drop_dropdown_separate_lines]:
       'Please enter each option in a separate line',
     [PhraseKey.drag_drop_dropdown_options]: 'Options',
+
+    //Intervention context
+    [PhraseKey.intervention_problem_to_solve]:
+      'Problem the intervention aimed to solve',
+    [PhraseKey.intervention_problem_to_solve_placeholder]:
+      'e.g. Reducing the number of car accident deaths',
+    [PhraseKey.intervention_problem_to_solve_info]:
+      'As a general rule, this will be specified in the preamble of the text of the intervention document itself.',
+
+    [PhraseKey.intervention_upper_level_strategy]:
+      'Stretagic plan that encompasses the intervention',
+    [PhraseKey.intervention_upper_level_strategy_placeholder]:
+      'e.g. XIII plan for road safety',
+    [PhraseKey.intervention_upper_level_strategy_info]:
+      'Some interventions may be encompassed within a strategic level plan. This plan may come from the same institution that implemented the intervention, but it may also come from another institution higher in the hierarchy, such as the European Union.',
+
+    [PhraseKey.intervention_simultaneous]: 'Other simultaneous interventions',
+    [PhraseKey.intervention_simultaneous_placeholder]:
+      'e.g. 2018 road renewal directive',
+    [PhraseKey.intervention_simultaneous_info]:
+      'Given the complex nature of public policies, it is common for two simultaneous interventions to interact. This may affect the evaluated intervention both possitively and negatively, and should be taken into account.',
   },
 };

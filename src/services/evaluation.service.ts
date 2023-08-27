@@ -28,7 +28,7 @@ export class EvaluationService {
       intervention_objective: 'Prohibir el uso de Luces Halógenas',
       intervention_problem_to_solve: 'Las luces halógenas son muy feas',
       intervention_upper_level_strategy: 'Ninguna',
-      intervention_simultaneous_opposed: null,
+      intervention_simultaneous: null,
       intervention_implementation_level: 'intervention_implementation_level_2',
       intervention_unexpected_interruptions:
         'Sentencia 24 / 87 del Tribunal Constitucional',

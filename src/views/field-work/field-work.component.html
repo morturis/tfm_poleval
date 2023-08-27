@@ -1,6 +1,6 @@
 <div class="ms-4 me-4">
   <!--TODO make centered -->
-  <p>{{ "field_work_phase_description" | translate }}</p>
+  <p>{{ "make_code_available_text" | translate }}</p>
   <p>
     <b>{{ form_code_to_show }}</b>
   </p>
@@ -27,7 +27,7 @@
         </ng-template>
 
         <ng-template [ngIf]="question.fieldType === 'input'">
-          {{ question.responses?.join(" ") }}
+          <div *ngFor="let resp of question.responses">{{ resp }}</div>
         </ng-template>
       </mat-expansion-panel>
     </div>

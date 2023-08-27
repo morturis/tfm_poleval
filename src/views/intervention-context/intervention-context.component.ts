@@ -52,21 +52,6 @@ export class InterventionContextComponent extends DynamicFormView {
   };
   override fieldsConfig: AnyFieldConfig[] = [
     {
-      header: 'intervention_objective',
-      field: 'intervention_objective',
-      fieldType: 'input',
-      defaultValue: undefined,
-      viewOnly: false,
-      labelOnLeftSide: true,
-      placeholder: 'intervention_objective_placeholder',
-      info: 'intervention_objective_info',
-      validators: [Validators.required],
-      errorMessages: {
-        required: () => 'error_required_field',
-      },
-    },
-
-    {
       header: 'intervention_problem_to_solve',
       field: 'intervention_problem_to_solve',
       fieldType: 'input',
@@ -87,14 +72,14 @@ export class InterventionContextComponent extends DynamicFormView {
       info: 'intervention_upper_level_strategy_info',
     },
     {
-      header: 'intervention_simultaneous_opposed',
-      field: 'intervention_simultaneous_opposed',
+      header: 'intervention_simultaneous',
+      field: 'intervention_simultaneous',
       fieldType: 'input',
       defaultValue: undefined,
       viewOnly: false,
       labelOnLeftSide: true,
-      placeholder: 'intervention_simultaneous_opposed_placeholder',
-      info: 'intervention_simultaneous_opposed_info',
+      placeholder: 'intervention_simultaneous_placeholder',
+      info: 'intervention_simultaneous_info',
     },
 
     {

@@ -27,6 +27,7 @@ export class LoginComponent extends DynamicFormView {
 
   passwordConfig: InputConfig = {
     fieldType: 'input',
+    inputType: 'password',
     header: 'password',
     field: 'password',
     placeholder: 'password_placeholder',

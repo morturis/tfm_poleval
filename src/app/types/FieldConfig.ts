@@ -17,6 +17,7 @@ export interface InputConfig extends BaseFieldConfig {
   fieldType: 'input';
   labelOnLeftSide?: boolean;
   placeholder?: string;
+  inputType?: 'date' | 'password' | 'time';
 }
 
 export interface TableConfig extends BaseFieldConfig {

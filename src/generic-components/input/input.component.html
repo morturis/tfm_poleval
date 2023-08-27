@@ -27,6 +27,7 @@
           : (fieldConfig.placeholder | translate)
       }}"
       [formControl]="control"
+      type="{{ fieldConfig.inputType }}"
     />
     <mat-hint
       class="text-danger text-nowrap h-25"

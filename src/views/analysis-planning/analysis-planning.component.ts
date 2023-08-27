@@ -111,7 +111,7 @@ export class AnalysisPlanningComponent extends DynamicFormView {
     header: 'other_participants_table',
     field: 'other_participants_table',
     fieldType: 'table',
-    itemName: 'member_unit',
+    itemName: 'other_participants_unit',
     canAddRemove: true,
     columns: [
       {

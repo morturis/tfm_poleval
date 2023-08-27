@@ -68,6 +68,69 @@ export enum PhraseKey {
   eval_strategy_placeholder = 'eval_strategy_placeholder',
   eval_strategy_info = 'eval_strategy_info',
 
+  delimitations_geo = 'delimitations_geo',
+  delimitations_geo_placeholder = 'delimitations_geo_placeholder',
+  delimitations_geo_info = 'delimitations_geo_info',
+
+  actor_table = 'actor_table',
+  actor_unit = 'actor_unit',
+  actor_name = 'actor_name',
+  actor_name_placeholder = 'actor_name_placeholder',
+  actor_name_info = 'actor_name_info',
+
+  delimitations_time_period = 'delimitations_time_period',
+  delimitations_time_period_placeholder = 'delimitations_time_period_placeholder',
+  delimitations_time_period_info = 'delimitations_time_period_info',
+
+  team_manager_table = 'team_manager_table',
+  manager_unit = 'manager_unit',
+  manager_name = 'manager_name',
+  manager_name_placeholder = 'manager_name_placeholder',
+  manager_name_info = 'manager_name_info',
+  manager_role = 'manager_role',
+  manager_role_placeholder = 'manager_role_placeholder',
+  manager_role_info = 'manager_role_info',
+
+  team_member_table = 'team_member_table',
+  member_unit = 'member_unit',
+  team_member_name = 'team_member_name',
+  team_member_name_placeholder = 'team_member_name_placeholder',
+  team_member_name_info = 'team_member_name_info',
+  team_member_role = 'team_member_role',
+  team_member_role_placeholder = 'team_member_role_placeholder',
+  team_member_role_info = 'team_member_role_info',
+
+  other_participants_table = 'other_participants_table',
+  other_participants_unit = 'other_participants_unit',
+  other_participants_name = 'other_participants_name',
+  other_participants_name_placeholder = 'other_participants_name_placeholder',
+  other_participants_name_info = 'other_participants_name_info',
+  other_participants_role = 'other_participants_role',
+  other_participants_role_placeholder = 'other_participants_role_placeholder',
+  other_participants_role_info = 'other_participants_role_info',
+
+  tools_table = 'tools_table',
+  tool_unit = 'tool_unit',
+  tools_name = 'tools_name',
+  tools_name_placeholder = 'tools_name_placeholder',
+  tools_name_info = 'tools_name_info',
+  tools_brief_description = 'tools_brief_description',
+  tools_brief_description_placeholder = 'tools_brief_description_placeholder',
+  tools_brief_description_info = 'tools_brief_description_info',
+
+  //Intervention context
+  intervention_problem_to_solve = 'intervention_problem_to_solve',
+  intervention_problem_to_solve_placeholder = 'intervention_problem_to_solve_placeholder',
+  intervention_problem_to_solve_info = 'intervention_problem_to_solve_info',
+
+  intervention_upper_level_strategy = 'intervention_upper_level_strategy',
+  intervention_upper_level_strategy_placeholder = 'intervention_upper_level_strategy_placeholder',
+  intervention_upper_level_strategy_info = 'intervention_upper_level_strategy_info',
+
+  intervention_simultaneous = 'intervention_simultaneous',
+  intervention_simultaneous_placeholder = 'intervention_simultaneous_placeholder',
+  intervention_simultaneous_info = 'intervention_simultaneous_info',
+
   //Field work
   field_work_no_code = 'field_work_no_code',
   make_code_available_text = 'make_code_available_text',
