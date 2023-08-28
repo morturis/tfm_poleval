@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
+import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
+import { CustomValidators } from 'src/app/types/CustomValidators';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
@@ -32,7 +34,7 @@ export class EvalDesignComponent extends DynamicFormView {
         info: 'tools_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
@@ -45,7 +47,7 @@ export class EvalDesignComponent extends DynamicFormView {
         info: 'tools_brief_description_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
@@ -58,7 +60,7 @@ export class EvalDesignComponent extends DynamicFormView {
         info: 'tools_use_case_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
@@ -80,11 +82,12 @@ export class EvalDesignComponent extends DynamicFormView {
         placeholder: 'criterion_description_placeholder',
         info: 'criterion_description_info',
         validators: [Validators.required],
-        errorMessages: {
-          required: () => 'error_required_field',
-        },
+        errorMessages: { ...CustomErrorMessages.required },
       },
     ],
+    info: 'criterion_info',
+    validators: [CustomValidators.requiredTable],
+    errorMessages: { ...CustomErrorMessages.required },
   };
 
   indicatorsTableConfig: TableConfig = {
@@ -104,20 +107,20 @@ export class EvalDesignComponent extends DynamicFormView {
         info: 'eval_indicator_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
-        header: 'eval_indicators_value',
-        field: 'eval_indicators_value',
+        header: 'eval_indicators_startvalue',
+        field: 'eval_indicators_startvalue',
         fieldType: 'input',
         defaultValue: undefined,
         viewOnly: false,
-        placeholder: 'eval_indicators_value_placeholder',
-        info: 'eval_indicators_value_info',
+        placeholder: 'eval_indicators_startvalue_placeholder',
+        info: 'eval_indicators_startvalue_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],

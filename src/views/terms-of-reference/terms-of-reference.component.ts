@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
+import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
@@ -32,7 +33,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'actor_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
@@ -54,7 +55,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'manager_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
@@ -67,7 +68,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'manager_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
@@ -89,7 +90,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'team_member_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
@@ -102,7 +103,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'team_member_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
@@ -124,7 +125,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'other_participants_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
@@ -137,7 +138,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'other_participants_role_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
@@ -159,7 +160,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'tools_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
@@ -172,7 +173,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
         info: 'tools_brief_description_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
@@ -190,7 +191,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       info: 'intervention_name_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'error_required_field',
+        ...CustomErrorMessages.required,
       },
     },
     {
@@ -204,7 +205,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       info: 'evaluation_org_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'error_required_field',
+        ...CustomErrorMessages.required,
       },
     },
     {
@@ -222,7 +223,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       ],
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'error_required_field',
+        ...CustomErrorMessages.required,
       },
     },
     {
@@ -236,7 +237,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       info: 'evaluation_objective_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'error_required_field',
+        ...CustomErrorMessages.required,
       },
     },
     {
@@ -250,7 +251,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       info: 'evaluation_reasoning_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'error_required_field',
+        ...CustomErrorMessages.required,
       },
     },
     {
@@ -264,7 +265,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       info: 'evaluation_utility_info',
       validators: [Validators.required],
       errorMessages: {
-        required: () => 'error_required_field',
+        ...CustomErrorMessages.required,
       },
     },
     //Delimitaciones

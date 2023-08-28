@@ -24,6 +24,7 @@ export class TablaComponent {
   itemName: string = '';
   fieldsConfig: InputConfig[] = [];
   canAddRemove: boolean = false;
+  info?: string;
 
   displayedColumns: string[] = [];
   id: string = '';
@@ -36,6 +37,7 @@ export class TablaComponent {
     this.itemName = this.config.itemName;
     this.fieldsConfig = this.config.columns;
     this.canAddRemove = this.config.canAddRemove;
+    this.info = this.config.info;
     this.id = `table-${uuidv4()}`;
     this.displayedColumns = this.fieldsConfig.map((c) => c.field);
   }
@@ -48,6 +50,17 @@ export class TablaComponent {
       this.table.renderRows();
     }
   }
+
+  listOfErrors() {
+    if (!this.control.errors || !this.config.errorMessages) return [];
+
+    return Object.keys(this.control.errors).map((err) =>
+      (this.config.errorMessages as Record<string, Function>)[err](
+        this.control.getError(err)
+      )
+    );
+  }
+
   async addItem() {
     //Open a dialog to create a new item
     const dialogData: DialogData = {

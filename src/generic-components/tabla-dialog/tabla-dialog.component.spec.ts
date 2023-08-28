@@ -22,7 +22,7 @@ describe('TablaDialogComponent', () => {
         info: 'mock_input_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],

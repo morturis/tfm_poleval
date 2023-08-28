@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { InputConfig } from 'src/app/types/FieldConfig';
 import { LoginService } from 'src/services/login.service';
@@ -22,7 +23,7 @@ export class RegisterComponent extends DynamicFormView {
 
     validators: [Validators.required],
     errorMessages: {
-      required: () => 'error_required_field',
+      ...CustomErrorMessages.required,
     },
   };
 
@@ -38,7 +39,7 @@ export class RegisterComponent extends DynamicFormView {
 
     validators: [Validators.required],
     errorMessages: {
-      required: () => 'error_required_field',
+      ...CustomErrorMessages.required,
     },
   };
 

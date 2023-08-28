@@ -9,7 +9,7 @@ interface BaseFieldConfig {
   defaultValue?: any;
   info?: string;
   validators?: ValidatorFn[];
-  errorMessages?: Record<string, (error?: any) => string>;
+  errorMessages?: Record<string, (error?: string) => string>;
 }
 
 //For inputs

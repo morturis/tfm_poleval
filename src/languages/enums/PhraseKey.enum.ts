@@ -131,6 +131,40 @@ export enum PhraseKey {
   intervention_simultaneous_placeholder = 'intervention_simultaneous_placeholder',
   intervention_simultaneous_info = 'intervention_simultaneous_info',
 
+  intervention_unexpected_interruptions = 'intervention_unexpected_interruptions',
+  intervention_unexpected_interruptions_placeholder = 'intervention_unexpected_interruptions_placeholder',
+  intervention_unexpected_interruptions_info = 'intervention_unexpected_interruptions_info',
+
+  intervention_indicators = 'intervention_indicators',
+  indicator_unit = 'indicator_unit',
+  intervention_indicators_info = 'intervention_indicators_info',
+  intervention_indicators_name = 'intervention_indicators_name',
+  intervention_indicators_name_placeholder = 'intervention_indicators_name_placeholder',
+  intervention_indicators_name_info = 'intervention_indicators_name_info',
+  intervention_indicators_targetvalue = 'intervention_indicators_targetvalue',
+  intervention_indicators_targetvalue_placeholder = 'intervention_indicators_targetvalue_placeholder',
+  intervention_indicators_targetvalue_info = 'intervention_indicators_targetvalue_info',
+
+  //Evaluation design
+  tools_use_case = 'tools_use_case',
+  tools_use_case_placeholder = 'tools_use_case_placeholder',
+  tools_use_case_info = 'tools_use_case_info',
+
+  criterion_table = 'criterion_table',
+  criterion_unit = 'criterion_unit',
+  criterion_info = 'criterion_info',
+  criterion_description = 'criterion_description',
+  criterion_description_placeholder = 'criterion_description_placeholder',
+  criterion_description_info = 'criterion_description_info',
+
+  eval_indicators_table = 'eval_indicators_table',
+  eval_indicator_name = 'eval_indicator_name',
+  eval_indicator_name_placeholder = 'eval_indicator_name_placeholder',
+  eval_indicator_name_info = 'eval_indicator_name_info',
+  eval_indicators_startvalue = 'eval_indicators_startvalue',
+  eval_indicators_startvalue_placeholder = 'eval_indicators_startvalue_placeholder',
+  eval_indicators_startvalue_info = 'eval_indicators_startvalue_info',
+
   //Field work
   field_work_no_code = 'field_work_no_code',
   make_code_available_text = 'make_code_available_text',

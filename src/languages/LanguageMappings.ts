@@ -184,6 +184,54 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. Plan de renovación de carreteras 2018',
     [PhraseKey.intervention_simultaneous_info]:
       'Dada la naturaleza compleja de las políticas públicas, es común que varias intervenciones simultáneas en el tiempo interactúen entre sí. Esto podría afectar positiva o negativamente la consecución de objetivos de la intervención a evaluar.',
+
+    [PhraseKey.intervention_unexpected_interruptions]:
+      'Impedimientos inesperados',
+    [PhraseKey.intervention_unexpected_interruptions_placeholder]:
+      'e.g. Una concentración ciudadana impedió la distribución el 17 de Marzo',
+    [PhraseKey.intervention_unexpected_interruptions_info]:
+      'Impedimientos que afectaron al desarrollo de la intervención que no fueron planeados en su momento, como un movimiento ciudadano o un fallo judicial.',
+
+    [PhraseKey.intervention_indicators]:
+      'Indicadores nativos de la intervención',
+    [PhraseKey.indicator_unit]: 'indicador de la intervención',
+    [PhraseKey.intervention_indicators_info]:
+      'Estos son indicadores mencionados explícitamente en el texto de la intervención.',
+    [PhraseKey.intervention_indicators_name]: 'Indicador',
+    [PhraseKey.intervention_indicators_name_placeholder]:
+      'e.g. Número de accidentes',
+    [PhraseKey.intervention_indicators_name_info]:
+      'Nombre del indicador según se menciona en el texto de la intervención.',
+    [PhraseKey.intervention_indicators_targetvalue]:
+      'Valor objetivo del indicador',
+    [PhraseKey.intervention_indicators_targetvalue_placeholder]:
+      'e.g. 5% de PIB / 2 accidentes mortales',
+    [PhraseKey.intervention_indicators_targetvalue_info]:
+      'Valor del indicador que se menciona como objetivo en el texto de la intervención.',
+
+    //Evaluation design
+    [PhraseKey.tools_use_case]: 'Caso de uso',
+    [PhraseKey.tools_use_case_placeholder]:
+      'e.g. Técnica de análisis para sacar conclusiones',
+    [PhraseKey.tools_use_case_info]: '',
+
+    [PhraseKey.criterion_table]: 'Criterios de evaluation',
+    [PhraseKey.criterion_unit]: 'criterio',
+    [PhraseKey.criterion_info]:
+      'Estos criterios servirán como instrucciones y prioridades adicionales dadas a los entrevistadores y personas a cargo de generar cuestionarios e informes.',
+    [PhraseKey.criterion_description]: 'Criterio',
+    [PhraseKey.criterion_description_placeholder]:
+      "e.g. Evitar mencionar la palabra 'accidente' para no influenciar a quienes respondan",
+    [PhraseKey.criterion_description_info]: '',
+
+    [PhraseKey.eval_indicators_table]: 'Indicadores para la evaluación',
+    [PhraseKey.eval_indicator_name]: 'Indicador',
+    [PhraseKey.eval_indicator_name_placeholder]: 'e.g. Número de accidentes',
+    [PhraseKey.eval_indicator_name_info]: '',
+    [PhraseKey.eval_indicators_startvalue]: 'Valor inicial',
+    [PhraseKey.eval_indicators_startvalue_placeholder]:
+      'e.g. 2 accidentes / mes',
+    [PhraseKey.eval_indicators_startvalue_info]: '',
   },
   EN: {
     [PhraseKey.button_add]: 'Add',
@@ -228,6 +276,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.document_final_report]: 'Final report',
     [PhraseKey.back]: 'Back',
     [PhraseKey.next]: 'Next',
+
     //Analysis stage
     [PhraseKey.intervention_name]: 'Name of the intervention to be evaluated',
     [PhraseKey.intervention_name_placeholder]:
@@ -366,5 +415,53 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. 2018 road renewal directive',
     [PhraseKey.intervention_simultaneous_info]:
       'Given the complex nature of public policies, it is common for two simultaneous interventions to interact. This may affect the evaluated intervention both possitively and negatively, and should be taken into account.',
+
+    [PhraseKey.intervention_unexpected_interruptions]:
+      'Unexpected interruptions',
+    [PhraseKey.intervention_unexpected_interruptions_placeholder]:
+      'e.g. A citizen movement made the distribution impossible on the 17th of March',
+    [PhraseKey.intervention_unexpected_interruptions_info]:
+      'Unexpected interruptions that negatively affected the progression of the intervention, such as a citizen movement or a judicial sentence.',
+
+    [PhraseKey.intervention_indicators]:
+      'Indicators native to the intervention',
+    [PhraseKey.indicator_unit]: 'intervention indicator',
+    [PhraseKey.intervention_indicators_info]:
+      'These are indicators that are explicitly mentioned in the text of the intervention.',
+    [PhraseKey.intervention_indicators_name]: 'Indicator',
+    [PhraseKey.intervention_indicators_name_placeholder]:
+      'e.g. Number of accidents',
+    [PhraseKey.intervention_indicators_name_info]:
+      'Name of the indicator as mentioned in the text of the intervention.',
+    [PhraseKey.intervention_indicators_targetvalue]:
+      'Target value for the indicator',
+    [PhraseKey.intervention_indicators_targetvalue_placeholder]:
+      'e.g. 2 deadly accidents',
+    [PhraseKey.intervention_indicators_targetvalue_info]:
+      'Value of the indicator that the intervention is trying to reach. This should be explicitly present in the text of the intervention.',
+
+    //Evaluation design
+    [PhraseKey.tools_use_case]: 'Use case',
+    [PhraseKey.tools_use_case_placeholder]:
+      'e.g. Analysis technique used to draw conclusiones from the information',
+    [PhraseKey.tools_use_case_info]: '',
+
+    [PhraseKey.criterion_table]: 'Evaluation criteria',
+    [PhraseKey.criterion_unit]: 'criteria',
+    [PhraseKey.criterion_info]:
+      'These criterion will be given to the interviewers and the people in charge of building the questionnaires and reports. They represent aditional instructions and priorities.',
+    [PhraseKey.criterion_description]: 'Criteria',
+    [PhraseKey.criterion_description_placeholder]:
+      "e.g. Avoid mentioning the work 'accident' to prevent influencing the answers received",
+    [PhraseKey.criterion_description_info]: '',
+
+    [PhraseKey.eval_indicators_table]: 'Indicators for the evaluation',
+    [PhraseKey.eval_indicator_name]: 'Indicator',
+    [PhraseKey.eval_indicator_name_placeholder]: 'e.g. Number of accidents',
+    [PhraseKey.eval_indicator_name_info]: '',
+    [PhraseKey.eval_indicators_startvalue]: 'Initial value',
+    [PhraseKey.eval_indicators_startvalue_placeholder]:
+      'e.g. 2 accidents / month',
+    [PhraseKey.eval_indicators_startvalue_info]: '',
   },
 };

@@ -1,4 +1,12 @@
-<h6>{{ title | translate }}</h6>
+<div class="d-flex align-items-center">
+  <h6>{{ title | translate }}</h6>
+  <app-info-icon
+    class="pb-2"
+    [size]="32"
+    [info]="info | translate"
+  ></app-info-icon>
+</div>
+
 <mat-table [dataSource]="items" class="mat-elevation-z8 mt-2 w-100">
   <ng-container
     *ngFor="let column of fieldsConfig"
@@ -13,18 +21,30 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-
-<div *ngIf="canAddRemove" class="mt-2 me-2 d-flex flex-row-reverse">
-  <button
-    mat-raised-button
-    [disabled]="!items.length"
-    (click)="removeItem()"
-    type="button"
+<div class="d-flex">
+  <div
+    class="text-danger text-nowrap mt-2 ms-2 col"
+    *ngFor="let error of listOfErrors()"
   >
-    {{ "button_remove_last" | translate }} {{ itemName | translate }}
-  </button>
-  <button mat-raised-button (click)="addItem()" class="ms-3 me-2" type="button">
-    {{ "button_add_one" | translate }} {{ itemName | translate }}
-  </button>
+    {{ error | translate }}
+  </div>
+  <div *ngIf="canAddRemove" class="mt-2 me-2 d-flex flex-row-reverse col">
+    <button
+      mat-raised-button
+      [disabled]="!items.length"
+      (click)="removeItem()"
+      type="button"
+    >
+      {{ "button_remove_last" | translate }} {{ itemName | translate }}
+    </button>
+    <button
+      mat-raised-button
+      (click)="addItem()"
+      class="ms-3 me-2"
+      type="button"
+    >
+      {{ "button_add_one" | translate }} {{ itemName | translate }}
+    </button>
+  </div>
 </div>
 <div class="mb-4"></div>

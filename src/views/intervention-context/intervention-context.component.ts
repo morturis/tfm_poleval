@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
+import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
@@ -32,23 +33,24 @@ export class InterventionContextComponent extends DynamicFormView {
         info: 'intervention_indicators_name_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
       {
-        header: 'intervention_indicators_value',
-        field: 'intervention_indicators_value',
+        header: 'intervention_indicators_targetvalue',
+        field: 'intervention_indicators_targetvalue',
         fieldType: 'input',
         defaultValue: undefined,
         viewOnly: false,
-        placeholder: 'intervention_indicators_value_placeholder',
-        info: 'intervention_indicators_value_info',
+        placeholder: 'intervention_indicators_targetvalue_placeholder',
+        info: 'intervention_indicators_targetvalue_info',
         validators: [Validators.required],
         errorMessages: {
-          required: () => 'error_required_field',
+          ...CustomErrorMessages.required,
         },
       },
     ],
+    info: 'intervention_indicators_info',
   };
   override fieldsConfig: AnyFieldConfig[] = [
     {
@@ -81,26 +83,6 @@ export class InterventionContextComponent extends DynamicFormView {
       placeholder: 'intervention_simultaneous_placeholder',
       info: 'intervention_simultaneous_info',
     },
-
-    {
-      header: 'intervention_implementation_level',
-      field: 'intervention_implementation_level',
-      fieldType: 'dropdown',
-      viewOnly: false,
-      defaultValue: undefined,
-      labelOnLeftSide: true,
-      info: 'intervention_implementation_level_info',
-      items: [
-        'intervention_implementation_level_1',
-        'intervention_implementation_level_2',
-        'intervention_implementation_level_3',
-      ],
-      validators: [Validators.required],
-      errorMessages: {
-        required: () => 'error_required_field',
-      },
-    },
-
     {
       header: 'intervention_unexpected_interruptions',
       field: 'intervention_unexpected_interruptions',

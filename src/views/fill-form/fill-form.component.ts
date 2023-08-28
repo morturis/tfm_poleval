@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { InputConfig } from 'src/app/types/FieldConfig';
@@ -25,7 +26,7 @@ export class FillFormComponent extends DynamicFormView {
 
     validators: [Validators.required],
     errorMessages: {
-      required: () => 'error_required_field',
+      ...CustomErrorMessages.required,
     },
   };
 
@@ -56,7 +57,7 @@ export class FillFormComponent extends DynamicFormView {
           ...field,
           validators: [Validators.required],
           errorMessages: {
-            required: () => 'error_required_field',
+            ...CustomErrorMessages.required,
           },
         };
       });
