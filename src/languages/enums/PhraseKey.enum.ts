@@ -191,4 +191,7 @@ export enum PhraseKey {
   drag_drop_dropdown_placeholder = 'drag_drop_dropdown_placeholder',
   drag_drop_dropdown_separate_lines = 'drag_drop_dropdown_separate_lines',
   drag_drop_dropdown_options = 'drag_drop_dropdown_options',
+
+  drag_drop_multiple_dropdown = 'drag_drop_multiple_dropdown',
+  drag_drop_multiple_dropdown_separate_lines = 'drag_drop_multiple_dropdown_separate_lines',
 }

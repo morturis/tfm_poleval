@@ -163,6 +163,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.drag_drop_dropdown_separate_lines]:
       'Introduzca cada opción en una línea separada',
     [PhraseKey.drag_drop_dropdown_options]: 'Opciones',
+    [PhraseKey.drag_drop_multiple_dropdown]: 'Pregunta de elección múltiple',
+    [PhraseKey.drag_drop_multiple_dropdown_separate_lines]:
+      'Introduzca cada opción en una línea separada. Se podrá seleccionar más de una opción',
 
     //Contexto de la intervención
     [PhraseKey.intervention_problem_to_solve]:
@@ -394,6 +397,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.drag_drop_dropdown_separate_lines]:
       'Please enter each option in a separate line',
     [PhraseKey.drag_drop_dropdown_options]: 'Options',
+    [PhraseKey.drag_drop_multiple_dropdown]: 'Multiple-choice question',
+    [PhraseKey.drag_drop_multiple_dropdown_separate_lines]:
+      'Please enter each option in a separate line. Multiple options may be selected',
 
     //Intervention context
     [PhraseKey.intervention_problem_to_solve]:

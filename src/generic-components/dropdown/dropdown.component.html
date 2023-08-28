@@ -25,6 +25,7 @@
           ? fieldConfig.placeholder
           : (fieldConfig.placeholder | translate)
       }}"
+      [multiple]="fieldConfig.multiple"
     >
       <mat-option *ngFor="let item of items" [value]="item">
         {{ fieldConfig.disableTranslation ? item : (item | translate) }}

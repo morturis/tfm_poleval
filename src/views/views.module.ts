@@ -26,6 +26,7 @@ import { FinalReportComponent } from './final-report/final-report.component';
 import {
   DragDropDropdownComponent,
   DragDropInputComponent,
+  DragDropMultipleDropdownComponent,
   FormMakerComponent,
 } from './form-maker/form-maker.component';
 import { InterventionContextComponent } from './intervention-context/intervention-context.component';
@@ -52,6 +53,7 @@ import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
     EditEvalComponent,
     DragDropInputComponent,
     DragDropDropdownComponent,
+    DragDropMultipleDropdownComponent,
   ],
   imports: [
     CommonModule,

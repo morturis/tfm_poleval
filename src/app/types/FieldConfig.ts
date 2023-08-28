@@ -34,6 +34,7 @@ export interface DropdownConfig extends BaseFieldConfig {
   items: string[];
   labelOnLeftSide?: boolean;
   placeholder?: string;
+  multiple?: boolean;
 }
 
 export type AnyFieldConfig = InputConfig | TableConfig | DropdownConfig;

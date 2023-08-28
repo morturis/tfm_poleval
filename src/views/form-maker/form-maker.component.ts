@@ -39,7 +39,14 @@ export class FormMakerComponent {
     {
       text: 'drag_drop_dropdown',
       componentType: DragDropDropdownComponent,
-      buildFromConfig: (componentInstance: DragDropInputComponent) =>
+      buildFromConfig: (componentInstance: DragDropDropdownComponent) =>
+        (componentInstance.isInResult = false),
+    },
+
+    {
+      text: 'drag_drop_multiple_dropdown',
+      componentType: DragDropMultipleDropdownComponent,
+      buildFromConfig: (componentInstance: DragDropMultipleDropdownComponent) =>
         (componentInstance.isInResult = false),
     },
   ];
@@ -326,6 +333,90 @@ export class DragDropDropdownComponent extends DragDropBaseComponent {
       labelOnLeftSide: true,
       field: uuidv4(),
       disableTranslation: true,
+      items: this.form.value['items']
+        .split('\n')
+        .filter((str: string | any[]) => str && str.length > 0), //removes empties
+    };
+    return fc;
+  };
+}
+
+@Component({
+  selector: 'drag-and-drop-multiple-dropdown',
+  template: `
+    <form [formGroup]="this.form" class="border rounded">
+      <div class="d-flex flex-column align-items-center">
+        <div class="input-group">
+          <div class="input-group-prepend input-group-text">
+            {{ 'drag_drop_input_header' | translate }}
+          </div>
+          <input
+            class="border text-center form-control"
+            matInput
+            [ngClass]="{
+              'border-danger':
+                this.form.controls['header'].status === 'INVALID' && isInResult
+            }"
+            [readonly]="!isInResult"
+            matInput
+            formControlName="header"
+            [placeholder]="'drag_drop_input_placeholder' | translate"
+          />
+        </div>
+        <span class="text-center">
+          {{ 'drag_drop_multiple_dropdown_separate_lines' | translate }}
+        </span>
+        <div class="input-group">
+          <div class="input-group-prepend input-group-text">
+            {{ 'drag_drop_dropdown_options' | translate }}
+          </div>
+          <textarea
+            class="text-center form-control"
+            [ngClass]="{
+              'border-danger':
+                this.form.controls['items'].status === 'INVALID' && isInResult
+            }"
+            [readonly]="!isInResult"
+            matInput
+            formControlName="items"
+            [placeholder]="'drag_drop_dropdown_placeholder' | translate"
+          ></textarea>
+        </div>
+      </div>
+    </form>
+  `,
+  styleUrls: ['./form-maker.component.scss'],
+})
+export class DragDropMultipleDropdownComponent extends DragDropBaseComponent {
+  constructor(fb: FormBuilder) {
+    super(fb);
+    this.form = fb.group({
+      ['header']: ['', { validators: Validators.required }],
+      ['items']: ['', { validators: Validators.required }],
+    });
+  }
+  static override buildFromConfig =
+    (config: DropdownConfig, isInResult: boolean) =>
+    (componentInstance: DragDropDropdownComponent) => {
+      componentInstance.isInResult = isInResult;
+      componentInstance.form.patchValue({
+        ['header']: config.header,
+        ['items']: config.items.join('\n'),
+      });
+    };
+  override getForm = () => {
+    if (
+      this.form.controls['header'].errors ||
+      this.form.controls['items'].errors
+    )
+      throw new Error('error_required_field');
+    const fc: DropdownConfig = {
+      fieldType: 'dropdown',
+      header: this.form.value['header'],
+      labelOnLeftSide: true,
+      field: uuidv4(),
+      disableTranslation: true,
+      multiple: true,
       items: this.form.value['items']
         .split('\n')
         .filter((str: string | any[]) => str && str.length > 0), //removes empties
