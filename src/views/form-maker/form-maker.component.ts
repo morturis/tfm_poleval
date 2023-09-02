@@ -28,6 +28,8 @@ class DragDropDivConfig<T> {
 })
 export class FormMakerComponent {
   @Output() outputEvent = new EventEmitter<any>();
+
+  alreadyHasResponses: boolean = false;
   options: DragDropDivConfig<DragDropBaseComponent>[] = [
     {
       text: 'drag_drop_input',
@@ -83,7 +85,7 @@ export class FormMakerComponent {
     //Empty results. This is to avoid contamination
     this.result.splice(0, this.result.length);
 
-    //Fill form with previously saved values
+    //Fill form with previously saved config
     savedValue.forEach((fieldConfig: AnyFieldConfig) => {
       if (fieldConfig.fieldType === 'input') {
         this.result.push({
@@ -94,7 +96,10 @@ export class FormMakerComponent {
             true
           ),
         });
-      } else if (fieldConfig.fieldType === 'dropdown') {
+      } else if (
+        fieldConfig.fieldType === 'dropdown' &&
+        !fieldConfig.multiple
+      ) {
         this.result.push({
           text: 'drag_drop_dropdown',
           componentType: DragDropDropdownComponent,
@@ -103,8 +108,23 @@ export class FormMakerComponent {
             true
           ),
         });
+      } else if (fieldConfig.fieldType === 'dropdown' && fieldConfig.multiple) {
+        this.result.push({
+          text: 'drag_drop_multiple_dropdown',
+          componentType: DragDropMultipleDropdownComponent,
+          buildFromConfig: DragDropMultipleDropdownComponent.buildFromConfig(
+            fieldConfig,
+            true
+          ),
+        });
       }
     });
+
+    //Check if this form already has responses
+    this.alreadyHasResponses =
+      !!this.evalService.get(formCode)?.[EvaluationProperties.responses]
+        ?.length; //If 0 or undefined, this will be false, else it will be true
+
     //Tell parent component we are valid to go to next step
     this.outputEvent.emit({ status: 'VALID' });
   }

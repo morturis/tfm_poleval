@@ -83,6 +83,7 @@ export class FillFormComponent extends DynamicFormView {
     if (!allResponses) return; //should never trigger, responses defaults to []
 
     const newResponse = this.form.value;
+
     allResponses.push(newResponse);
     this.evalService.update(
       this.code,

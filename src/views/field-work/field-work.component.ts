@@ -14,12 +14,6 @@ export class FieldWorkComponent {
 
   formQuestions!: (AnyFieldConfig & { responses?: string[] })[];
 
-  mappedFieldTypes = {
-    input: 'drag_drop_input',
-    dropdown: 'drag_drop_dropdown',
-    table: 'ERROR',
-  };
-
   constructor(
     private route: ActivatedRoute,
     private evalService: EvaluationService
@@ -46,12 +40,28 @@ export class FieldWorkComponent {
     evaluation.responses?.forEach((response) => {
       Object.entries(response).forEach(([questionCode, response]) => {
         if (!responses[questionCode]) responses[questionCode] = [];
-        responses[questionCode].push(response);
+
+        if (Array.isArray(response)) {
+          responses[questionCode].push(...response);
+        } else {
+          responses[questionCode].push(response);
+        }
       });
     });
 
     this.formQuestions.map(
       (question) => (question.responses = responses[question.field])
     );
+  }
+
+  getQuestionType(config: AnyFieldConfig): string {
+    if (config.fieldType == 'input') return 'drag_drop_input';
+
+    if (config.fieldType == 'dropdown')
+      return config.multiple
+        ? 'drag_drop_multiple_dropdown'
+        : 'drag_drop_dropdown';
+
+    return 'ERROR';
   }
 }

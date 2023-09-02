@@ -180,6 +180,7 @@ export enum PhraseKey {
   document_final_report = 'document_final_report',
 
   //Form builder
+  form_already_has_responses = 'form_already_has_responses',
   form_maker_stage = 'form_maker_stage',
   save_form = 'save_form',
   drag_to_add_to_form = 'drag_to_add_to_form',

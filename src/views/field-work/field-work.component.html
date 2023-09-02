@@ -14,7 +14,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title> {{ question.header }} </mat-panel-title>
           <mat-panel-description>
-            {{ mappedFieldTypes[question.fieldType] | translate }}
+            {{ getQuestionType(question) | translate }}
           </mat-panel-description>
         </mat-expansion-panel-header>
 

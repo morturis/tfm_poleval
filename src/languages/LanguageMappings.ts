@@ -151,6 +151,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Adicionalmente, esta pantalla permite visualizar los resultados de las respuestas hasta el momento:',
 
     //Form builder
+    [PhraseKey.form_already_has_responses]:
+      'Este cuestionario ya tiene respuestas, por lo que no es posible editarlo',
     [PhraseKey.form_maker_stage]: 'Crear cuestionario',
     [PhraseKey.save_form]: 'Guardar cuestionario',
     [PhraseKey.drag_to_add_to_form]: 'Arrastre para añadir al cuestionario',
@@ -385,6 +387,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Aditionally, this screen shows a breakdown of the responses so far',
 
     //Form builder
+    [PhraseKey.form_already_has_responses]:
+      'This questionnaire already has responses, therefore it is not longer possible to edit it',
     [PhraseKey.form_maker_stage]: 'Create questionaire',
     [PhraseKey.save_form]: 'Save questionaire',
     [PhraseKey.drag_to_add_to_form]: 'Drag to add to the questionnaire',

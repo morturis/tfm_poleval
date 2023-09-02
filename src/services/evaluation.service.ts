@@ -10,7 +10,7 @@ export class EvaluationService {
     'analysis-planning': {
       intervention_name: 'Ley 45 /23 sobre Luces Halógenas',
       evaluation_org: 'Equipo A',
-      intervention_life_cycle: 'intervention_life_cycle_3',
+      intervention_life_cycle: 'intervention_life_cycle_1',
       evaluation_objective: 'Evaluar posibles incumplimientos',
       evaluation_reasoning: 'Se pretende extenderla a otros tipos de luces',
       evaluation_utility: 'Aportar evidencias sobre posibles incumplimientos',
@@ -25,11 +25,9 @@ export class EvaluationService {
       tools_table: null,
     },
     'intervention-context': {
-      intervention_objective: 'Prohibir el uso de Luces Halógenas',
       intervention_problem_to_solve: 'Las luces halógenas son muy feas',
       intervention_upper_level_strategy: 'Ninguna',
       intervention_simultaneous: null,
-      intervention_implementation_level: 'intervention_implementation_level_2',
       intervention_unexpected_interruptions:
         'Sentencia 24 / 87 del Tribunal Constitucional',
       intervention_indicators: null,
@@ -42,7 +40,11 @@ export class EvaluationService {
           tools_use_case: 'Uso misceláneo',
         },
       },
-      criterion_table: null,
+      criterion_table: {
+        '0': {
+          criterion_description: 'Evitar mencionar la palabra "accidente"',
+        },
+      },
       eval_indicators_table: null,
     },
     form: [
@@ -50,21 +52,21 @@ export class EvaluationService {
         fieldType: 'input',
         header: '¿Nombre?',
         labelOnLeftSide: true,
-        field: 'a0dc8735-b173-4ad0-8b12-7352d80e7e99',
+        field: '5147ba84-f1ed-4de1-b8d9-3b28dc48173a',
         disableTranslation: true,
       },
       {
         fieldType: 'input',
         header: '¿Color favorito?',
         labelOnLeftSide: true,
-        field: '073594b9-03f9-417b-96c0-38c527805da9',
+        field: 'aad929e1-5418-4c05-9f77-860bbca5b5cd',
         disableTranslation: true,
       },
       {
         fieldType: 'dropdown',
         header: '¿Día de la semana favorito?',
         labelOnLeftSide: true,
-        field: '207e68a9-c825-4b51-8534-1d15ae99cbe1',
+        field: '78d6bce7-b962-43d4-bde0-a554830b7adf',
         disableTranslation: true,
         items: [
           'Lunes',
@@ -76,19 +78,25 @@ export class EvaluationService {
           'Domingo',
         ],
       },
-    ],
-    responses: [
       {
-        'a0dc8735-b173-4ad0-8b12-7352d80e7e99': 'Mr. Dev',
-        '073594b9-03f9-417b-96c0-38c527805da9': 'Gris',
-        '207e68a9-c825-4b51-8534-1d15ae99cbe1': 'Lunes',
-      },
-      {
-        'a0dc8735-b173-4ad0-8b12-7352d80e7e99': 'Pepito',
-        '073594b9-03f9-417b-96c0-38c527805da9': 'Azul',
-        '207e68a9-c825-4b51-8534-1d15ae99cbe1': 'Viernes',
+        fieldType: 'dropdown',
+        header: '¿Día de la semana favorito? (Múltiples opciones)',
+        labelOnLeftSide: true,
+        field: 'ca1daaa0-e225-462b-8752-241cb906145f',
+        disableTranslation: true,
+        multiple: true,
+        items: [
+          'Lunes',
+          'Martes',
+          'Miércoles',
+          'Jueves',
+          'Viernes',
+          'Sábado',
+          'Domingo',
+        ],
       },
     ],
+    responses: [],
     'field-work': {},
     'eval-conclusions': {},
   };
