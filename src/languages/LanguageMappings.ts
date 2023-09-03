@@ -224,7 +224,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. Técnica de análisis para sacar conclusiones',
     [PhraseKey.tools_use_case_info]: '',
 
-    [PhraseKey.criterion_table]: 'Criterios de evaluation',
+    [PhraseKey.criterion_table]: 'Criterios de evaluación',
     [PhraseKey.criterion_unit]: 'criterio',
     [PhraseKey.criterion_info]:
       'Estos criterios servirán como instrucciones y prioridades adicionales dadas a los entrevistadores y personas a cargo de generar cuestionarios e informes.',
