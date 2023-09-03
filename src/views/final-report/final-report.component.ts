@@ -85,7 +85,10 @@ export class FinalReportComponent extends DynamicFormView {
     this.recomendationsTableConfig,
   ];
 
-  formQuestions!: (AnyFieldConfig & { responses?: string[] })[];
+  formQuestions!: (AnyFieldConfig & {
+    responses?: string[];
+    responseOptions?: string[];
+  })[];
 
   constructor(
     fb: FormBuilder,
@@ -115,6 +118,12 @@ export class FinalReportComponent extends DynamicFormView {
     //check if the evaluation has questions and responses
     this.formQuestions = evaluation.form || [];
     if (!evaluation.responses) return;
+
+    //parse response options
+    this.formQuestions.map((question) => {
+      if (question.fieldType != 'dropdown') return;
+      question.responseOptions = question.items;
+    });
 
     //parse responses
     const responses: Record<string, any> = {};

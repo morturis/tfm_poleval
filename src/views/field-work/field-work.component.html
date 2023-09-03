@@ -30,7 +30,8 @@
 
         <ng-template [ngIf]="question.fieldType === 'dropdown'">
           <histogram
-            [dataset]="question.responses ? question.responses : []"
+            [dataset]="question.responses || []"
+            [responseOptions]="question.responseOptions || []"
             [header]="question.header"
           >
           </histogram>

@@ -8,6 +8,7 @@ import { ChartConfiguration } from 'chart.js';
 })
 export class HistogramComponent {
   @Input({ required: true }) dataset!: string[];
+  @Input({ required: true }) responseOptions!: string[];
   @Input({ required: true }) header!: string;
 
   barChartData!: ChartConfiguration<'bar'>['data'];
@@ -33,6 +34,7 @@ export class HistogramComponent {
 
     //Calculo frequencia de las respuestas
     const freqMap: Map<string, number> = new Map<string, number>();
+    this.responseOptions.forEach((opt) => freqMap.set(opt, 0));
     this.dataset.forEach((answer) =>
       freqMap.set(answer, (freqMap.get(answer) || 0) + 1)
     );

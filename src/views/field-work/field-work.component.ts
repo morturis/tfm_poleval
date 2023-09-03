@@ -15,7 +15,10 @@ export class FieldWorkComponent {
   form_code_to_show!: string;
   evaluation?: Evaluation;
 
-  formQuestions!: (AnyFieldConfig & { responses?: string[] })[];
+  formQuestions!: (AnyFieldConfig & {
+    responses?: string[];
+    responseOptions?: string[];
+  })[];
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +45,12 @@ export class FieldWorkComponent {
     //check if the evaluation has questions and responses
     this.formQuestions = this.evaluation.form || [];
     if (!this.evaluation.responses) return;
+
+    //parse response options
+    this.formQuestions.map((question) => {
+      if (question.fieldType != 'dropdown') return;
+      question.responseOptions = question.items;
+    });
 
     //parse responses
     const responses: Record<string, any> = {};

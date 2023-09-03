@@ -32,7 +32,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.password_info]: '',
 
     //Fill form screen
-    [PhraseKey.code]: 'Código del formulario',
+    [PhraseKey.code]: 'Código del cuestionario',
     [PhraseKey.code_placeholder]: 'e.g. KHMMZ',
     [PhraseKey.code_info]: '',
     [PhraseKey.fill_form]: 'Rellenar cuestionario',
@@ -262,7 +262,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.recomendation_description_placeholder]:
       'e.g. Reducir el límite de velocidad por debajo de 300 km/h',
     [PhraseKey.recomendation_description_info]: '',
-    [PhraseKey.recomendation_based_on]: 'Based on',
+    [PhraseKey.recomendation_based_on]: 'Basándose en',
     [PhraseKey.recomendation_based_on_placeholder]:
       'e.g. El 90% de todos los accidentes implicaban conductores llendo a más de 290 km/h',
     [PhraseKey.recomendation_based_on_info]: '',
@@ -298,7 +298,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.password_info]: '',
 
     //Fill form screen
-    [PhraseKey.code]: 'Code of the form',
+    [PhraseKey.code]: 'Code of the questionnaire',
     [PhraseKey.code_placeholder]: 'e.g. KHMMZ',
     [PhraseKey.code_info]: '',
     [PhraseKey.fill_form]: 'Fill a questionnaire',
