@@ -301,6 +301,7 @@ export class AnalysisPlanningComponent extends DynamicFormView {
       placeholder: 'other_delimitations_placeholder',
       info: 'other_delimitations_info',
     },
+    /*
     {
       header: 'eval_strategy',
       field: 'eval_strategy',
@@ -311,7 +312,7 @@ export class AnalysisPlanningComponent extends DynamicFormView {
       placeholder: 'eval_strategy_placeholder',
       info: 'eval_strategy_info',
     },
-
+*/
     this.teamManagersTableConfig,
     this.teamMembersTableConfig,
     this.otherParticipantsTableConfig,
