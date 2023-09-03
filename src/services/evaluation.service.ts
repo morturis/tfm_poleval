@@ -96,7 +96,34 @@ export class EvaluationService {
         ],
       },
     ],
-    responses: [],
+    responses: [
+      {
+        '5147ba84-f1ed-4de1-b8d9-3b28dc48173a': 'Pepe',
+        'aad929e1-5418-4c05-9f77-860bbca5b5cd': 'Rojo',
+        '78d6bce7-b962-43d4-bde0-a554830b7adf': 'Lunes',
+        'ca1daaa0-e225-462b-8752-241cb906145f': [
+          'Miércoles',
+          'Jueves',
+          'Viernes',
+        ],
+      },
+      {
+        '5147ba84-f1ed-4de1-b8d9-3b28dc48173a': 'Miguel',
+        'aad929e1-5418-4c05-9f77-860bbca5b5cd': 'Azul',
+        '78d6bce7-b962-43d4-bde0-a554830b7adf': 'Martes',
+        'ca1daaa0-e225-462b-8752-241cb906145f': [
+          'Lunes',
+          'Martes',
+          'Miércoles',
+        ],
+      },
+      {
+        '5147ba84-f1ed-4de1-b8d9-3b28dc48173a': 'Juan',
+        'aad929e1-5418-4c05-9f77-860bbca5b5cd': 'Azul',
+        '78d6bce7-b962-43d4-bde0-a554830b7adf': 'Martes',
+        'ca1daaa0-e225-462b-8752-241cb906145f': ['Martes', 'Viernes', 'Sábado'],
+      },
+    ],
     'field-work': {},
     'eval-conclusions': {},
   };

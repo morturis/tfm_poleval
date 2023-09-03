@@ -3,6 +3,8 @@ import { PhraseKey } from './enums/PhraseKey.enum';
 
 export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
   ES: {
+    [PhraseKey.thank_you]: '¡Gracias! Ha completado la evaluación',
+    [PhraseKey.end_eval]: 'Fin',
     [PhraseKey.button_add]: 'Añadir',
     [PhraseKey.button_add_one]: 'Añadir un/a',
     [PhraseKey.button_remove_last]: 'Eliminar último/a',
@@ -149,6 +151,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Los respondentes pueden acceder al cuestionario usando este código',
     [PhraseKey.field_work_phase_description]:
       'Adicionalmente, esta pantalla permite visualizar los resultados de las respuestas hasta el momento:',
+    [PhraseKey.responses_in_total]: 'respuestas en total',
+    [PhraseKey.so_far_there_are]: 'Pulse aquí para descargar (CSV) las',
 
     //Form builder
     [PhraseKey.form_already_has_responses]:
@@ -237,8 +241,36 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.eval_indicators_startvalue_placeholder]:
       'e.g. 2 accidentes / mes',
     [PhraseKey.eval_indicators_startvalue_info]: '',
+
+    //final report
+    [PhraseKey.final_report_conclusions]:
+      'Estas tablas permiten a los evaluadores registrar las conclusiones y recomendaciones extraidas de los datos recolectados:',
+    [PhraseKey.conclusion_table]: 'Conclusiones',
+    [PhraseKey.conclusion_unit]: 'conclusión',
+    [PhraseKey.conclusion_description]: 'Conclusión',
+    [PhraseKey.conclusion_description_placeholder]:
+      'e.g. Repartir 30 máscaras por persona fue demasiado',
+    [PhraseKey.conclusion_description_info]: '',
+    [PhraseKey.conclusion_based_on]: 'Basándose en',
+    [PhraseKey.conclusion_based_on_placeholder]:
+      'e.g. El 90% de los respondentes tuvieron esta queja',
+    [PhraseKey.conclusion_based_on_info]: '',
+    [PhraseKey.conclusion_info]: '',
+    [PhraseKey.recomendation_table]: 'Recomendaciones',
+    [PhraseKey.recomendation_unit]: 'recomendación',
+    [PhraseKey.recomendation_description]: 'Recomendación',
+    [PhraseKey.recomendation_description_placeholder]:
+      'e.g. Reducir el límite de velocidad por debajo de 300 km/h',
+    [PhraseKey.recomendation_description_info]: '',
+    [PhraseKey.recomendation_based_on]: 'Based on',
+    [PhraseKey.recomendation_based_on_placeholder]:
+      'e.g. El 90% de todos los accidentes implicaban conductores llendo a más de 290 km/h',
+    [PhraseKey.recomendation_based_on_info]: '',
+    [PhraseKey.recomendation_info]: '',
   },
   EN: {
+    [PhraseKey.thank_you]: 'Thank you! The evaluation is now complete',
+    [PhraseKey.end_eval]: 'End',
     [PhraseKey.button_add]: 'Add',
     [PhraseKey.button_add_one]: 'Add one',
     [PhraseKey.button_remove_last]: 'Remove last',
@@ -385,6 +417,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Respondents can access this questionaire by using this code:',
     [PhraseKey.field_work_phase_description]:
       'Aditionally, this screen shows a breakdown of the responses so far',
+    [PhraseKey.responses_in_total]: 'responses in total',
+    [PhraseKey.so_far_there_are]: 'Push here to download (CSV) the current',
 
     //Form builder
     [PhraseKey.form_already_has_responses]:
@@ -473,5 +507,31 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.eval_indicators_startvalue_placeholder]:
       'e.g. 2 accidents / month',
     [PhraseKey.eval_indicators_startvalue_info]: '',
+
+    //final report
+    [PhraseKey.final_report_conclusions]:
+      'These tables are here in order for the evaluators to draw conclusions from the data collected:',
+    [PhraseKey.conclusion_table]: 'Conclusions',
+    [PhraseKey.conclusion_unit]: 'conclusion',
+    [PhraseKey.conclusion_description]: 'Conclusion',
+    [PhraseKey.conclusion_description_placeholder]:
+      'e.g. Giving 30 masks to each person was too much',
+    [PhraseKey.conclusion_description_info]: '',
+    [PhraseKey.conclusion_based_on]: 'Based on',
+    [PhraseKey.conclusion_based_on_placeholder]:
+      'e.g. 90% of everyone we interviewed raised this point',
+    [PhraseKey.conclusion_based_on_info]: '',
+    [PhraseKey.conclusion_info]: '',
+    [PhraseKey.recomendation_table]: 'Recomendations',
+    [PhraseKey.recomendation_unit]: 'recomendation',
+    [PhraseKey.recomendation_description]: 'Recomendation',
+    [PhraseKey.recomendation_description_placeholder]:
+      'e.g. Reduce the speedlimit below the current 300 km/h',
+    [PhraseKey.recomendation_description_info]: '',
+    [PhraseKey.recomendation_based_on]: 'Based on',
+    [PhraseKey.recomendation_based_on_placeholder]:
+      'e.g. 90% of all accidents involved drivers going over 290 km/h',
+    [PhraseKey.recomendation_based_on_info]: '',
+    [PhraseKey.recomendation_info]: '',
   },
 };

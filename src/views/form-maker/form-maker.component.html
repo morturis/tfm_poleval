@@ -78,6 +78,6 @@
   </div>
 </div>
 <br />
-<button mat-button (click)="saveForm()">
+<button mat-button (click)="saveForm()" [disabled]="this.alreadyHasResponses">
   {{ "save_form" | translate }}
 </button>

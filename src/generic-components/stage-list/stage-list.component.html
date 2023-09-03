@@ -48,7 +48,10 @@
         <div class="col"></div>
         <button
           mat-button
-          [disabled]="!this.childIsValid(indexOfelement)"
+          [disabled]="
+            !this.childIsValid(indexOfelement) ||
+            indexOfelement == stages.length - 1
+          "
           matStepperNext
         >
           {{ "next" | translate }}

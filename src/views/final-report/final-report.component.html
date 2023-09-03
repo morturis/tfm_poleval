@@ -1,1 +1,67 @@
-<p>final-report works!</p>
+<div class="ms-4 me-4">
+  <p>{{ "final_report_conclusions" | translate }}</p>
+</div>
+
+<form>
+  <div *ngFor="let field of fieldsConfig">
+    <app-input
+      *ngIf="isInput(field)"
+      class="row"
+      [fieldConfig]="field | cast : InputConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-input>
+
+    <app-tabla
+      *ngIf="isTable(field)"
+      [config]="field | cast : TableConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-tabla>
+
+    <app-dropdown
+      *ngIf="isDropdown(field)"
+      [fieldConfig]="field | cast : DropdownConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-dropdown>
+  </div>
+</form>
+
+<div class="ms-4 me-4">
+  <p>{{ "field_work_phase_description" | translate }}</p>
+</div>
+
+<div class="pb-4">
+  <mat-accordion>
+    <div *ngFor="let question of this.formQuestions">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ question.header }} </mat-panel-title>
+          <!-- TYPE OF QUESTION. ## RESPONSES IN TOTAL -->
+          <mat-panel-description>
+            {{ getQuestionType(question) | translate }}.
+            {{ question.responses?.length || "0" }}
+            {{ "responses_in_total" | translate }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-template [ngIf]="question.fieldType === 'dropdown'">
+          <histogram
+            [dataset]="question.responses ? question.responses : []"
+            [header]="question.header"
+          >
+          </histogram>
+        </ng-template>
+
+        <ng-template [ngIf]="question.fieldType === 'input'">
+          <mat-list>
+            <mat-list-item *ngFor="let resp of question.responses">
+              {{ resp }}
+            </mat-list-item>
+          </mat-list>
+        </ng-template>
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+</div>

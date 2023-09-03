@@ -14,7 +14,7 @@ export class HistogramComponent {
   barChartOptions!: ChartConfiguration<'bar'>['options'];
 
   ngOnInit() {
-    console.log(this.dataset);
+    //console.log(this.dataset);
     this.barChartOptions = {
       plugins: {
         legend: {

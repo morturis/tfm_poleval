@@ -4,6 +4,13 @@
   <p>
     <b>{{ form_code_to_show }}</b>
   </p>
+
+  <button mat-button class="mb-3" (click)="this.downloadCsv()">
+    {{ "so_far_there_are" | translate }}{{ " " }}
+    <b>{{ this.evaluation?.responses?.length || "0" }}</b>
+    {{ " " }}{{ "responses_in_total" | translate }}
+  </button>
+
   <p>{{ "field_work_phase_description" | translate }}</p>
 </div>
 
@@ -13,8 +20,11 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title> {{ question.header }} </mat-panel-title>
+          <!-- TYPE OF QUESTION. ## RESPONSES IN TOTAL -->
           <mat-panel-description>
-            {{ getQuestionType(question) | translate }}
+            {{ getQuestionType(question) | translate }}.
+            {{ getNumberOfResponses(question) || "0" }}
+            {{ "responses_in_total" | translate }}
           </mat-panel-description>
         </mat-expansion-panel-header>
 
@@ -27,7 +37,11 @@
         </ng-template>
 
         <ng-template [ngIf]="question.fieldType === 'input'">
-          <div *ngFor="let resp of question.responses">{{ resp }}</div>
+          <mat-list>
+            <mat-list-item *ngFor="let resp of question.responses">
+              {{ resp }}
+            </mat-list-item>
+          </mat-list>
         </ng-template>
       </mat-expansion-panel>
     </div>

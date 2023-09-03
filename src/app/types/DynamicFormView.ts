@@ -7,7 +7,7 @@ import {
 } from '../../app/types/FieldConfig';
 
 export abstract class DynamicFormView {
-  fieldsConfig!: AnyFieldConfig[];
+  fieldsConfig: AnyFieldConfig[] = [];
   form!: FormGroup; //definite assignment
 
   //Publish types for template

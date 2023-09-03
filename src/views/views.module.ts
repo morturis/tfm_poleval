@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { GenericComponentsModule } from 'src/generic-components/generic-components.module';
 import { PipesModule } from 'src/pipes/pipes.module';
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TermsOfReferenceComponent } from './terms-of-reference/terms-of-reference.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
+import { EndEvalComponent } from './end-eval/end-eval.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
     DragDropInputComponent,
     DragDropDropdownComponent,
     DragDropMultipleDropdownComponent,
+    EndEvalComponent,
   ],
   imports: [
     CommonModule,
@@ -71,6 +74,7 @@ import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
     CdkDragPreview,
     CdkDragPlaceholder,
     MatExpansionModule,
+    MatListModule,
   ],
   exports: [
     ContactComponent,

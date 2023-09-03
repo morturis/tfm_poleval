@@ -23,6 +23,8 @@ export enum PhraseKey {
   username_info = 'username_info',
   password_info = 'password_info',
   enter_code_button = 'enter_code_button',
+  thank_you = 'thank_you',
+  end_eval = 'end_eval',
 
   //Fill form
   code = 'code',
@@ -170,6 +172,8 @@ export enum PhraseKey {
   make_code_available_text = 'make_code_available_text',
   field_work_phase_description = 'field_work_phase_description',
   save_response = 'save_response',
+  responses_in_total = 'responses_in_total',
+  so_far_there_are = 'so_far_there_are',
 
   //stages
   first_stage = 'first_stage',
@@ -195,4 +199,26 @@ export enum PhraseKey {
 
   drag_drop_multiple_dropdown = 'drag_drop_multiple_dropdown',
   drag_drop_multiple_dropdown_separate_lines = 'drag_drop_multiple_dropdown_separate_lines',
+
+  //final report
+  final_report_conclusions = 'final_report_conclusions',
+  conclusion_table = 'conclusion_table',
+  conclusion_unit = 'conclusion_unit',
+  conclusion_description = 'conclusion_description',
+  conclusion_description_placeholder = 'conclusion_description_placeholder',
+  conclusion_description_info = 'conclusion_description_info',
+  conclusion_based_on = 'conclusion_based_on',
+  conclusion_based_on_placeholder = 'conclusion_based_on_placeholder',
+  conclusion_based_on_info = 'conclusion_based_on_info',
+  conclusion_info = 'conclusion_info',
+
+  recomendation_table = 'recomendation_table',
+  recomendation_unit = 'recomendation_unit',
+  recomendation_description = 'recomendation_description',
+  recomendation_description_placeholder = 'recomendation_description_placeholder',
+  recomendation_description_info = 'recomendation_description_info',
+  recomendation_based_on = 'recomendation_based_on',
+  recomendation_based_on_placeholder = 'recomendation_based_on_placeholder',
+  recomendation_based_on_info = 'recomendation_based_on_info',
+  recomendation_info = 'recomendation_info',
 }

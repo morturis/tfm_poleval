@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Stage } from 'src/app/types/Stage';
 import { EvaluationService } from 'src/services/evaluation.service';
 import { AnalysisPlanningComponent } from '../analysis-planning/analysis-planning.component';
+import { EndEvalComponent } from '../end-eval/end-eval.component';
 import { EvalDesignComponent } from '../eval-design/eval-design.component';
 import { FieldWorkComponent } from '../field-work/field-work.component';
 import { FinalReportComponent } from '../final-report/final-report.component';
@@ -54,11 +55,17 @@ export class EvalComponent {
       isDone: false,
       contents: FieldWorkComponent,
     },
+
     {
       name: 'document_final_report',
       isDone: false,
       isDocument: true,
       contents: FinalReportComponent,
+    },
+    {
+      name: 'end_eval',
+      isDone: false,
+      contents: EndEvalComponent,
     },
   ];
 
