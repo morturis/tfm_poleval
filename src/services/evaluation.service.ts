@@ -128,7 +128,9 @@ export class EvaluationService {
     'eval-conclusions': {},
   };
 
-  constructor(private storage: StorageService) {
+  constructor(
+    private storage: StorageService //private loginService: LoginService
+  ) {
     if (!this.storage.getObject('DEFAULT'))
       this.storage.setObject('DEFAULT', this.defaultEval);
   }
@@ -164,5 +166,12 @@ export class EvaluationService {
     this.storage.setObject(code, evaluation);
 
     return evaluation;
+  }
+
+  getByLoggedInUser(): any[] {
+    //const user = this.loginService.getLoggedInUsername();
+    //const savedEval = this.storage.getObject<Evaluation>('DEFAULT');
+    //TODO
+    return [{ eval_name: 'DEFAULT' }];
   }
 }

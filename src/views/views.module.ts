@@ -36,6 +36,7 @@ import { RegisterComponent } from './register/register.component';
 import { TermsOfReferenceComponent } from './terms-of-reference/terms-of-reference.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
 import { EndEvalComponent } from './end-eval/end-eval.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { EndEvalComponent } from './end-eval/end-eval.component';
     DragDropDropdownComponent,
     DragDropMultipleDropdownComponent,
     EndEvalComponent,
+    MainPageComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,7 @@
+<form *ngIf="this.loginService.isLoggedIn()">
+  <!--tabla para evaluadores-->
+  <app-tabla
+    [control]="getFormControl(this.availableEvalConfig.field)"
+    [config]="this.availableEvalConfig"
+  ></app-tabla>
+</form>
