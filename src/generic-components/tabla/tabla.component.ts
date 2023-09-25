@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
@@ -17,6 +23,7 @@ import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
 export class TablaComponent {
   @Input({ required: true }) control!: FormControl; //Definite assignment //Cant use formControl as name
   @Input({ required: true }) config!: TableConfig; //definite assignment
+  @Output() actionEvent = new EventEmitter<unknown>();
   @ViewChild(MatTable) table!: MatTable<any>; //Definitive assignment operator, compiler trust me
 
   title: string = '';
@@ -40,6 +47,7 @@ export class TablaComponent {
     this.info = this.config.info;
     this.id = `table-${uuidv4()}`;
     this.displayedColumns = this.fieldsConfig.map((c) => c.field);
+    if (this.config.action) this.displayedColumns.push('actions');
   }
 
   ngAfterViewInit() {

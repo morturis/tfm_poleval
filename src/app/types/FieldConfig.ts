@@ -27,6 +27,8 @@ export interface TableConfig extends BaseFieldConfig {
   defaultValue?: any[];
   //Configs for each field of the table
   columns: InputConfig[];
+
+  action?: boolean;
 }
 
 export interface DropdownConfig extends BaseFieldConfig {

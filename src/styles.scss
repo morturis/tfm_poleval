@@ -72,3 +72,9 @@ body {
 .mat-step-text-label {
   white-space: break-spaces;
 }
+
+//Table
+.mat-column-actions {
+  flex: 0 0 8%;
+  min-width: auto;
+}

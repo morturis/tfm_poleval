@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
@@ -18,6 +19,7 @@ export class MainPageComponent extends DynamicFormView {
     fieldType: 'table',
     itemName: 'eval_unit',
     canAddRemove: false,
+    action: true,
     columns: [
       {
         header: 'eval_name',
@@ -40,7 +42,8 @@ export class MainPageComponent extends DynamicFormView {
   constructor(
     fb: FormBuilder,
     public loginService: LoginService,
-    private evalService: EvaluationService
+    private evalService: EvaluationService,
+    private router: Router
   ) {
     super(fb);
     this.buildForm(this.fieldsConfig);
@@ -54,5 +57,11 @@ export class MainPageComponent extends DynamicFormView {
         { [this.availableEvalConfig.field]: userEvals },
         { emitEvent: true }
       );
+  }
+
+  navigateToEvaluation(element: unknown) {
+    this.router.navigate([
+      `/eval/${(element as { eval_name: string }).eval_name}`,
+    ]);
   }
 }

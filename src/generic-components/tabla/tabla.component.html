@@ -12,15 +12,34 @@
     *ngFor="let column of fieldsConfig"
     [matColumnDef]="column.field"
   >
-    <mat-header-cell *matHeaderCellDef>{{
-      column.header | translate
-    }}</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>
+      {{ column.header | translate }}
+    </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element[column.field] }}</mat-cell>
+  </ng-container>
+
+  <ng-container *ngIf="config.action" matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef class="d-flex justify-content-center">
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="d-flex justify-content-center">
+      <button
+        mat-button
+        style="width: auto"
+        (click)="this.actionEvent.emit(element)"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <path
+            d="M0 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v6h8V5l5 5-5 5v-3z"
+          />
+        </svg>
+      </button>
+    </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+
 <div class="d-flex">
   <div
     class="text-danger text-nowrap mt-2 ms-2 col"
