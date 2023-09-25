@@ -36,7 +36,7 @@ export class LoginService {
   }
 
   async login(loginInfo: UserAccount): Promise<LoginResponse> {
-    const user = this.storage.getObject<LoginObject>(
+    const user = await this.storage.getObject<LoginObject>(
       `user-${loginInfo.username}`
     );
 
@@ -73,8 +73,8 @@ export class LoginService {
     return !!this.storage.getObject('token');
   }
 
-  getLoggedInUsername(): string {
-    const token: string = this.storage.getObject('token');
+  async getLoggedInUsername(): Promise<string> {
+    const token: string = await this.storage.getObject('token');
     if (!token) return 'ERROR - NOT LOGGED IN'; //Should never show
     const loginObject: LoginObject = JSON.parse(atob(token));
 

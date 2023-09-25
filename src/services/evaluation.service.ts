@@ -135,12 +135,12 @@ export class EvaluationService {
       this.storage.setObject('DEFAULT', this.defaultEval);
   }
 
-  get(code: string): Evaluation | undefined {
-    const evaluation = this.storage.getObject<Evaluation>(code);
+  async get(code: string): Promise<Evaluation> {
+    const evaluation = await this.storage.getObject<Evaluation>(code);
     return evaluation;
   }
 
-  create(code: string): Evaluation {
+  async create(code: string): Promise<Evaluation> {
     const evaluation: Evaluation = {
       'analysis-planning': {},
       'intervention-context': {},
@@ -150,20 +150,20 @@ export class EvaluationService {
       'field-work': {},
       'eval-conclusions': {},
     };
-    this.storage.setObject(code, evaluation);
+    await this.storage.setObject(code, evaluation);
     return evaluation;
   }
 
-  update(
+  async update(
     code: string,
     field: EvaluationProperties,
     value: any
-  ): Evaluation | undefined {
-    const evaluation = this.get(code);
+  ): Promise<Evaluation | undefined> {
+    const evaluation = await this.get(code);
     if (!evaluation) return;
 
     evaluation[field] = value;
-    this.storage.setObject(code, evaluation);
+    await this.storage.setObject(code, evaluation);
 
     return evaluation;
   }

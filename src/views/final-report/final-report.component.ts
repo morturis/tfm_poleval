@@ -99,7 +99,7 @@ export class FinalReportComponent extends DynamicFormView {
     this.buildForm(this.fieldsConfig);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.outputEvent.emit({ status: 'VALID' }); //so I can always go to the next step
 
     //check if we have a form code
@@ -112,7 +112,7 @@ export class FinalReportComponent extends DynamicFormView {
     }
 
     //check if the form code has an evaluation
-    const evaluation = this.evalService.get(form_code);
+    const evaluation = await this.evalService.get(form_code);
     if (!evaluation) return;
 
     //check if the evaluation has questions and responses

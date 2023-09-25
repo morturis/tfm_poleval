@@ -328,7 +328,7 @@ export class AnalysisPlanningComponent extends DynamicFormView {
     this.buildForm(this.fieldsConfig);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     //When the validity of the form changes, I throw EventEmitter
     this.form.statusChanges.pipe(distinctUntilChanged()).subscribe((status) => {
       this.outputEvent.emit({ status: status });
@@ -350,10 +350,9 @@ export class AnalysisPlanningComponent extends DynamicFormView {
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    const savedValue =
-      this.evalService.get(formCode)?.[
-        EvaluationProperties['analysis-planning']
-      ];
+    const savedValue = (await this.evalService.get(formCode))?.[
+      EvaluationProperties['analysis-planning']
+    ];
     if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
   }
 }
