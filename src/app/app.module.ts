@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenericComponentsModule } from 'src/generic-components/generic-components.module';
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MatInputModule,
     ViewsModule,
+    HttpClientModule,
   ],
   providers: [
     //Allows for custom icons for stepper

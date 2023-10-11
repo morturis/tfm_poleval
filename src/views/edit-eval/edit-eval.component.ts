@@ -38,10 +38,11 @@ export class EditEvalComponent extends DynamicFormView {
 
   selectCode() {
     const codeOfTheFormToEdit = this.form.value.code;
-    if (!this.evalService.get(codeOfTheFormToEdit)) {
-      alert('There is no evaluation with that code');
-      return;
-    }
-    this.router.navigate([`/eval/${codeOfTheFormToEdit}`]);
+
+    this.evalService
+      .get(codeOfTheFormToEdit)
+      .subscribe((res) =>
+        this.router.navigate([`/eval/${codeOfTheFormToEdit}`])
+      );
   }
 }

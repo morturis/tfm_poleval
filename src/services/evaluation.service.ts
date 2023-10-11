@@ -1,6 +1,12 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Evaluation, EvaluationProperties } from 'src/app/types/Evaluation';
+import { Observable } from 'rxjs';
+import { Evaluation } from 'src/app/types/Evaluation';
+import { AnyFieldConfig } from 'src/app/types/FieldConfig';
 import { StorageService } from './storage.service';
+
+const baseUrl = 'https://localhost';
+const basePort = '3000';
 
 @Injectable({
   providedIn: 'root',
@@ -128,47 +134,62 @@ export class EvaluationService {
     'eval-conclusions': {},
   };
 
-  constructor(
-    private storage: StorageService //private loginService: LoginService
-  ) {
-    if (!this.storage.getObject('DEFAULT'))
-      this.storage.setObject('DEFAULT', this.defaultEval);
+  constructor(private http: HttpClient, private localStorage: StorageService) {}
+
+  get(code: string): Observable<Evaluation> {
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    return this.http.get<Evaluation>(
+      `${baseUrl};${basePort}/evaluation/${code}`,
+      { headers }
+    );
   }
 
-  get(code: string): Evaluation | undefined {
-    const evaluation = this.storage.getObject<Evaluation>(code);
-    return evaluation;
+  create(evaluation: Partial<Evaluation>): Observable<Evaluation> {
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    return this.http.post<Evaluation>(
+      `${baseUrl};${basePort}/evaluation`,
+      evaluation,
+      { headers }
+    );
   }
 
-  create(code: string): Evaluation {
-    const evaluation: Evaluation = {
-      'analysis-planning': {},
-      'intervention-context': {},
-      'eval-design': {},
-      form: [],
-      responses: [],
-      'field-work': {},
-      'eval-conclusions': {},
-    };
-    this.storage.setObject(code, evaluation);
-    return evaluation;
+  update(evaluation: Partial<Evaluation>): Observable<Evaluation> {
+    const { code } = evaluation;
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    return this.http.patch<Evaluation>(
+      `${baseUrl};${basePort}/evaluation/${code}`,
+      evaluation,
+      { headers }
+    );
   }
 
-  update(
+  getForm(code: string): Observable<AnyFieldConfig[]> {
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    return this.http.get<AnyFieldConfig[]>(
+      `${baseUrl};${basePort}/evaluation/${code}/form`,
+      { headers }
+    );
+  }
+
+  saveAnswer(
     code: string,
-    field: EvaluationProperties,
-    value: any
-  ): Evaluation | undefined {
-    const evaluation = this.get(code);
-    if (!evaluation) return;
-
-    evaluation[field] = value;
-    this.storage.setObject(code, evaluation);
-
-    return evaluation;
+    answer: Record<string, string>
+  ): Observable<Record<string, string>> {
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    return this.http.post<Record<string, string>>(
+      `${baseUrl};${basePort}/evaluation/${code}/answer`,
+      answer,
+      { headers }
+    );
   }
 
   getByLoggedInUser(): any[] {
+    //TODO
     //const user = this.loginService.getLoggedInUsername();
     //const savedEval = this.storage.getObject<Evaluation>('DEFAULT');
     //TODO

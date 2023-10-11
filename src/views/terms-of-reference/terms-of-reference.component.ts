@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
-import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
 import { EvaluationService } from 'src/services/evaluation.service';
 
@@ -341,11 +340,8 @@ export class TermsOfReferenceComponent extends DynamicFormView {
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    const savedValue =
-      this.evalService.get(formCode)?.[
-        EvaluationProperties['analysis-planning']
-      ];
-    if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
-    this.form.updateValueAndValidity();
+    this.evalService
+      .get(formCode)
+      .subscribe((res) => this.form.patchValue(res, { emitEvent: true }));
   }
 }

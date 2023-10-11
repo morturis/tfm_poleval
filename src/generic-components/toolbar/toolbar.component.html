@@ -18,7 +18,7 @@
       mat-button
       routerLink="eval"
       class="col"
-      *ngIf="userHasPermissions('ADD_NEW_EVAL')"
+      *ngIf="this.loginService.isLoggedIn()"
     >
       <mat-icon>add</mat-icon>
       {{ "new_eval" | translate }}
@@ -28,7 +28,7 @@
       mat-button
       routerLink="edit-eval"
       class="col"
-      *ngIf="userHasPermissions('EDIT_EVAL')"
+      *ngIf="this.loginService.isLoggedIn()"
     >
       <mat-icon>edit</mat-icon>
       {{ "edit_eval" | translate }}
@@ -38,7 +38,7 @@
       mat-button
       routerLink="fill-form"
       class="col"
-      *ngIf="userHasPermissions('FILL_FORM')"
+      *ngIf="this.loginService.isLoggedIn()"
     >
       <mat-icon>add</mat-icon>
       {{ "fill_form" | translate }}

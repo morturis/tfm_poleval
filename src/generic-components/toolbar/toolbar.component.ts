@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginObject } from 'src/app/types/Login';
 import { LanguageService } from 'src/services/language.service';
 import { LoginService } from 'src/services/login.service';
-import { StorageService } from 'src/services/storage.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,21 +13,12 @@ export class ToolbarComponent {
   constructor(
     public ls: LanguageService,
     public router: Router,
-    private storage: StorageService,
     public loginService: LoginService
   ) {}
 
   changeLanguage() {
     this.ls.nextLanguage();
     this.languageCode = this.ls.language;
-  }
-
-  userHasPermissions(buttonPermission: string): boolean {
-    const token: string = this.storage.getObject('token');
-    if (!token) return false;
-    const loginObject: LoginObject = JSON.parse(atob(token));
-
-    return loginObject.permissions.includes(buttonPermission);
   }
 
   async logout() {

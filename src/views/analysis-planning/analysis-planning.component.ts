@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
-import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { EvaluationService } from 'src/services/evaluation.service';
 import { AnyFieldConfig, TableConfig } from '../../app/types/FieldConfig';
 
@@ -341,19 +340,13 @@ export class AnalysisPlanningComponent extends DynamicFormView {
 
     //Whenever I make a change to this form, I save it in the storage
     this.form.valueChanges.subscribe((val) => {
-      this.evalService.update(
-        formCode as string,
-        EvaluationProperties['analysis-planning'],
-        val
-      );
+      this.evalService.update(val);
     });
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    const savedValue =
-      this.evalService.get(formCode)?.[
-        EvaluationProperties['analysis-planning']
-      ];
-    if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
+    this.evalService
+      .get(formCode)
+      .subscribe((res) => this.form.patchValue(res, { emitEvent: true }));
   }
 }

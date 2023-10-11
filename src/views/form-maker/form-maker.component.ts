@@ -6,7 +6,6 @@ import {
 import { Component, EventEmitter, Output, Type } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { EvaluationProperties } from 'src/app/types/Evaluation';
 import {
   AnyFieldConfig,
   DropdownConfig,
@@ -29,7 +28,7 @@ class DragDropDivConfig<T> {
 export class FormMakerComponent {
   @Output() outputEvent = new EventEmitter<any>();
 
-  alreadyHasResponses: boolean = false;
+  alreadyHasResponses: boolean = true;
   options: DragDropDivConfig<DragDropBaseComponent>[] = [
     {
       text: 'drag_drop_input',
@@ -78,55 +77,55 @@ export class FormMakerComponent {
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    const savedValue =
-      this.evalService.get(formCode)?.[EvaluationProperties['form']];
-    if (!savedValue) return;
+    this.evalService.get(formCode).subscribe((evaluation) => {
+      const savedForm = evaluation.form;
+      //Empty results. This is to avoid contamination
+      this.result.splice(0, this.result.length);
 
-    //Empty results. This is to avoid contamination
-    this.result.splice(0, this.result.length);
+      //Fill form with previously saved config
+      savedForm.forEach((fieldConfig: AnyFieldConfig) => {
+        if (fieldConfig.fieldType === 'input') {
+          this.result.push({
+            text: 'drag_drop_input',
+            componentType: DragDropInputComponent,
+            buildFromConfig: DragDropInputComponent.buildFromConfig(
+              fieldConfig,
+              true
+            ),
+          });
+        } else if (
+          fieldConfig.fieldType === 'dropdown' &&
+          !fieldConfig.multiple
+        ) {
+          this.result.push({
+            text: 'drag_drop_dropdown',
+            componentType: DragDropDropdownComponent,
+            buildFromConfig: DragDropDropdownComponent.buildFromConfig(
+              fieldConfig,
+              true
+            ),
+          });
+        } else if (
+          fieldConfig.fieldType === 'dropdown' &&
+          fieldConfig.multiple
+        ) {
+          this.result.push({
+            text: 'drag_drop_multiple_dropdown',
+            componentType: DragDropMultipleDropdownComponent,
+            buildFromConfig: DragDropMultipleDropdownComponent.buildFromConfig(
+              fieldConfig,
+              true
+            ),
+          });
+        }
+      });
 
-    //Fill form with previously saved config
-    savedValue.forEach((fieldConfig: AnyFieldConfig) => {
-      if (fieldConfig.fieldType === 'input') {
-        this.result.push({
-          text: 'drag_drop_input',
-          componentType: DragDropInputComponent,
-          buildFromConfig: DragDropInputComponent.buildFromConfig(
-            fieldConfig,
-            true
-          ),
-        });
-      } else if (
-        fieldConfig.fieldType === 'dropdown' &&
-        !fieldConfig.multiple
-      ) {
-        this.result.push({
-          text: 'drag_drop_dropdown',
-          componentType: DragDropDropdownComponent,
-          buildFromConfig: DragDropDropdownComponent.buildFromConfig(
-            fieldConfig,
-            true
-          ),
-        });
-      } else if (fieldConfig.fieldType === 'dropdown' && fieldConfig.multiple) {
-        this.result.push({
-          text: 'drag_drop_multiple_dropdown',
-          componentType: DragDropMultipleDropdownComponent,
-          buildFromConfig: DragDropMultipleDropdownComponent.buildFromConfig(
-            fieldConfig,
-            true
-          ),
-        });
-      }
+      //Check if this form already has responses
+      this.alreadyHasResponses = !!evaluation.responses?.length; //If 0 or undefined, this will be false, else it will be true
+
+      //Tell parent component we are valid to go to next step
+      this.outputEvent.emit({ status: 'VALID' });
     });
-
-    //Check if this form already has responses
-    this.alreadyHasResponses =
-      !!this.evalService.get(formCode)?.[EvaluationProperties.responses]
-        ?.length; //If 0 or undefined, this will be false, else it will be true
-
-    //Tell parent component we are valid to go to next step
-    this.outputEvent.emit({ status: 'VALID' });
   }
 
   droppedInOptionsList(event: CdkDragDrop<any>) {
@@ -182,13 +181,10 @@ export class FormMakerComponent {
       const formCode = this.route.snapshot.paramMap.get('code');
       if (!formCode)
         throw new Error('Please create a new evaluation from the beginning'); //should never trigger
-      this.evalService.update(
-        formCode as string,
-        EvaluationProperties.form,
-        createdForm
-      );
+      this.evalService
+        .update({ code: formCode, form: createdForm })
+        .subscribe((res) => this.outputEvent.emit({ status: 'VALID' }));
       //Tell parent component we are valid to go to next step
-      this.outputEvent.emit({ status: 'VALID' });
     } catch (e) {
       //Catch possible errors in the form
       alert(e);

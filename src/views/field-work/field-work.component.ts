@@ -39,36 +39,35 @@ export class FieldWorkComponent {
     }
 
     //check if the form code has an evaluation
-    this.evaluation = this.evalService.get(form_code);
-    if (!this.evaluation) return;
+    this.evalService.get(form_code).subscribe((evaluation) => {
+      //check if the evaluation has questions and responses
+      this.formQuestions = evaluation.form || [];
+      if (!evaluation.responses) return;
 
-    //check if the evaluation has questions and responses
-    this.formQuestions = this.evaluation.form || [];
-    if (!this.evaluation.responses) return;
-
-    //parse response options
-    this.formQuestions.map((question) => {
-      if (question.fieldType != 'dropdown') return;
-      question.responseOptions = question.items;
-    });
-
-    //parse responses
-    const responses: Record<string, any> = {};
-    this.evaluation.responses?.forEach((response) => {
-      Object.entries(response).forEach(([questionCode, response]) => {
-        if (!responses[questionCode]) responses[questionCode] = [];
-
-        if (Array.isArray(response)) {
-          responses[questionCode].push(...response);
-        } else {
-          responses[questionCode].push(response);
-        }
+      //parse response options
+      this.formQuestions.map((question) => {
+        if (question.fieldType != 'dropdown') return;
+        question.responseOptions = question.items;
       });
-    });
 
-    this.formQuestions.map(
-      (question) => (question.responses = responses[question.field])
-    );
+      //parse responses
+      const responses: Record<string, any> = {};
+      evaluation.responses?.forEach((response) => {
+        Object.entries(response).forEach(([questionCode, response]) => {
+          if (!responses[questionCode]) responses[questionCode] = [];
+
+          if (Array.isArray(response)) {
+            responses[questionCode].push(...response);
+          } else {
+            responses[questionCode].push(response);
+          }
+        });
+      });
+
+      this.formQuestions.map(
+        (question) => (question.responses = responses[question.field])
+      );
+    });
   }
 
   getQuestionType(config: AnyFieldConfig): string {

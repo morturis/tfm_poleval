@@ -5,7 +5,6 @@ import { distinctUntilChanged } from 'rxjs';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { CustomValidators } from 'src/app/types/CustomValidators';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
-import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
 import { EvaluationService } from 'src/services/evaluation.service';
 
@@ -154,17 +153,13 @@ export class EvalDesignComponent extends DynamicFormView {
 
     //Whenever I make a change to this form, I save it in the storage
     this.form.valueChanges.subscribe((val) => {
-      this.evalService.update(
-        formCode as string,
-        EvaluationProperties['eval-design'],
-        val
-      );
+      this.evalService.update(val);
     });
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    const savedValue =
-      this.evalService.get(formCode)?.[EvaluationProperties['eval-design']];
-    if (savedValue) this.form.patchValue(savedValue, { emitEvent: true });
+    this.evalService
+      .get(formCode)
+      .subscribe((res) => this.form.patchValue(res, { emitEvent: true }));
   }
 }

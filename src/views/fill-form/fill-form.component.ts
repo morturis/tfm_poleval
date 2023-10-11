@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
-import { EvaluationProperties } from 'src/app/types/Evaluation';
 import { InputConfig } from 'src/app/types/FieldConfig';
 import { EvaluationService } from 'src/services/evaluation.service';
 
@@ -47,24 +46,23 @@ export class FillFormComponent extends DynamicFormView {
       return;
     }
 
-    const formJson = this.evalService.get(this.code)?.[
-      EvaluationProperties['form']
-    ];
-    if (formJson) {
-      //Add required to all fields
-      const processedForm = formJson.map((field) => {
-        return {
-          ...field,
-          validators: [Validators.required],
-          errorMessages: {
-            ...CustomErrorMessages.required,
-          },
-        };
-      });
-      this.buildForm(processedForm);
-      return;
-    }
-    this.buildForm([this.selectFormCodeInputConfig]);
+    this.evalService.getForm(this.code).subscribe(
+      (form) => {
+        //Add required to all fields
+        const processedForm = form.map((field) => {
+          return {
+            ...field,
+            validators: [Validators.required],
+            errorMessages: {
+              ...CustomErrorMessages.required,
+            },
+          };
+        });
+        this.buildForm(processedForm);
+        return;
+      },
+      (err) => this.buildForm([this.selectFormCodeInputConfig])
+    );
   }
 
   selectCode() {
@@ -79,18 +77,11 @@ export class FillFormComponent extends DynamicFormView {
 
   saveResponse() {
     if (!this.code) return; //should never trigger
-    const allResponses = this.evalService.get(this.code)?.responses;
-    if (!allResponses) return; //should never trigger, responses defaults to []
 
     const newResponse = this.form.value;
 
-    allResponses.push(newResponse);
-    this.evalService.update(
-      this.code,
-      EvaluationProperties.responses,
-      allResponses
-    );
-    alert('saved');
-    this.router.navigate(['']);
+    this.evalService
+      .saveAnswer(this.code, newResponse)
+      .subscribe((res) => this.router.navigate(['']));
   }
 }
