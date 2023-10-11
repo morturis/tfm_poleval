@@ -26,7 +26,7 @@ export class FieldWorkComponent {
     private exportAs: ExportService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.outputEvent.emit({ status: 'VALID' }); //so I can always go to the next step
 
     //check if we have a form code
@@ -39,7 +39,7 @@ export class FieldWorkComponent {
     }
 
     //check if the form code has an evaluation
-    this.evaluation = await this.evalService.get(form_code);
+    this.evaluation = this.evalService.get(form_code);
     if (!this.evaluation) return;
 
     //check if the evaluation has questions and responses

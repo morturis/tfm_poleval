@@ -40,14 +40,14 @@ export class FillFormComponent extends DynamicFormView {
     this.code = this.route.snapshot.paramMap.get('code'); //defaults to null
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     //Case where no code is selected
     if (!this.code) {
       this.buildForm([this.selectFormCodeInputConfig]);
       return;
     }
 
-    const formJson = (await this.evalService.get(this.code))?.[
+    const formJson = this.evalService.get(this.code)?.[
       EvaluationProperties['form']
     ];
     if (formJson) {
@@ -77,9 +77,9 @@ export class FillFormComponent extends DynamicFormView {
     this.router.navigate([`/fill-form/${codeOfTheFormToFill}`]);
   }
 
-  async saveResponse() {
+  saveResponse() {
     if (!this.code) return; //should never trigger
-    const allResponses = (await this.evalService.get(this.code))?.responses;
+    const allResponses = this.evalService.get(this.code)?.responses;
     if (!allResponses) return; //should never trigger, responses defaults to []
 
     const newResponse = this.form.value;

@@ -74,9 +74,7 @@ export class EvalComponent {
     private route: ActivatedRoute,
     private router: Router,
     private evalService: EvaluationService
-  ) {}
-
-  async ngOnInit() {
+  ) {
     this.code = this.route.snapshot.paramMap.get('code'); //defaults to null
     while (!this.code) {
       //Generate a new code
@@ -85,7 +83,7 @@ export class EvalComponent {
         .toUpperCase();
 
       //If the code already exists, continue
-      if (await this.evalService.get(this.code)) {
+      if (this.evalService.get(this.code)) {
         this.code = null;
         continue;
       }

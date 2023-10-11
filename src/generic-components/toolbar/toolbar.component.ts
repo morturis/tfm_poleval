@@ -24,8 +24,8 @@ export class ToolbarComponent {
     this.languageCode = this.ls.language;
   }
 
-  async userHasPermissions(buttonPermission: string): Promise<boolean> {
-    const token: string = await this.storage.getObject('token');
+  userHasPermissions(buttonPermission: string): boolean {
+    const token: string = this.storage.getObject('token');
     if (!token) return false;
     const loginObject: LoginObject = JSON.parse(atob(token));
 

@@ -71,16 +71,15 @@ export class FormMakerComponent {
     this.outputEvent.emit({ status: 'INVALID' });
   }
 
-  async ngAfterViewInit() {
+  ngAfterViewInit() {
     const formCode = this.route.snapshot.paramMap.get('code');
     if (!formCode)
       throw new Error('Please create a new evaluation from the beginning'); //should never trigger
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    const savedValue = (await this.evalService.get(formCode))?.[
-      EvaluationProperties['form']
-    ];
+    const savedValue =
+      this.evalService.get(formCode)?.[EvaluationProperties['form']];
     if (!savedValue) return;
 
     //Empty results. This is to avoid contamination
@@ -122,9 +121,9 @@ export class FormMakerComponent {
     });
 
     //Check if this form already has responses
-    this.alreadyHasResponses = !!(await this.evalService.get(formCode))?.[
-      EvaluationProperties.responses
-    ]?.length; //If 0 or undefined, this will be false, else it will be true
+    this.alreadyHasResponses =
+      !!this.evalService.get(formCode)?.[EvaluationProperties.responses]
+        ?.length; //If 0 or undefined, this will be false, else it will be true
 
     //Tell parent component we are valid to go to next step
     this.outputEvent.emit({ status: 'VALID' });
