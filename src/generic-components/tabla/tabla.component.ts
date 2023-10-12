@@ -50,12 +50,10 @@ export class TablaComponent {
   }
 
   ngAfterViewInit() {
-    if (this.control.value) {
-      Object.entries(this.control.value).forEach(([key, value]) =>
-        this.items.push(value)
-      );
+    this.control.valueChanges.subscribe((newVal) => {
+      this.items.push(...Object.values(newVal));
       this.table.renderRows();
-    }
+    });
   }
 
   listOfErrors() {

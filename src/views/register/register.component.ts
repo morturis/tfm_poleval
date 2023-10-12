@@ -55,8 +55,8 @@ export class RegisterComponent extends DynamicFormView {
 
   async register() {
     const formValue = this.form.value;
-    await this.loginService.register(formValue);
-
-    this.router.navigate(['']);
+    this.loginService
+      .register(formValue)
+      .subscribe((res) => this.router.navigate(['']));
   }
 }

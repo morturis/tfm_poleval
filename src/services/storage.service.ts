@@ -21,6 +21,8 @@ export class StorageService {
   }
 
   getObject<T>(key: string): T {
-    return this.storage[key];
+    //return this.storage[key];
+
+    return sessionStorage.getItem(key) as T;
   }
 }

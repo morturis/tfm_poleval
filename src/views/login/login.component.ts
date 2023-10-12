@@ -53,8 +53,6 @@ export class LoginComponent extends DynamicFormView {
 
   async login() {
     const formValue = this.form.value;
-    await this.loginService.login(formValue);
-
-    this.router.navigate(['']);
+    this.loginService.login(formValue).subscribe(res=>this.router.navigate(['']));
   }
 }

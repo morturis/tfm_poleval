@@ -7,4 +7,11 @@
       (actionEvent)="this.navigateToEvaluation($event)"
     ></app-tabla>
   </div>
+  <div>
+    <app-tabla
+      [control]="getFormControl(this.availableFormConfig.field)"
+      [config]="this.availableFormConfig"
+      (actionEvent)="this.navigateToForm($event)"
+    ></app-tabla>
+  </div>
 </form>

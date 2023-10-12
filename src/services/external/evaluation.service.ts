@@ -138,18 +138,18 @@ export class EvaluationService {
 
   get(code: string): Observable<Evaluation> {
     const token = this.localStorage.getObject<string>('token');
-    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
     return this.http.get<Evaluation>(
-      `${baseUrl};${basePort}/evaluation/${code}`,
+      `${baseUrl}:${basePort}/evaluation/${code}`,
       { headers }
     );
   }
 
   create(evaluation: Partial<Evaluation>): Observable<Evaluation> {
     const token = this.localStorage.getObject<string>('token');
-    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
     return this.http.post<Evaluation>(
-      `${baseUrl};${basePort}/evaluation`,
+      `${baseUrl}:${basePort}/evaluation`,
       evaluation,
       { headers }
     );
@@ -158,9 +158,9 @@ export class EvaluationService {
   update(evaluation: Partial<Evaluation>): Observable<Evaluation> {
     const { code } = evaluation;
     const token = this.localStorage.getObject<string>('token');
-    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
     return this.http.patch<Evaluation>(
-      `${baseUrl};${basePort}/evaluation/${code}`,
+      `${baseUrl}:${basePort}/evaluation/${code}`,
       evaluation,
       { headers }
     );
@@ -168,9 +168,9 @@ export class EvaluationService {
 
   getForm(code: string): Observable<AnyFieldConfig[]> {
     const token = this.localStorage.getObject<string>('token');
-    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
     return this.http.get<AnyFieldConfig[]>(
-      `${baseUrl};${basePort}/evaluation/${code}/form`,
+      `${baseUrl}:${basePort}/evaluation/${code}/form`,
       { headers }
     );
   }
@@ -180,19 +180,20 @@ export class EvaluationService {
     answer: Record<string, string>
   ): Observable<Record<string, string>> {
     const token = this.localStorage.getObject<string>('token');
-    const headers: HttpHeaders = new HttpHeaders({ 'x-access-token': token });
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
     return this.http.post<Record<string, string>>(
-      `${baseUrl};${basePort}/evaluation/${code}/answer`,
+      `${baseUrl}:${basePort}/evaluation/${code}/answer`,
       answer,
       { headers }
     );
   }
 
-  getByLoggedInUser(): any[] {
-    //TODO
-    //const user = this.loginService.getLoggedInUsername();
-    //const savedEval = this.storage.getObject<Evaluation>('DEFAULT');
-    //TODO
-    return [{ eval_name: 'DEFAULT' }];
+  getByLoggedInUser(): Observable<Record<string, Record<string, string>[]>> {
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
+    return this.http.get<Record<string, Record<string, string>[]>>(
+      `${baseUrl}:${basePort}/evaluation/all`,
+      { headers }
+    );
   }
 }
