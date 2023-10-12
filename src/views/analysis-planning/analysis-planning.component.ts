@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
-import { EvaluationService } from 'src/services/evaluation.service';
+import { EvaluationService } from 'src/services/external/evaluation.service';
 import { AnyFieldConfig, TableConfig } from '../../app/types/FieldConfig';
 
 @Component({

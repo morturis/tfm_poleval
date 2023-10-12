@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
-import { EvaluationService } from 'src/services/evaluation.service';
-import { LoginService } from 'src/services/login.service';
+import { EvaluationService } from 'src/services/external/evaluation.service';
+import { LoginService } from 'src/services/external/login.service';
 
 @Component({
   selector: 'app-main-page',

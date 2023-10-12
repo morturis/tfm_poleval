@@ -2,8 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Evaluation } from 'src/app/types/Evaluation';
 import { AnyFieldConfig } from 'src/app/types/FieldConfig';
-import { EvaluationService } from 'src/services/evaluation.service';
 import { ExportService } from 'src/services/export.service';
+import { EvaluationService } from 'src/services/external/evaluation.service';
 
 @Component({
   selector: 'app-field-work',

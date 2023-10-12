@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/services/external/login.service';
 import { LanguageService } from 'src/services/language.service';
-import { LoginService } from 'src/services/login.service';
 
 @Component({
   selector: 'app-toolbar',

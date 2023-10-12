@@ -48,22 +48,29 @@ export class HttpInterceptorService implements HttpInterceptor {
 
           case 400:
             this.toastr.error(
-              this.translate.transform('httpError_bad_request_message'),
-              this.translate.transform('httpError_bad_request_title')
+              this.translate.transform(err.error.error.message),
+              this.translate.transform('httpError_bad_request')
             );
             break;
 
           case 403:
             this.toastr.error(
-              this.translate.transform('httpError_unauthorized_message'),
-              this.translate.transform('httpError_unauthorized_title')
+              this.translate.transform(err.error.error.message),
+              this.translate.transform('httpError_unauthorized')
             );
             break;
 
           case 404:
             this.toastr.error(
-              this.translate.transform('httpError_not_found_message'),
-              this.translate.transform('httpError_not_found_title')
+              this.translate.transform(err.error.error.message),
+              this.translate.transform('httpError_not_found')
+            );
+            break;
+
+          case 409:
+            this.toastr.error(
+              this.translate.transform(err.error.error.message),
+              this.translate.transform('httpError_conflict_title')
             );
             break;
         }

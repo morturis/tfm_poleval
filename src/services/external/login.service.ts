@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginObject, LoginResponse } from 'src/app/types/Login';
-import { StorageService } from './storage.service';
+import { StorageService } from '../storage.service';
 
-const baseUrl = 'https://localhost';
+const baseUrl = 'http://localhost';
 const basePort = '3000';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class LoginService {
     );
 
     loginObservable.subscribe((result) => {
-      this.localStorage.setObject('token', result.access_token);
+      this.localStorage.setObject('token', result.token);
       this.localStorage.setObject('username', result.username);
     });
 
@@ -45,7 +45,7 @@ export class LoginService {
     );
 
     loginObservable.subscribe((result) => {
-      this.localStorage.setObject('token', result.access_token);
+      this.localStorage.setObject('token', result.token);
       this.localStorage.setObject('username', result.username);
     });
 

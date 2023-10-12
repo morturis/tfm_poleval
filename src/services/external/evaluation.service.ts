@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Evaluation } from 'src/app/types/Evaluation';
 import { AnyFieldConfig } from 'src/app/types/FieldConfig';
-import { StorageService } from './storage.service';
+import { StorageService } from '../storage.service';
 
-const baseUrl = 'https://localhost';
+const baseUrl = 'http://localhost';
 const basePort = '3000';
 
 @Injectable({

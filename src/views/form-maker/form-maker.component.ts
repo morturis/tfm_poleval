@@ -11,7 +11,7 @@ import {
   DropdownConfig,
   InputConfig,
 } from 'src/app/types/FieldConfig';
-import { EvaluationService } from 'src/services/evaluation.service';
+import { EvaluationService } from 'src/services/external/evaluation.service';
 import { v4 as uuidv4 } from 'uuid';
 
 class DragDropDivConfig<T> {

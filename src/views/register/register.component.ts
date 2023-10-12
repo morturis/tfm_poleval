@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { InputConfig } from 'src/app/types/FieldConfig';
-import { LoginService } from 'src/services/login.service';
+import { LoginService } from 'src/services/external/login.service';
 
 @Component({
   selector: 'app-register',

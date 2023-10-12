@@ -1,6 +1,6 @@
 export type LoginResponse = {
   username: string;
-  access_token: string;
+  token: string;
 };
 
 export type LoginObject = {
