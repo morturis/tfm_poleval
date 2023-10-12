@@ -11,7 +11,6 @@ import { MatTable } from '@angular/material/table';
 import { firstValueFrom } from 'rxjs';
 import { DialogData } from 'src/app/types/DialogData';
 import { InputConfig, TableConfig } from 'src/app/types/FieldConfig';
-import { TranslationService } from 'src/services/translation-service.service';
 import { v4 as uuidv4 } from 'uuid';
 import { TablaDialogComponent } from '../tabla-dialog/tabla-dialog.component';
 
@@ -36,7 +35,7 @@ export class TablaComponent {
   displayedColumns: string[] = [];
   id: string = '';
 
-  constructor(public dialog: MatDialog, public ts: TranslationService) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.title = this.config.header;

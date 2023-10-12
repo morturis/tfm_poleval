@@ -1,21 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TranslationService } from 'src/services/translation-service.service';
+import { LanguageMappings } from 'src/languages/LanguageMappings';
+import { PhraseKey } from 'src/languages/enums/PhraseKey.enum';
+import { LanguageService } from 'src/services/language.service';
 
 @Pipe({
   name: 'translate',
   pure: false, //angular does not currently offer pure + stateful pipes
 })
 export class TranslatePipe implements PipeTransform {
-  constructor(private ts: TranslationService) {}
+  constructor(private languageService: LanguageService) {}
 
   transform(value: string | undefined): string {
-    const translatedValue = this.ts.translate(value);
+    if (!value) return ''; //in case there is no placeholder/hint etc declared
 
-    //If translatedValue is undefined, that means the translation is not yet set. Return "NOT TRANSLATED `${value}`"
-    //Else return translated value
+    const translatedValue =
+      LanguageMappings[this.languageService.language][
+        value as keyof typeof PhraseKey
+      ];
 
-    if (typeof translatedValue === 'undefined')
-      return `NOT TRANSLATED ${value}`;
+    //If translatedValue is undefined, that means the translation is not yet set.
+    if (!translatedValue) return `NOT TRANSLATED ${value}`;
     return translatedValue;
   }
 }
