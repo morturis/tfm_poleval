@@ -23,19 +23,6 @@ export class MainPageComponent extends DynamicFormView {
     action: true,
     columns: [
       {
-        header: 'eval_name',
-        field: 'eval_name',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'eval_name_placeholder',
-        info: 'eval_name_info',
-        validators: [Validators.required],
-        errorMessages: {
-          ...CustomErrorMessages.required,
-        },
-      },
-      {
         header: 'code',
         field: 'code',
         fieldType: 'input',
@@ -71,19 +58,6 @@ export class MainPageComponent extends DynamicFormView {
     canAddRemove: false,
     action: true,
     columns: [
-      {
-        header: 'eval_name',
-        field: 'eval_name',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'eval_name_placeholder',
-        info: 'eval_name_info',
-        validators: [Validators.required],
-        errorMessages: {
-          ...CustomErrorMessages.required,
-        },
-      },
       {
         header: 'code',
         field: 'code',

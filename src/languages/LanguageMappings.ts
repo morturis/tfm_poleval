@@ -32,7 +32,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.password_info]: '',
 
     //Fill form screen
-    [PhraseKey.code]: 'Código del cuestionario',
+    [PhraseKey.code]: 'Código de la evaluación',
     [PhraseKey.code_placeholder]: 'e.g. KHMMZ',
     [PhraseKey.code_info]: '',
     [PhraseKey.fill_form]: 'Rellenar cuestionario',
@@ -267,6 +267,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. El 90% de todos los accidentes implicaban conductores llendo a más de 290 km/h',
     [PhraseKey.recomendation_based_on_info]: '',
     [PhraseKey.recomendation_info]: '',
+
+    [PhraseKey.available_eval_table]: 'Evaluaciones para editar',
+    [PhraseKey.available_form_table]: 'Formularios disponibles',
   },
   EN: {
     [PhraseKey.thank_you]: 'Thank you! The evaluation is now complete',
@@ -298,7 +301,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.password_info]: '',
 
     //Fill form screen
-    [PhraseKey.code]: 'Code of the questionnaire',
+    [PhraseKey.code]: 'Code of the evaluation',
     [PhraseKey.code_placeholder]: 'e.g. KHMMZ',
     [PhraseKey.code_info]: '',
     [PhraseKey.fill_form]: 'Fill a questionnaire',
@@ -533,5 +536,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. 90% of all accidents involved drivers going over 290 km/h',
     [PhraseKey.recomendation_based_on_info]: '',
     [PhraseKey.recomendation_info]: '',
+
+    [PhraseKey.available_eval_table]: 'Evaluations for editing',
+    [PhraseKey.available_form_table]: 'Available forms',
   },
 };

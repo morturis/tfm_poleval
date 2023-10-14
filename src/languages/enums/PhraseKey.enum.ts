@@ -221,4 +221,7 @@ export enum PhraseKey {
   recomendation_based_on_placeholder = 'recomendation_based_on_placeholder',
   recomendation_based_on_info = 'recomendation_based_on_info',
   recomendation_info = 'recomendation_info',
+
+  available_eval_table = 'available_eval_table',
+  available_form_table = 'available_form_table',
 }
