@@ -41,7 +41,7 @@ export class HistogramComponent {
 
     const colors = [];
     for (let i = 0; i < this.dataset.length; i++) {
-      colors.push('hsl(' + (360 * i) / this.dataset.length + ', 100%, 80%)'); //Hue, Saturation, Lightness
+      //colors.push('hsl(' + (360 * i) / this.dataset.length + ', 100%, 80%)'); //Hue, Saturation, Lightness
     }
 
     this.barChartData = {
@@ -50,7 +50,7 @@ export class HistogramComponent {
         {
           data: [...freqMap.values()],
           backgroundColor: colors,
-          borderColor: colors.map((color) => color.replace('80%', '40%')), //less lightness for edges
+          //borderColor: colors.map((color) => color.replace('80%', '40%')), //less lightness for edges
           borderWidth: 2,
         },
       ],

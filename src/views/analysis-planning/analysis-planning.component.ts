@@ -340,13 +340,21 @@ export class AnalysisPlanningComponent extends DynamicFormView {
 
     //Whenever I make a change to this form, I save it in the storage
     this.form.valueChanges.subscribe((val) => {
-      this.evalService.update(val).subscribe();
+      this.evalService
+        .update({ code: formCode, ['analysis-planning']: val })
+        .subscribe((r) => r);
     });
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
-    this.evalService
-      .get(formCode)
-      .subscribe((res) => this.form.patchValue(res, { emitEvent: true }));
+    this.evalService.get(formCode).subscribe((res) => {
+      const transformedValue = this.evalService.transformFromApiObject(res);
+      this.form.patchValue(
+        transformedValue['analysis-planning'] as Record<string, any>,
+        {
+          emitEvent: true,
+        }
+      );
+    });
   }
 }

@@ -184,6 +184,7 @@ export class FormMakerComponent {
       this.evalService
         .update({ code: formCode, form: createdForm })
         .subscribe((res) => this.outputEvent.emit({ status: 'VALID' }));
+
       //Tell parent component we are valid to go to next step
     } catch (e) {
       //Catch possible errors in the form

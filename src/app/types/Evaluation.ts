@@ -14,7 +14,8 @@ type Delimitation = {
 
 type EvalTeamMember = {
   name: string;
-  role: 'leader' | 'member' | 'other';
+  role: string;
+  type: 'leader' | 'member' | 'other';
 };
 
 type ToolTechnique = {
@@ -66,7 +67,12 @@ export type Evaluation = {
   techniques: ToolTechnique[];
   criteria: Criteria[];
   indicators: Indicator[];
+};
 
+export type OldEvaluation = {
+  code: string;
+  form?: AnyFieldConfig[];
+  responses?: Record<string, string>[];
   'analysis-planning': Record<string, any>;
   'intervention-context': Record<string, any>;
   'eval-design': Record<string, any>;
