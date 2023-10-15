@@ -121,13 +121,9 @@ export class MainPageComponent extends DynamicFormView {
   }
 
   navigateToEvaluation(element: unknown) {
-    this.router.navigate([
-      `/eval/${(element as { eval_name: string }).eval_name}`,
-    ]);
+    this.router.navigate([`/eval/${(element as { code: string }).code}`]);
   }
   navigateToForm(element: unknown) {
-    this.router.navigate([
-      `/fill-form/${(element as { eval_name: string }).eval_name}`,
-    ]);
+    this.router.navigate([`/fill-form/${(element as { code: string }).code}`]);
   }
 }

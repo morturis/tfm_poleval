@@ -30,11 +30,6 @@ export class LoginService {
       loginInfo
     );
 
-    loginObservable.subscribe((result) => {
-      this.localStorage.setObject('token', result.token);
-      this.localStorage.setObject('username', result.username);
-    });
-
     return loginObservable;
   }
 
@@ -43,11 +38,6 @@ export class LoginService {
       `${baseUrl}:${basePort}/user/register`,
       loginInfo
     );
-
-    loginObservable.subscribe((result) => {
-      this.localStorage.setObject('token', result.token);
-      this.localStorage.setObject('username', result.username);
-    });
 
     return loginObservable;
   }

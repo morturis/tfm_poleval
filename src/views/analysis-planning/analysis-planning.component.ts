@@ -340,7 +340,7 @@ export class AnalysisPlanningComponent extends DynamicFormView {
 
     //Whenever I make a change to this form, I save it in the storage
     this.form.valueChanges.subscribe((val) => {
-      this.evalService.update(val);
+      this.evalService.update(val).subscribe();
     });
 
     //Whenever I enter this form, I check for previously saved values

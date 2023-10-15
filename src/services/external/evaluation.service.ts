@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Evaluation } from 'src/app/types/Evaluation';
 import { AnyFieldConfig } from 'src/app/types/FieldConfig';
+import { NO_TOAST } from '../http-interceptor.service';
 import { StorageService } from '../storage.service';
 
 const baseUrl = 'http://localhost';
@@ -142,6 +143,15 @@ export class EvaluationService {
     return this.http.get<Evaluation>(
       `${baseUrl}:${basePort}/evaluation/${code}`,
       { headers }
+    );
+  }
+
+  checkExistence(code: string): Observable<Evaluation> {
+    const token = this.localStorage.getObject<string>('token');
+    const headers: HttpHeaders = new HttpHeaders().set('x-access-token', token);
+    return this.http.get<Evaluation>(
+      `${baseUrl}:${basePort}/evaluation/${code}/exists`,
+      { headers, context: new HttpContext().set(NO_TOAST, true) }
     );
   }
 

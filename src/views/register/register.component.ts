@@ -5,6 +5,7 @@ import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { InputConfig } from 'src/app/types/FieldConfig';
 import { LoginService } from 'src/services/external/login.service';
+import { StorageService } from 'src/services/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -46,7 +47,8 @@ export class RegisterComponent extends DynamicFormView {
   constructor(
     fb: FormBuilder,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private localStorage: StorageService
   ) {
     super(fb);
 
@@ -55,8 +57,10 @@ export class RegisterComponent extends DynamicFormView {
 
   async register() {
     const formValue = this.form.value;
-    this.loginService
-      .register(formValue)
-      .subscribe((res) => this.router.navigate(['']));
+    this.loginService.login(formValue).subscribe((res) => {
+      this.localStorage.setObject('token', res.token);
+      this.localStorage.setObject('username', res.username);
+      this.router.navigate(['']);
+    });
   }
 }

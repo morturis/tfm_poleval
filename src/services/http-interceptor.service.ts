@@ -1,4 +1,5 @@
 import {
+  HttpContextToken,
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
@@ -10,6 +11,8 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { TranslatePipe } from 'src/pipes/translate.pipe';
+
+export const NO_TOAST = new HttpContextToken<boolean>(() => false);
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +27,9 @@ export class HttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const shouldSkipInterceptor = req.context.get(NO_TOAST);
+    if (shouldSkipInterceptor) return next.handle(req);
+
     return next.handle(req).pipe(
       tap((evt) => {
         //TODO

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Stage } from 'src/app/types/Stage';
+import { EvaluationService } from 'src/services/external/evaluation.service';
 import { AnalysisPlanningComponent } from '../analysis-planning/analysis-planning.component';
 import { EndEvalComponent } from '../end-eval/end-eval.component';
 import { EvalDesignComponent } from '../eval-design/eval-design.component';
@@ -69,9 +70,11 @@ export class EvalComponent {
   ];
 
   code!: string | undefined | null;
-  constructor(private route: ActivatedRoute) //private router: Router,
-  //private evalService: EvaluationService
-  {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private evalService: EvaluationService
+  ) {
     this.code = this.route.snapshot.paramMap.get('code'); //defaults to null
     while (!this.code) {
       //Generate a new code
@@ -79,22 +82,22 @@ export class EvalComponent {
         .slice(2, 7)
         .toUpperCase();
 
-      /*
       //If the code already exists, continue
-      this.evalService.get(this.code).subscribe(
-        (foundEval) => {},
-        (err) => {
-          err.code === 404
-            ? this.evalService.create({ code: this.code as string })
-            : (this.code = null);
-
-          this.router.navigate([`/eval/${this.code}`]);
-        },
-        () => {
+      this.evalService.checkExistence(this.code).subscribe(
+        (foundEval) => {
           this.code = null;
+        },
+        (error) => {
+          if (error.status != 404) {
+            this.code = null;
+            return;
+          }
+
+          this.evalService
+            .create({ code: this.code as string })
+            .subscribe((res) => this.router.navigate([`/eval/${this.code}`]));
         }
       );
-      */
     }
   }
 }
