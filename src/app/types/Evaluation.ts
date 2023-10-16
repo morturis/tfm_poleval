@@ -36,6 +36,7 @@ type Measurement = {
 type Indicator = {
   name: string;
   measurements: Measurement[];
+  targetValue?: string;
 };
 
 type Intervention = {
@@ -45,6 +46,10 @@ type Intervention = {
   otherInterventions: string;
   blockers: string;
   indicators: Indicator[];
+};
+type ConclusionRecomendation = {
+  text: string;
+  reason: string;
 };
 
 export type Evaluation = {
@@ -67,6 +72,9 @@ export type Evaluation = {
   techniques: ToolTechnique[];
   criteria: Criteria[];
   indicators: Indicator[];
+
+  conclusions: ConclusionRecomendation[];
+  recomendations: ConclusionRecomendation[];
 };
 
 export type OldEvaluation = {

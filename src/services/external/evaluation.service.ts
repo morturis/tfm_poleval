@@ -240,9 +240,10 @@ export class EvaluationService {
         type: 'other' as 'leader' | 'member' | 'other',
       };
     });
+    const mappedDelimitations = undefined;
 
     const mappedTools = Object.values(
-      e['analysis-planning']?.['tools_table'] || []
+      e['eval-design']?.['tools_table'] || []
     ).map((tool) => {
       return {
         name: (tool as any).tools_name || undefined,
@@ -251,7 +252,7 @@ export class EvaluationService {
       };
     });
     const mappedTechniques = Object.values(
-      e['analysis-planning']?.['techniques_table'] || []
+      e['eval-design']?.['techniques_table'] || []
     ).map((technique) => {
       return {
         name: (technique as any).tools_name || undefined,
@@ -259,18 +260,66 @@ export class EvaluationService {
         useCase: (technique as any).tools_use_case || undefined,
       };
     });
-    const mappedDelimitations = undefined;
+    const mappedCriteria = Object.values(
+      e['eval-design']?.['criterion_table'] || []
+    ).map((criteria) => {
+      return {
+        text: (criteria as any).criterion_description || undefined,
+      };
+    });
+    const mappedEvalIndicators = Object.values(
+      e['eval-design']?.['eval_indicators_table'] || []
+    ).map((indicator) => {
+      return {
+        name: (indicator as any).eval_indicator_name,
+        targetValue: (indicator as any).eval_indicators_startvalue, //TODO remove
+      };
+    });
+
+    const mappedInterventionIndicators = Object.values(
+      e['intervention-context']?.['intervention_indicators'] || []
+    ).map((indicator) => {
+      return {
+        name: (indicator as any).intervention_indicators_name,
+        targetValue: (indicator as any).intervention_indicators_targetvalue,
+      };
+    });
+
+    const mappedConclusions = Object.values(
+      e['eval-conclusions']?.['conclusion_table'] || []
+    ).map((conclusion) => {
+      return {
+        text: (conclusion as any).conclusion_description,
+        reason: (conclusion as any).conclusion_based_on,
+      };
+    });
+    const mappedRecomendations = Object.values(
+      e['eval-conclusions']?.['recomendation_table'] || []
+    ).map((reason) => {
+      return {
+        text: (reason as any).recomendation_description,
+        reason: (reason as any).recomendation_based_on,
+      };
+    });
 
     const result = {
       code: e.code,
 
       intervention: {
         name: e['analysis-planning']?.['intervention_name'] || undefined,
-        problemToFix: 'string;' || undefined,
-        strategicPlan: ' string;' || undefined,
-        otherInterventions: 'string;' || undefined,
-        blockers: 'string;' || undefined,
-        indicators: [],
+        problemToFix:
+          e['intervention-context']?.['intervention_problem_to_solve'] ||
+          undefined,
+        strategicPlan:
+          e['intervention-context']?.['intervention_upper_level_strategy'] ||
+          undefined,
+        otherInterventions:
+          e['intervention-context']?.['intervention_simultaneous'] || undefined,
+        blockers:
+          e['intervention-context']?.[
+            'intervention_unexpected_interruptions'
+          ] || undefined,
+        indicators: [...mappedInterventionIndicators],
       },
 
       org: e['analysis-planning']?.['evaluation_org'] || undefined,
@@ -292,12 +341,21 @@ export class EvaluationService {
 
       tools: [...mappedTools],
       techniques: [...mappedTechniques],
-      criteria: [],
-      indicators: [],
+      criteria: [...mappedCriteria],
+      indicators: [...mappedEvalIndicators],
+
+      conclusions: [...mappedConclusions],
+      recomendations: [...mappedRecomendations],
     };
 
     Object.keys(result).map((k) => {
       if (!result[k]) delete result[k];
+    });
+
+    Object.keys(result).map((k) => {
+      Object.keys(result[k]).map((k2) => {
+        if (!result[k][k2]) delete result[k][k2];
+      });
     });
     return result as any;
   }
@@ -380,6 +438,83 @@ export class EvaluationService {
         evaluation_objective: e.goal,
         evaluation_reasoning: e.reason,
         evaluation_utility: e.utility,
+      },
+      'intervention-context': {
+        intervention_problem_to_solve: e.intervention.problemToFix,
+        intervention_upper_level_strategy: e.intervention.strategicPlan,
+        intervention_simultaneous: e.intervention.otherInterventions,
+        intervention_unexpected_interruptions: e.intervention.blockers,
+        intervention_indicators: e.intervention.indicators.reduce(
+          (accum, curr, index) => {
+            return {
+              ...accum,
+              [index]: {
+                intervention_indicators_name: curr.name,
+                intervention_indicators_targetvalue: curr.targetValue,
+              },
+            };
+          },
+          {}
+        ),
+      },
+      'eval-design': {
+        tools_table: e.tools.reduce((accum, curr, index) => {
+          return {
+            ...accum,
+            [index]: {
+              tools_name: curr.name,
+              tools_use_case: curr.useCase,
+              tools_brief_description: curr.description,
+            },
+          };
+        }, {}),
+
+        technique_table: e.techniques.reduce((accum, curr, index) => {
+          return {
+            ...accum,
+            [index]: {
+              technique_name: curr.name,
+              technique_use_case: curr.useCase,
+              technique_brief_description: curr.description,
+            },
+          };
+        }, {}),
+        criterion_table: e.criteria.reduce((accum, curr, index) => {
+          return {
+            ...accum,
+            [index]: {
+              criterion_description: curr.text,
+            },
+          };
+        }, {}),
+        eval_indicators_table: e.indicators.reduce((accum, curr, index) => {
+          return {
+            ...accum,
+            [index]: {
+              eval_indicator_name: curr.name,
+            },
+          };
+        }, {}),
+      },
+      'eval-conclusions': {
+        conclusion_table: e.conclusions.reduce((accum, curr, index) => {
+          return {
+            ...accum,
+            [index]: {
+              conclusion_based_on: curr.reason,
+              conclusion_description: curr.text,
+            },
+          };
+        }, {}),
+        recomendation_table: e.recomendations.reduce((accum, curr, index) => {
+          return {
+            ...accum,
+            [index]: {
+              recomendation_based_on: curr.reason,
+              recomendation_description: curr.text,
+            },
+          };
+        }, {}),
       },
     };
 
