@@ -134,8 +134,10 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.other_participants_role_info]:
       'Rol o cargo de la persona en el proceso de evaluación.',
 
-    [PhraseKey.tools_table]: 'Herramientas o técnicas a utilizar',
-    [PhraseKey.tool_unit]: 'herramienta o técnica',
+    [PhraseKey.tools_table]: 'Herramientas a utilizar',
+    [PhraseKey.tool_unit]: 'herramienta',
+    [PhraseKey.techniques_table]: 'Técnicas a utilizar',
+    [PhraseKey.technique_unit]: 'técnica',
     [PhraseKey.tools_name]: 'Nombre',
     [PhraseKey.tools_name_placeholder]: 'e.g. Análisis DAFO',
     [PhraseKey.tools_name_info]: '',
@@ -203,7 +205,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
 
     [PhraseKey.intervention_indicators]:
       'Indicadores nativos de la intervención',
-    [PhraseKey.indicator_unit]: 'indicador de la intervención',
+    [PhraseKey.indicator_unit]: 'indicador',
     [PhraseKey.intervention_indicators_info]:
       'Estos son indicadores mencionados explícitamente en el texto de la intervención.',
     [PhraseKey.intervention_indicators_name]: 'Indicador',
@@ -270,6 +272,18 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
 
     [PhraseKey.available_eval_table]: 'Evaluaciones para editar',
     [PhraseKey.available_form_table]: 'Formularios disponibles',
+    [PhraseKey.state]: 'Estado',
+    [PhraseKey.httpError_no_response_message]:
+      'El servidor ha tardado demasiado en responder',
+    [PhraseKey.httpError_no_response_title]: 'Sin respuesta',
+    [PhraseKey.httpError_bad_request]: 'Error en la petición',
+    [PhraseKey.httpError_unauthorized]: 'No autorizado',
+    [PhraseKey.httpError_not_found]: 'No se ha podido encontrar',
+    [PhraseKey.httpError_conflict_title]: 'Conflicto',
+    [PhraseKey.FIRST_STEPS]: 'Primeros pasos',
+    [PhraseKey.DESIGNING_FORM]: 'Diseñando formulario',
+    [PhraseKey.ACCEPTING_RESPONSES]: 'Se aceptan respuestas',
+    [PhraseKey.CONCLUSIONS]: 'Conclusiones',
   },
   EN: {
     [PhraseKey.thank_you]: 'Thank you! The evaluation is now complete',
@@ -403,8 +417,10 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.other_participants_role_info]:
       'Role or position of the person within the evaluation team.',
 
-    [PhraseKey.tools_table]: 'Tools or techniques to be used',
-    [PhraseKey.tool_unit]: 'tool or technique',
+    [PhraseKey.tools_table]: 'Tools to be used',
+    [PhraseKey.tool_unit]: 'tool',
+    [PhraseKey.techniques_table]: 'Techniques to be used',
+    [PhraseKey.technique_unit]: 'technique',
     [PhraseKey.tools_name]: 'Name',
     [PhraseKey.tools_name_placeholder]: 'e.g. SWOT analysis',
     [PhraseKey.tools_name_info]: '',
@@ -472,7 +488,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
 
     [PhraseKey.intervention_indicators]:
       'Indicators native to the intervention',
-    [PhraseKey.indicator_unit]: 'intervention indicator',
+    [PhraseKey.indicator_unit]: 'indicator',
     [PhraseKey.intervention_indicators_info]:
       'These are indicators that are explicitly mentioned in the text of the intervention.',
     [PhraseKey.intervention_indicators_name]: 'Indicator',
@@ -539,5 +555,17 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
 
     [PhraseKey.available_eval_table]: 'Evaluations for editing',
     [PhraseKey.available_form_table]: 'Available forms',
+    [PhraseKey.state]: 'State',
+    [PhraseKey.httpError_no_response_message]:
+      'The server took too long to respond',
+    [PhraseKey.httpError_no_response_title]: 'No response',
+    [PhraseKey.httpError_bad_request]: 'Bad request',
+    [PhraseKey.httpError_unauthorized]: 'Unauthorized',
+    [PhraseKey.httpError_not_found]: 'Not found',
+    [PhraseKey.httpError_conflict_title]: 'Conflict',
+    [PhraseKey.FIRST_STEPS]: 'First steps',
+    [PhraseKey.DESIGNING_FORM]: 'Designing the questionnaire',
+    [PhraseKey.ACCEPTING_RESPONSES]: 'Accepting responses',
+    [PhraseKey.CONCLUSIONS]: 'Conclusion',
   },
 };

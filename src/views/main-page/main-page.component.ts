@@ -5,6 +5,7 @@ import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
 import { Permissions } from 'src/app/types/Permissions.enum';
+import { TranslatePipe } from 'src/pipes/translate.pipe';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 import { LoginService } from 'src/services/external/login.service';
 
@@ -48,6 +49,19 @@ export class MainPageComponent extends DynamicFormView {
           ...CustomErrorMessages.required,
         },
       },
+      {
+        header: 'state',
+        field: 'state',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'state_placeholder',
+        info: 'state_info',
+        validators: [Validators.required],
+        errorMessages: {
+          ...CustomErrorMessages.required,
+        },
+      },
     ],
   };
   availableFormConfig: TableConfig = {
@@ -84,6 +98,19 @@ export class MainPageComponent extends DynamicFormView {
           ...CustomErrorMessages.required,
         },
       },
+      {
+        header: 'state',
+        field: 'state',
+        fieldType: 'input',
+        defaultValue: undefined,
+        viewOnly: false,
+        placeholder: 'state_placeholder',
+        info: 'state_info',
+        validators: [Validators.required],
+        errorMessages: {
+          ...CustomErrorMessages.required,
+        },
+      },
     ],
   };
 
@@ -96,7 +123,8 @@ export class MainPageComponent extends DynamicFormView {
     fb: FormBuilder,
     public loginService: LoginService,
     private evalService: EvaluationService,
-    private router: Router
+    private router: Router,
+    private translate: TranslatePipe
   ) {
     super(fb);
     this.buildForm(this.fieldsConfig);
@@ -109,6 +137,22 @@ export class MainPageComponent extends DynamicFormView {
     //Whenever I enter this form, I check for previously saved values
     const observable = this.evalService.getByLoggedInUser();
     observable.subscribe((userEvals) => {
+      userEvals[Permissions.EDIT_EVAL] = Object.values(
+        userEvals[Permissions.EDIT_EVAL]
+      ).map((ev) => {
+        return {
+          ...ev,
+          state: this.translate.transform(ev['state']),
+        };
+      });
+      userEvals[Permissions.FILL_FORM] = Object.values(
+        userEvals[Permissions.FILL_FORM]
+      ).map((ev) => {
+        return {
+          ...ev,
+          state: this.translate.transform(ev['state']),
+        };
+      });
       this.form.patchValue(
         {
           [this.availableEvalConfig.field]: userEvals[Permissions.EDIT_EVAL],

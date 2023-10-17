@@ -113,6 +113,8 @@ export enum PhraseKey {
 
   tools_table = 'tools_table',
   tool_unit = 'tool_unit',
+  techniques_table = 'techniques_table',
+  technique_unit = 'technique_unit',
   tools_name = 'tools_name',
   tools_name_placeholder = 'tools_name_placeholder',
   tools_name_info = 'tools_name_info',
@@ -224,4 +226,17 @@ export enum PhraseKey {
 
   available_eval_table = 'available_eval_table',
   available_form_table = 'available_form_table',
+  state = 'state',
+
+  httpError_no_response_message = 'httpError_no_response_message',
+  httpError_no_response_title = 'httpError_no_response_title',
+  httpError_bad_request = 'httpError_bad_request',
+  httpError_unauthorized = 'httpError_unauthorized',
+  httpError_not_found = 'httpError_not_found',
+  httpError_conflict_title = 'httpError_conflict_title',
+
+  FIRST_STEPS = 'FIRST_STEPS',
+  DESIGNING_FORM = 'DESIGNING_FORM',
+  ACCEPTING_RESPONSES = 'ACCEPTING_RESPONSES',
+  CONCLUSIONS = 'CONCLUSIONS',
 }
