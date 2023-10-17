@@ -39,4 +39,12 @@ export interface DropdownConfig extends BaseFieldConfig {
   multiple?: boolean;
 }
 
-export type AnyFieldConfig = InputConfig | TableConfig | DropdownConfig;
+export interface OtherFieldConfig extends BaseFieldConfig {
+  fieldType: 'other';
+}
+
+export type AnyFieldConfig =
+  | InputConfig
+  | TableConfig
+  | DropdownConfig
+  | OtherFieldConfig;

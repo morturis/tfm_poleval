@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
-import { CustomValidators } from 'src/app/types/CustomValidators';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
-import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
+import { AnyFieldConfig } from 'src/app/types/FieldConfig';
+import { allEvaluationFormFields } from 'src/evaluation-forms/all';
+import { finalReportFields } from 'src/evaluation-forms/final-report';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 
 @Component({
@@ -16,74 +16,7 @@ export class FinalReportComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
   form_code_to_show!: string;
 
-  conclusionsTableConfig: TableConfig = {
-    header: 'conclusion_table',
-    field: 'conclusion_table',
-    fieldType: 'table',
-    itemName: 'conclusion_unit',
-    canAddRemove: true,
-    columns: [
-      {
-        header: 'conclusion_description',
-        field: 'conclusion_description',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'conclusion_description_placeholder',
-        info: 'conclusion_description_info',
-        validators: [Validators.required],
-        errorMessages: { ...CustomErrorMessages.required },
-      },
-      {
-        header: 'conclusion_based_on',
-        field: 'conclusion_based_on',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'conclusion_based_on_placeholder',
-        info: 'conclusion_based_on_info',
-      },
-    ],
-    info: 'conclusion_info',
-    validators: [CustomValidators.requiredTable],
-    errorMessages: { ...CustomErrorMessages.required },
-  };
-
-  recomendationsTableConfig: TableConfig = {
-    header: 'recomendation_table',
-    field: 'recomendation_table',
-    fieldType: 'table',
-    itemName: 'recomendation_unit',
-    canAddRemove: true,
-    columns: [
-      {
-        header: 'recomendation_description',
-        field: 'recomendation_description',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'recomendation_description_placeholder',
-        info: 'recomendation_description_info',
-        validators: [Validators.required],
-        errorMessages: { ...CustomErrorMessages.required },
-      },
-      {
-        header: 'recomendation_based_on',
-        field: 'recomendation_based_on',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'recomendation_based_on_placeholder',
-        info: 'recomendation_based_on_info',
-      },
-    ],
-    info: 'recomendation_info',
-  };
-
-  override fieldsConfig: AnyFieldConfig[] = [
-    this.conclusionsTableConfig,
-    this.recomendationsTableConfig,
-  ];
+  override fieldsConfig: AnyFieldConfig[] = finalReportFields;
 
   formQuestions!: (AnyFieldConfig & {
     responses?: string[];
@@ -96,7 +29,7 @@ export class FinalReportComponent extends DynamicFormView {
     private route: ActivatedRoute
   ) {
     super(fb);
-    this.buildForm(this.fieldsConfig);
+    this.buildForm(allEvaluationFormFields);
   }
 
   ngOnInit() {
@@ -113,9 +46,7 @@ export class FinalReportComponent extends DynamicFormView {
 
     //Whenever I make a change to this form, I save it in the storage
     this.form.valueChanges.subscribe((val) => {
-      this.evalService
-        .update({ code: formCode, ['eval-conclusions']: val })
-        .subscribe((r) => r);
+      this.evalService.update({ code: formCode, ...val }).subscribe((r) => r);
     });
 
     //check if the form code has an evaluation
@@ -123,12 +54,9 @@ export class FinalReportComponent extends DynamicFormView {
       //load conclusions and recomendations
       const transformedValue =
         this.evalService.transformFromApiObject(evaluation);
-      this.form.patchValue(
-        transformedValue['eval-conclusions'] as Record<string, any>,
-        {
-          emitEvent: true,
-        }
-      );
+      this.form.patchValue(transformedValue, {
+        emitEvent: true,
+      });
 
       //check if the evaluation has questions and responses
       this.formQuestions = evaluation.form || [];

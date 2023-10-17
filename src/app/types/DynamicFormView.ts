@@ -36,15 +36,21 @@ export abstract class DynamicFormView {
   }
 
   buildForm(fieldsConfig: AnyFieldConfig[]) {
-    this.fieldsConfig = fieldsConfig;
+    const localFieldsConfig = [...fieldsConfig];
+    localFieldsConfig.map((field) => {
+      if (!this.fieldsConfig.includes(field)) {
+        delete field.validators;
+      }
+      return field;
+    });
 
     this.form = this.fb.group(
-      this.fieldsConfig.reduce((accum, field: AnyFieldConfig) => {
+      localFieldsConfig.reduce((accum, field: AnyFieldConfig) => {
         return {
           ...accum,
           [field.field]: [field.defaultValue, { validators: field.validators }],
         };
-      }, {} as any)
+      }, {})
     );
   }
 }

@@ -37,6 +37,7 @@ type Indicator = {
   name: string;
   measurements: Measurement[];
   targetValue?: string;
+  type: 'intervention' | 'evaluation';
 };
 
 type Intervention = {
@@ -45,7 +46,6 @@ type Intervention = {
   strategicPlan: string;
   otherInterventions: string;
   blockers: string;
-  indicators: Indicator[];
 };
 type ConclusionRecomendation = {
   text: string;
@@ -54,6 +54,7 @@ type ConclusionRecomendation = {
 
 export type Evaluation = {
   code: string;
+
   intervention: Intervention;
 
   org: string;
@@ -79,11 +80,26 @@ export type Evaluation = {
 
 export type OldEvaluation = {
   code: string;
-  form?: AnyFieldConfig[];
-  responses?: Record<string, string>[];
-  'analysis-planning': Record<string, any>;
-  'intervention-context': Record<string, any>;
-  'eval-design': Record<string, any>;
-  'field-work': Record<string, any>;
-  'eval-conclusions': Record<string, any>;
+  evaluation_utility: string;
+  evaluation_reasoning: string;
+  evaluation_objective: string;
+  intervention_life_cycle: string;
+  evaluation_org: string;
+  intervention_unexpected_interruptions: string;
+  intervention_simultaneous: string;
+  intervention_upper_level_strategy: string;
+  intervention_problem_to_solve: string;
+  intervention_name: string;
+  recomendation_table: any;
+  conclusion_table: any;
+  intervention_indicators: any;
+  eval_indicators_table: any;
+  criterion_table: any;
+  techniques_table: any;
+  tools_table: any;
+  other_participants_table: any;
+  team_member_table: any;
+  team_manager_table: any;
+  responses: any;
+  form: any;
 };

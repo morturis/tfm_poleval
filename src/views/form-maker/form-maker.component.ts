@@ -6,11 +6,13 @@ import {
 import { Component, EventEmitter, Output, Type } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import {
   AnyFieldConfig,
   DropdownConfig,
   InputConfig,
 } from 'src/app/types/FieldConfig';
+import { allEvaluationFormFields } from 'src/evaluation-forms/all';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -25,7 +27,7 @@ class DragDropDivConfig<T> {
   templateUrl: './form-maker.component.html',
   styleUrls: ['./form-maker.component.scss'],
 })
-export class FormMakerComponent {
+export class FormMakerComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
 
   alreadyHasResponses: boolean = true;
@@ -62,9 +64,13 @@ export class FormMakerComponent {
   ];
 
   constructor(
+    fb: FormBuilder,
     private evalService: EvaluationService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    super(fb);
+    this.buildForm(allEvaluationFormFields);
+  }
 
   ngOnInit() {
     this.outputEvent.emit({ status: 'INVALID' });
@@ -78,6 +84,11 @@ export class FormMakerComponent {
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages
     this.evalService.get(formCode).subscribe((evaluation) => {
+      const transformedValue =
+        this.evalService.transformFromApiObject(evaluation);
+      this.form.patchValue(transformedValue, {
+        emitEvent: true,
+      });
       //Check if this form already has responses
       this.alreadyHasResponses = !!evaluation.responses?.length; //If 0 or undefined, this will be false, else it will be true
 
@@ -182,8 +193,9 @@ export class FormMakerComponent {
       const formCode = this.route.snapshot.paramMap.get('code');
       if (!formCode)
         throw new Error('Please create a new evaluation from the beginning'); //should never trigger
+      const currentEval = this.form.value;
       this.evalService
-        .update({ code: formCode, form: createdForm })
+        .update({ ...currentEval, code: formCode, form: createdForm })
         .subscribe((res) => this.outputEvent.emit({ status: 'VALID' }));
 
       //Tell parent component we are valid to go to next step
