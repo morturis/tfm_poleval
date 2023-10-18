@@ -182,7 +182,7 @@ export class EvaluationService {
 
     const result = {
       code: e.code,
-
+      published: e.published,
       intervention: {
         name: e?.['intervention_name'] || undefined,
         problemToFix: e?.['intervention_problem_to_solve'] || undefined,
@@ -216,15 +216,6 @@ export class EvaluationService {
       recomendations: [...mappedRecomendations],
     };
 
-    Object.keys(result).map((k) => {
-      if (!result[k]) delete result[k];
-    });
-
-    Object.keys(result).map((k) => {
-      Object.keys(result[k]).map((k2) => {
-        if (!result[k][k2]) delete result[k][k2];
-      });
-    });
     return result as any;
   }
 
@@ -233,6 +224,7 @@ export class EvaluationService {
   ): Partial<OldEvaluation> & Pick<OldEvaluation, 'code'> {
     const result = {
       code: e.code,
+      published: e.published,
       form: e.form,
       responses: e.responses,
       //analysis planning
@@ -368,9 +360,6 @@ export class EvaluationService {
       }, {}),
     };
 
-    Object.keys(result).map((k) => {
-      if (!result[k]) delete result[k];
-    });
     return result;
   }
 }

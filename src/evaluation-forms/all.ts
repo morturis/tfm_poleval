@@ -19,6 +19,11 @@ const stateField: OtherFieldConfig = {
   header: 'state',
   field: 'state',
 };
+const publishedField: OtherFieldConfig = {
+  fieldType: 'other',
+  header: 'published',
+  field: 'published',
+};
 export const allEvaluationFormFields = [
   ...analysisPlanningFields,
   ...interventionContextFields,
@@ -27,4 +32,5 @@ export const allEvaluationFormFields = [
   questionnaireField,
   responsesField,
   stateField,
+  publishedField,
 ];

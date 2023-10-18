@@ -54,7 +54,7 @@ type ConclusionRecomendation = {
 
 export type Evaluation = {
   code: string;
-
+  published: boolean;
   intervention: Intervention;
 
   org: string;
@@ -62,6 +62,7 @@ export type Evaluation = {
   goal: string;
   reason: string;
   utility: string;
+
   delimitation: Delimitation;
 
   teamMembers: EvalTeamMember[];
@@ -80,6 +81,7 @@ export type Evaluation = {
 
 export type OldEvaluation = {
   code: string;
+  published:boolean;
   evaluation_utility: string;
   evaluation_reasoning: string;
   evaluation_objective: string;

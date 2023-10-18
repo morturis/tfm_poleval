@@ -1,15 +1,25 @@
 <div class="ms-4 me-4">
   <!--TODO make centered -->
   <p>{{ "make_code_available_text" | translate }}</p>
-  <p>
-    <b>{{ form_code_to_show }}</b>
-  </p>
 
-  <button mat-button class="mb-3" (click)="this.downloadCsv()">
-    {{ "so_far_there_are" | translate }}{{ " " }}
-    <b>{{ this.evaluation?.responses?.length || "0" }}</b>
-    {{ " " }}{{ "responses_in_total" | translate }}
-  </button>
+  <div class="mb-2">
+    <b class="align-middle">{{ form_code_to_show }}</b>
+
+    <button mat-button class="ms-2" (click)="this.changePublicationStatus()">
+      {{
+        this.form.value.published == true
+          ? ("press_to_unpublish" | translate)
+          : ("press_to_publish" | translate)
+      }}
+    </button>
+  </div>
+  <div>
+    <button mat-button class="mb-3" (click)="this.downloadCsv()">
+      {{ "so_far_there_are" | translate }}{{ " " }}
+      <b>{{ this.form.value?.responses?.length || "0" }}</b>
+      {{ " " }}{{ "responses_in_total" | translate }}
+    </button>
+  </div>
 
   <p>{{ "field_work_phase_description" | translate }}</p>
 </div>

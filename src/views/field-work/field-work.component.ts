@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Evaluation } from 'src/app/types/Evaluation';
+import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { AnyFieldConfig } from 'src/app/types/FieldConfig';
+import { allEvaluationFormFields } from 'src/evaluation-forms/all';
 import { ExportService } from 'src/services/export.service';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 
@@ -10,10 +12,9 @@ import { EvaluationService } from 'src/services/external/evaluation.service';
   templateUrl: './field-work.component.html',
   styleUrls: ['./field-work.component.scss'],
 })
-export class FieldWorkComponent {
+export class FieldWorkComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
   form_code_to_show!: string;
-  evaluation?: Evaluation;
 
   formQuestions!: (AnyFieldConfig & {
     responses?: string[];
@@ -21,10 +22,14 @@ export class FieldWorkComponent {
   })[];
 
   constructor(
+    fb: FormBuilder,
     private route: ActivatedRoute,
     private evalService: EvaluationService,
     private exportAs: ExportService
-  ) {}
+  ) {
+    super(fb);
+    this.buildForm(allEvaluationFormFields);
+  }
 
   ngOnInit() {
     this.outputEvent.emit({ status: 'VALID' }); //so I can always go to the next step
@@ -40,6 +45,11 @@ export class FieldWorkComponent {
 
     //check if the form code has an evaluation
     this.evalService.get(form_code).subscribe((evaluation) => {
+      const transformedValue =
+        this.evalService.transformFromApiObject(evaluation);
+      this.form.patchValue(transformedValue, {
+        emitEvent: true,
+      });
       //check if the evaluation has questions and responses
       this.formQuestions = evaluation.form || [];
       if (!evaluation.responses) return;
@@ -83,14 +93,15 @@ export class FieldWorkComponent {
 
   getNumberOfResponses(config: AnyFieldConfig): number {
     let numberOfResponses = 0;
-    this.evaluation?.responses?.map((resp) => {
+    this.form.value.responses?.map((resp) => {
       if (resp[config.field]) numberOfResponses++;
     });
     return numberOfResponses;
   }
 
   downloadCsv() {
-    if (!this.evaluation?.responses?.length) return;
+    const evaluation = this.form.value;
+    if (!evaluation.responses?.length) return;
 
     const fieldToHeaderMap = new Map<string, string>();
     this.formQuestions.forEach((question) => {
@@ -98,7 +109,7 @@ export class FieldWorkComponent {
     });
 
     const responsesByHeader: Record<string, any>[] = [];
-    this.evaluation.responses.forEach((response) => {
+    evaluation.responses.forEach((response) => {
       const transformedResponse: Record<string, any> = {};
       Object.entries(response).forEach(([questionField, responseValue]) => {
         transformedResponse[fieldToHeaderMap.get(questionField) || ''] =
@@ -109,5 +120,21 @@ export class FieldWorkComponent {
     });
 
     this.exportAs.csv(responsesByHeader);
+  }
+
+  changePublicationStatus() {
+    const currentEval = this.form.value;
+    currentEval.published = !currentEval.published;
+
+    this.evalService
+      .update({ ...currentEval, code: this.form_code_to_show })
+      .subscribe((evaluation) => {
+        const transformedValue =
+          this.evalService.transformFromApiObject(evaluation);
+
+        this.form.patchValue(transformedValue, {
+          emitEvent: true,
+        });
+      });
   }
 }

@@ -176,6 +176,8 @@ export enum PhraseKey {
   save_response = 'save_response',
   responses_in_total = 'responses_in_total',
   so_far_there_are = 'so_far_there_are',
+  press_to_publish = 'press_to_publish',
+  press_to_unpublish = 'press_to_unpublish',
 
   //stages
   first_stage = 'first_stage',

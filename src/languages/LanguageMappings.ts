@@ -155,6 +155,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'Adicionalmente, esta pantalla permite visualizar los resultados de las respuestas hasta el momento:',
     [PhraseKey.responses_in_total]: 'respuestas en total',
     [PhraseKey.so_far_there_are]: 'Pulse aquí para descargar (CSV) las',
+    [PhraseKey.press_to_publish]:
+      'Pulse aquí para hacer el cuestionario público',
+    [PhraseKey.press_to_unpublish]: 'Despublicar el cuestionario',
 
     //Form builder
     [PhraseKey.form_already_has_responses]:
@@ -437,7 +440,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.field_work_phase_description]:
       'Aditionally, this screen shows a breakdown of the responses so far',
     [PhraseKey.responses_in_total]: 'responses in total',
-    [PhraseKey.so_far_there_are]: 'Push here to download (CSV) the current',
+    [PhraseKey.so_far_there_are]: 'Press here to download (CSV) the current',
+    [PhraseKey.press_to_publish]: 'Press here to make the questionnaire public',
+    [PhraseKey.press_to_unpublish]: 'Unpublish the questionnaire',
 
     //Form builder
     [PhraseKey.form_already_has_responses]:
