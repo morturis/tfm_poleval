@@ -29,6 +29,7 @@ export interface TableConfig extends BaseFieldConfig {
   columns: InputConfig[];
 
   action?: boolean;
+  actionAvailability?: (obj: any) => boolean;
 }
 
 export interface DropdownConfig extends BaseFieldConfig {

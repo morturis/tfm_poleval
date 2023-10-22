@@ -71,6 +71,7 @@ export class MainPageComponent extends DynamicFormView {
     itemName: 'eval_unit',
     canAddRemove: false,
     action: true,
+    actionAvailability: (element: { published: boolean }) => !element.published,
     columns: [
       {
         header: 'code',

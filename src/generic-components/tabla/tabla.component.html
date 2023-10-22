@@ -24,6 +24,11 @@
     <mat-cell *matCellDef="let element" class="d-flex justify-content-center">
       <button
         mat-button
+        [disabled]="
+          this.config.actionAvailability
+            ? this.config.actionAvailability(element)
+            : false
+        "
         style="width: auto"
         (click)="this.actionEvent.emit(element)"
       >

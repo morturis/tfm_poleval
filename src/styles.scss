@@ -81,3 +81,7 @@ body {
   flex: 0 0 8%;
   min-width: auto;
 }
+
+.mdc-button:disabled {
+  opacity: 50%;
+}
