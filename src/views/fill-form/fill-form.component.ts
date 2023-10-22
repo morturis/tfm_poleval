@@ -58,10 +58,14 @@ export class FillFormComponent extends DynamicFormView {
             },
           };
         });
+        this.fieldsConfig = processedForm;
         this.buildForm(processedForm);
         return;
       },
-      (err) => this.buildForm([this.selectFormCodeInputConfig])
+      (err) => {
+        this.buildForm([this.selectFormCodeInputConfig]);
+        this.fieldsConfig = [this.selectFormCodeInputConfig];
+      }
     );
   }
 

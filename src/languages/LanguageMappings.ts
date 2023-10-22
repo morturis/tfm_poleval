@@ -283,6 +283,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.httpError_unauthorized]: 'No autorizado',
     [PhraseKey.httpError_not_found]: 'No se ha podido encontrar',
     [PhraseKey.httpError_conflict_title]: 'Conflicto',
+    [PhraseKey.httpError_unprocessable_entity_title]: 'Entidad no procesable',
+    [PhraseKey.not_published]:
+      'El formulario no está publicado. Por favor, seleccione otro o vuelva a la pantalla principal',
     [PhraseKey.FIRST_STEPS]: 'Primeros pasos',
     [PhraseKey.DESIGNING_FORM]: 'Diseñando formulario',
     [PhraseKey.ACCEPTING_RESPONSES]: 'Se aceptan respuestas',
@@ -568,6 +571,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.httpError_unauthorized]: 'Unauthorized',
     [PhraseKey.httpError_not_found]: 'Not found',
     [PhraseKey.httpError_conflict_title]: 'Conflict',
+    [PhraseKey.httpError_unprocessable_entity_title]: 'Unprocessable entity',
+    [PhraseKey.not_published]:
+      'El formulario no está publicado. Please choose a different one or return to the main page',
     [PhraseKey.FIRST_STEPS]: 'First steps',
     [PhraseKey.DESIGNING_FORM]: 'Designing the questionnaire',
     [PhraseKey.ACCEPTING_RESPONSES]: 'Accepting responses',

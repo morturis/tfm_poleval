@@ -15,7 +15,7 @@
   </button>
 </form>
 
-<form *ngIf="this.code">
+<form *ngIf="this.code && this.form">
   <!-- TODO remove translations -->
   <div *ngFor="let field of fieldsConfig">
     <app-input

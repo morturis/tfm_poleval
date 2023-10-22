@@ -80,6 +80,15 @@ export class HttpInterceptorService implements HttpInterceptor {
               this.translate.transform('httpError_conflict_title')
             );
             break;
+
+          //Used when forms are not published
+          case 422:
+            this.toastr.error(
+              this.translate.transform(err.error.error.message),
+              this.translate.transform('httpError_unprocessable_entity_title')
+            );
+            return next.handle(req);
+            break;
         }
         return of(err); //Observable of the error
       })
