@@ -2,7 +2,7 @@ import { AnyFieldConfig } from './FieldConfig';
 
 type CustomDateType = string;
 
-type Delimitation = {
+export type Delimitation = {
   other: string;
   timePeriod: {
     startDate: CustomDateType;
@@ -81,7 +81,16 @@ export type Evaluation = {
 
 export type OldEvaluation = {
   code: string;
-  published:boolean;
+  published: boolean;
+  delimitations_geo: string;
+  delimitations_time_period: {
+    start: any;
+    end: any;
+  };
+  actor_table: {
+    [k: number]: { actor_name: string };
+  };
+  other_delimitations: string;
   evaluation_utility: string;
   evaluation_reasoning: string;
   evaluation_objective: string;

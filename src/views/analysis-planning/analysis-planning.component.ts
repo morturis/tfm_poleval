@@ -39,9 +39,9 @@ export class AnalysisPlanningComponent extends DynamicFormView {
       throw new Error('Please create a new evaluation from the beginning'); //should never trigger
 
     //Whenever I make a change to this form, I save it in the storage
-    this.form.valueChanges.subscribe((val) => {
+    const saveChanges = (val) =>
       this.evalService.update({ code: formCode, ...val }).subscribe((r) => r);
-    });
+    this.whenFormChanges(saveChanges);
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages

@@ -21,5 +21,17 @@
       [control]="getFormControl(field.field)"
     >
     </app-dropdown>
+    <app-datepicker
+      *ngIf="isDatepicker(field)"
+      [fieldConfig]="field | cast : DatePickerConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-datepicker>
+    <app-datepicker
+      *ngIf="isDaterange(field)"
+      [fieldConfig]="field | cast : DatePickerConfig"
+      [group]="getFormGroup(field.field)"
+    >
+    </app-datepicker>
   </div>
 </form>

@@ -34,6 +34,7 @@ export enum PhraseKey {
 
   //Errors
   error_required_field = 'error_required_field',
+  error_date_range_both_required = 'error_date_range_both_required',
 
   //Analysis stage
   intervention_name = 'intervention_name',
@@ -83,6 +84,7 @@ export enum PhraseKey {
   delimitations_time_period = 'delimitations_time_period',
   delimitations_time_period_placeholder = 'delimitations_time_period_placeholder',
   delimitations_time_period_info = 'delimitations_time_period_info',
+  choose_date_range = 'choose_date_range',
 
   team_manager_table = 'team_manager_table',
   manager_unit = 'manager_unit',

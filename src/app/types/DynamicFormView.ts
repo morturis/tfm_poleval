@@ -1,6 +1,7 @@
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
   AnyFieldConfig,
+  DatePickerConfig,
   DropdownConfig,
   InputConfig,
   TableConfig,
@@ -14,6 +15,7 @@ export abstract class DynamicFormView {
   public TableConfig!: TableConfig;
   public InputConfig!: InputConfig;
   public DropdownConfig!: DropdownConfig;
+  public DatePickerConfig!: DatePickerConfig;
 
   constructor(private fb: FormBuilder) {}
 
@@ -31,8 +33,22 @@ export abstract class DynamicFormView {
       : undefined;
   }
 
+  isDatepicker(field: AnyFieldConfig) {
+    return field.fieldType == 'datepicker' && !field.range
+      ? (field as DatePickerConfig)
+      : undefined;
+  }
+  isDaterange(field: AnyFieldConfig) {
+    return field.fieldType == 'datepicker' && field.range
+      ? (field as DatePickerConfig)
+      : undefined;
+  }
+
   getFormControl(name: string) {
     return this.form.get(name) as FormControl;
+  }
+  getFormGroup(name: string) {
+    return this.form.get(name) as FormGroup;
   }
 
   buildForm(fieldsConfig: AnyFieldConfig[]) {
@@ -46,11 +62,32 @@ export abstract class DynamicFormView {
 
     this.form = this.fb.group(
       localFieldsConfig.reduce((accum, field: AnyFieldConfig) => {
+        if (field.fieldType === 'datepicker' && field.range) {
+          const fg = new FormGroup(
+            {
+              start: new FormControl<Date | null>(null),
+              end: new FormControl<Date | null>(null),
+            },
+            { validators: field.validators }
+          );
+          return {
+            ...accum,
+            [field.field]: fg,
+          };
+        }
+
         return {
           ...accum,
           [field.field]: [field.defaultValue, { validators: field.validators }],
         };
       }, {})
     );
+  }
+
+  whenFormChanges(fun: (val: any) => void) {
+    this.form.valueChanges.subscribe((val) => {
+      if (!this.form.valid) return;
+      fun(val);
+    });
   }
 }

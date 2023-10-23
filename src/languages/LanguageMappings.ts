@@ -28,6 +28,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.username_placeholder]: 'Introduzca su usuario aquí',
     [PhraseKey.password_placeholder]: 'Introduzca su contraseña aquí',
     [PhraseKey.error_required_field]: 'Campo obligatorio',
+    [PhraseKey.error_date_range_both_required]:
+      'Es necesario rellenar ambas fechas',
     [PhraseKey.username_info]: '',
     [PhraseKey.password_info]: '',
 
@@ -101,6 +103,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. Desde Enero 2020 hasta Febrero 2021',
     [PhraseKey.delimitations_time_period_info]:
       'Periodo de la intervención que se desea evaluar. Si se deja vacío, se asume que se desea evaluar la totalidad de la intervención.',
+    [PhraseKey.choose_date_range]: 'Periodo temporal',
 
     [PhraseKey.team_manager_table]: 'Líder a cargo de la evaluación',
     [PhraseKey.manager_unit]: 'líder',
@@ -317,6 +320,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.username_placeholder]: 'Enter your username here',
     [PhraseKey.password_placeholder]: 'Enter your password here',
     [PhraseKey.error_required_field]: 'This field is required',
+    [PhraseKey.error_date_range_both_required]: 'Both dates are required',
     [PhraseKey.username_info]: '',
     [PhraseKey.password_info]: '',
 
@@ -390,6 +394,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. From 18th of January 2020 to 19th of March 2021',
     [PhraseKey.delimitations_time_period_info]:
       'Period of the intervention we wish to evaluate. If left empty, it is assumed the entirety of the intervention period should be evaluated.',
+    [PhraseKey.choose_date_range]: 'Time period',
 
     [PhraseKey.team_manager_table]: 'Manager in charge of the evaluation',
     [PhraseKey.manager_unit]: 'manager',

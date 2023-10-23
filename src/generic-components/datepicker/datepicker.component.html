@@ -1,0 +1,65 @@
+<div class="d-inline-flex align-items-center pb-1">
+  <div class="pb-4 pe-1">
+    <label>
+      {{
+        fieldConfig.disableTranslation
+          ? fieldConfig.header
+          : (fieldConfig.header | translate)
+      }}
+    </label>
+    <label *ngIf="fieldIsRequired">*</label>
+  </div>
+
+  <!--DATE SELECTOR-->
+  <mat-form-field *ngIf="!fieldConfig.range">
+    <mat-label>{{ "choose_date" | translate }}</mat-label>
+    <!-- #docregion toggle -->
+    <input matInput [matDatepicker]="picker" [formControl]="control" />
+    <mat-hint
+      class="text-danger text-nowrap h-25"
+      *ngFor="let error of listOfErrorsSingleDate()"
+    >
+      {{ error | translate }}
+    </mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <!-- #enddocregion toggle -->
+  </mat-form-field>
+
+  <!--DATE RANGE-->
+  <mat-form-field *ngIf="fieldConfig.range">
+    <mat-label>{{ "choose_date_range" | translate }}</mat-label>
+    <mat-date-range-input [rangePicker]="picker" [formGroup]="this.group">
+      <input
+        matStartDate
+        formControlName="start"
+        [placeholder]="'choose_date_range' | translate"
+      />
+      <input
+        matEndDate
+        formControlName="end"
+        [placeholder]="'choose_date_range' | translate"
+      />
+    </mat-date-range-input>
+    <mat-hint
+      class="text-danger text-nowrap h-25"
+      *ngFor="let error of listOfErrorsDateRange()"
+    >
+      {{ error | translate }}
+    </mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <!--pb4 is the height of the mat-hint-->
+  <app-info-icon
+    *ngIf="fieldConfig.info"
+    class="pb-4"
+    [size]="32"
+    [info]="
+      fieldConfig.disableTranslation
+        ? fieldConfig.info
+        : (fieldConfig.info | translate)
+    "
+  ></app-info-icon>
+</div>

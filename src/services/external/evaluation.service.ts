@@ -118,7 +118,20 @@ export class EvaluationService {
         type: 'other' as 'leader' | 'member' | 'other',
       };
     });
-    const mappedDelimitations = undefined;
+    const mappedDelimitationActors = Object.values(e?.actor_table || {}).map(
+      (actor) => {
+        actor.actor_name;
+      }
+    );
+    const mappedDelimitations = {
+      other: e?.other_delimitations,
+      timePeriod: {
+        startDate: e.delimitations_time_period?.start,
+        endDate: e.delimitations_time_period?.end,
+      },
+      geo: e?.delimitations_geo,
+      actors: mappedDelimitationActors,
+    };
 
     const mappedTools = Object.values(e?.['tools_table'] || []).map((tool) => {
       return {
@@ -271,7 +284,10 @@ export class EvaluationService {
         };
       }, {}),
       delimitations_geo: e.delimitation?.geo,
-      delimitations_time_period: '',
+      delimitations_time_period: {
+        start: new Date(e.delimitation?.timePeriod?.startDate),
+        end: new Date(e.delimitation?.timePeriod?.endDate),
+      },
       other_delimitations: e.delimitation?.other,
 
       //intervention context

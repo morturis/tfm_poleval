@@ -1,5 +1,6 @@
 import { Validators } from '@angular/forms';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
+import { CustomValidators } from 'src/app/types/CustomValidators';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
 
 const delimitationActorsTableConfig: TableConfig = {
@@ -233,12 +234,14 @@ export const analysisPlanningFields: AnyFieldConfig[] = [
   {
     header: 'delimitations_time_period',
     field: 'delimitations_time_period',
-    fieldType: 'input',
+    fieldType: 'datepicker',
     defaultValue: undefined,
     viewOnly: false,
-    labelOnLeftSide: true,
-    placeholder: 'delimitations_time_period_placeholder',
-    info: 'delimitations_time_period_info',
+    range: true,
+    validators: [CustomValidators.requiredDateRange],
+    errorMessages: {
+      ...CustomErrorMessages.date_range_both_required,
+    },
   },
   delimitationActorsTableConfig,
   {

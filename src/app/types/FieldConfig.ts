@@ -44,8 +44,14 @@ export interface OtherFieldConfig extends BaseFieldConfig {
   fieldType: 'other';
 }
 
+export interface DatePickerConfig extends BaseFieldConfig {
+  fieldType: 'datepicker';
+  range?: boolean;
+}
+
 export type AnyFieldConfig =
   | InputConfig
   | TableConfig
   | DropdownConfig
+  | DatePickerConfig
   | OtherFieldConfig;

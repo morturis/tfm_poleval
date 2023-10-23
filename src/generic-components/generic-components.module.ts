@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +18,7 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { PipesModule } from 'src/pipes/pipes.module';
 import { ServicesModule } from 'src/services/services.module';
 import { ChartsModule } from './charts/charts.module';
+import { DatepickerComponent as DatePickerComponent } from './datepicker/datepicker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { InfoIconComponent } from './info-icon/info-icon.component';
 import { InputComponent } from './input/input.component';
@@ -35,6 +38,7 @@ import { UnderbarComponent } from './underbar/underbar.component';
     InputComponent,
     ToolbarComponent,
     UnderbarComponent,
+    DatePickerComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +59,8 @@ import { UnderbarComponent } from './underbar/underbar.component';
     RouterModule,
     PipesModule,
     ChartsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     DropdownComponent,
@@ -64,6 +70,7 @@ import { UnderbarComponent } from './underbar/underbar.component';
     ToolbarComponent,
     UnderbarComponent,
     ChartsModule,
+    DatePickerComponent,
   ],
 })
 export class GenericComponentsModule {}

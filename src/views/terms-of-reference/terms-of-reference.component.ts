@@ -5,7 +5,7 @@ import { distinctUntilChanged } from 'rxjs';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { AnyFieldConfig } from 'src/app/types/FieldConfig';
 import { allEvaluationFormFields } from 'src/evaluation-forms/all';
-import { termsOfReferenceFields } from 'src/evaluation-forms/terms-of-reference';
+import { analysisPlanningFields } from 'src/evaluation-forms/analysis-planning';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 
 @Component({
@@ -16,7 +16,11 @@ import { EvaluationService } from 'src/services/external/evaluation.service';
 export class TermsOfReferenceComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
 
-  override fieldsConfig: AnyFieldConfig[] = termsOfReferenceFields;
+  override fieldsConfig: AnyFieldConfig[] = [...analysisPlanningFields].map(
+    (field) => {
+      return { ...field, viewOnly: true };
+    }
+  );
 
   constructor(
     fb: FormBuilder,
@@ -36,8 +40,7 @@ export class TermsOfReferenceComponent extends DynamicFormView {
 
     const formCode = this.route.snapshot.paramMap.get('code');
     if (!formCode)
-      throw new Error('Please create a new evaluation from the beginning'); //should never trigger
-    //this.form.updateValueAndValidity();
+      throw new Error('Please create a new evaluation from the beginning');
 
     //Whenever I enter this form, I check for previously saved values
     //NOTE: this does not get the value from storage when moving between stages

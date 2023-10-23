@@ -51,6 +51,7 @@ export class TablaComponent {
 
   ngAfterViewInit() {
     this.control.valueChanges.subscribe((newVal) => {
+      if (!newVal) return;
       this.items = [...Object.values(newVal)];
       this.table.renderRows();
     });

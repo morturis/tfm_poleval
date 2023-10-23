@@ -45,9 +45,9 @@ export class FinalReportComponent extends DynamicFormView {
     }
 
     //Whenever I make a change to this form, I save it in the storage
-    this.form.valueChanges.subscribe((val) => {
+    const saveChanges = (val) =>
       this.evalService.update({ code: formCode, ...val }).subscribe((r) => r);
-    });
+    this.whenFormChanges(saveChanges);
 
     //check if the form code has an evaluation
     this.evalService.get(formCode).subscribe((evaluation) => {
