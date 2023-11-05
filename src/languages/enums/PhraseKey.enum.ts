@@ -84,6 +84,7 @@ export enum PhraseKey {
   delimitations_time_period = 'delimitations_time_period',
   delimitations_time_period_placeholder = 'delimitations_time_period_placeholder',
   delimitations_time_period_info = 'delimitations_time_period_info',
+  choose_date = 'choose_date',
   choose_date_range = 'choose_date_range',
 
   team_manager_table = 'team_manager_table',
@@ -150,6 +151,10 @@ export enum PhraseKey {
   intervention_indicators_targetvalue = 'intervention_indicators_targetvalue',
   intervention_indicators_targetvalue_placeholder = 'intervention_indicators_targetvalue_placeholder',
   intervention_indicators_targetvalue_info = 'intervention_indicators_targetvalue_info',
+  measurement_table = 'measurement_table',
+  measurement_date = 'measurement_date',
+  measurement_value = 'measurement_value',
+  measurement = 'measurement',
 
   //Evaluation design
   tools_use_case = 'tools_use_case',

@@ -1,4 +1,4 @@
-<div class="ms-4 me-4">
+<div class="ms-4 me-4" publishing>
   <!--TODO make centered -->
   <p>{{ "make_code_available_text" | translate }}</p>
 
@@ -13,6 +13,49 @@
       }}
     </button>
   </div>
+</div>
+
+<div indicators>
+  <p>{{ "field_work_indicators_description" | translate }}</p>
+  <div *ngFor="let field of fieldsConfig">
+    <app-input
+      *ngIf="isInput(field)"
+      class="row"
+      [fieldConfig]="field | cast : InputConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-input>
+
+    <app-tabla
+      *ngIf="isTable(field)"
+      [config]="field | cast : TableConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-tabla>
+
+    <app-dropdown
+      *ngIf="isDropdown(field)"
+      [fieldConfig]="field | cast : DropdownConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-dropdown>
+    <app-datepicker
+      *ngIf="isDatepicker(field)"
+      [fieldConfig]="field | cast : DatePickerConfig"
+      [control]="getFormControl(field.field)"
+    >
+    </app-datepicker>
+    <app-datepicker
+      *ngIf="isDaterange(field)"
+      [fieldConfig]="field | cast : DatePickerConfig"
+      [group]="getFormGroup(field.field)"
+    >
+    </app-datepicker>
+  </div>
+</div>
+
+<div responsesSoFar>
+  <p>{{ "field_work_phase_description" | translate }}</p>
   <div>
     <button mat-button class="mb-3" (click)="this.downloadCsv()">
       {{ "so_far_there_are" | translate }}{{ " " }}
@@ -21,40 +64,38 @@
     </button>
   </div>
 
-  <p>{{ "field_work_phase_description" | translate }}</p>
-</div>
+  <div class="pb-4">
+    <mat-accordion>
+      <div *ngFor="let question of this.formQuestions">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ question.header }} </mat-panel-title>
+            <!-- TYPE OF QUESTION. ## RESPONSES IN TOTAL -->
+            <mat-panel-description>
+              {{ getQuestionType(question) | translate }}.
+              {{ getNumberOfResponses(question) || "0" }}
+              {{ "responses_in_total" | translate }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
-<div class="pb-4">
-  <mat-accordion>
-    <div *ngFor="let question of this.formQuestions">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title> {{ question.header }} </mat-panel-title>
-          <!-- TYPE OF QUESTION. ## RESPONSES IN TOTAL -->
-          <mat-panel-description>
-            {{ getQuestionType(question) | translate }}.
-            {{ getNumberOfResponses(question) || "0" }}
-            {{ "responses_in_total" | translate }}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+          <ng-template [ngIf]="question.fieldType === 'dropdown'">
+            <histogram
+              [dataset]="question.responses || []"
+              [responseOptions]="question.responseOptions || []"
+              [header]="question.header"
+            >
+            </histogram>
+          </ng-template>
 
-        <ng-template [ngIf]="question.fieldType === 'dropdown'">
-          <histogram
-            [dataset]="question.responses || []"
-            [responseOptions]="question.responseOptions || []"
-            [header]="question.header"
-          >
-          </histogram>
-        </ng-template>
-
-        <ng-template [ngIf]="question.fieldType === 'input'">
-          <mat-list>
-            <mat-list-item *ngFor="let resp of question.responses">
-              {{ resp }}
-            </mat-list-item>
-          </mat-list>
-        </ng-template>
-      </mat-expansion-panel>
-    </div>
-  </mat-accordion>
+          <ng-template [ngIf]="question.fieldType === 'input'">
+            <mat-list>
+              <mat-list-item *ngFor="let resp of question.responses">
+                {{ resp }}
+              </mat-list-item>
+            </mat-list>
+          </ng-template>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </div>
 </div>

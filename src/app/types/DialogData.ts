@@ -1,6 +1,7 @@
-import { InputConfig } from './FieldConfig';
+import { AnyFieldConfig } from './FieldConfig';
 
 export type DialogData = {
-  inputsConfig: InputConfig[];
+  inputsConfig: AnyFieldConfig[];
   itemName: string;
+  item?: Record<string, unknown>;
 };

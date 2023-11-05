@@ -2,7 +2,7 @@ import { Validators } from '@angular/forms';
 import { CustomErrorMessages } from 'src/app/types/CustomErrorMessages';
 import { AnyFieldConfig, TableConfig } from 'src/app/types/FieldConfig';
 
-const interventionIndicatorsTableConfig: TableConfig = {
+export const interventionIndicatorsTableConfig: TableConfig = {
   header: 'intervention_indicators',
   field: 'intervention_indicators',
   fieldType: 'table',

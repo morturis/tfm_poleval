@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import { AnyFieldConfig } from 'src/app/types/FieldConfig';
 import { allEvaluationFormFields } from 'src/evaluation-forms/all';
+import { allIndicatorTablesWithMeasurements } from 'src/evaluation-forms/field-works';
 import { ExportService } from 'src/services/export.service';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 
@@ -15,6 +16,7 @@ import { EvaluationService } from 'src/services/external/evaluation.service';
 export class FieldWorkComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
   form_code_to_show!: string;
+  override fieldsConfig: AnyFieldConfig[] = allIndicatorTablesWithMeasurements;
 
   formQuestions!: (AnyFieldConfig & {
     responses?: string[];
@@ -35,16 +37,21 @@ export class FieldWorkComponent extends DynamicFormView {
     this.outputEvent.emit({ status: 'VALID' }); //so I can always go to the next step
 
     //check if we have a form code
-    const form_code = this.route.snapshot.paramMap.get('code'); //defaults to null
-    this.form_code_to_show = form_code || 'field_work_no_code';
+    const formCode = this.route.snapshot.paramMap.get('code'); //defaults to null
+    this.form_code_to_show = formCode || 'field_work_no_code';
 
-    if (!form_code) {
+    if (!formCode) {
       this.formQuestions = [];
       return;
     }
 
+    //Whenever I make a change to this form, I save it in the storage
+    const saveChanges = (val) =>
+      this.evalService.update({ code: formCode, ...val }).subscribe((r) => r);
+    this.whenFormChanges(saveChanges);
+
     //check if the form code has an evaluation
-    this.evalService.get(form_code).subscribe((evaluation) => {
+    this.evalService.get(formCode).subscribe((evaluation) => {
       const transformedValue =
         this.evalService.transformFromApiObject(evaluation);
       this.form.patchValue(transformedValue, {

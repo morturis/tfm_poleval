@@ -163,6 +163,14 @@ export class EvaluationService {
         name: (indicator as any).eval_indicator_name,
         targetValue: (indicator as any).eval_indicators_startvalue, //TODO remove
         type: 'evaluation',
+        measurements: Object.values(
+          (indicator as any).measurement_table || []
+        ).map((measurement) => {
+          return {
+            date: (measurement as any).measurement_date,
+            value: (measurement as any).measurement_value,
+          };
+        }),
       };
     });
 
@@ -173,6 +181,14 @@ export class EvaluationService {
         name: (indicator as any).intervention_indicators_name,
         targetValue: (indicator as any).intervention_indicators_targetvalue,
         type: 'intervention',
+        measurements: Object.values(
+          (indicator as any).measurement_table || []
+        ).map((measurement) => {
+          return {
+            date: (measurement as any).measurement_date,
+            value: (measurement as any).measurement_value,
+          };
+        }),
       };
     });
 
@@ -310,6 +326,18 @@ export class EvaluationService {
             [index]: {
               intervention_indicators_name: curr.name,
               intervention_indicators_targetvalue: curr.targetValue,
+              measurement_table: (curr.measurements || []).reduce(
+                (accumMeasurements, currMeasurement, indexMeasurements) => {
+                  return {
+                    ...accumMeasurements,
+                    [indexMeasurements]: {
+                      measurement_date: currMeasurement.date,
+                      measurement_value: currMeasurement.value,
+                    },
+                  };
+                },
+                {}
+              ),
             },
           };
         }, {}),
@@ -351,6 +379,19 @@ export class EvaluationService {
             ...accum,
             [index]: {
               eval_indicator_name: curr.name,
+
+              measurement_table: (curr.measurements || []).reduce(
+                (accumMeasurements, currMeasurement, indexMeasurements) => {
+                  return {
+                    ...accumMeasurements,
+                    [indexMeasurements]: {
+                      measurement_date: currMeasurement.date,
+                      measurement_value: currMeasurement.value,
+                    },
+                  };
+                },
+                {}
+              ),
             },
           };
         }, {}),

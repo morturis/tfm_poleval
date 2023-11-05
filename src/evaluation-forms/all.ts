@@ -1,8 +1,14 @@
 import { OtherFieldConfig } from 'src/app/types/FieldConfig';
 import { analysisPlanningFields } from './analysis-planning';
-import { evalDesignFields } from './eval-design';
+import {
+  evalDesignFields,
+  indicatorsTableConfig as evalIndicatorsTableConfig,
+} from './eval-design';
 import { finalReportFields } from './final-report';
-import { interventionContextFields } from './intervention-context';
+import {
+  interventionContextFields,
+  interventionIndicatorsTableConfig,
+} from './intervention-context';
 
 const questionnaireField: OtherFieldConfig = {
   fieldType: 'other',
@@ -33,4 +39,9 @@ export const allEvaluationFormFields = [
   responsesField,
   stateField,
   publishedField,
+];
+
+export const allIndicatorTables = [
+  interventionIndicatorsTableConfig,
+  evalIndicatorsTableConfig,
 ];

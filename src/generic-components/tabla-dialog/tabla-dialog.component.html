@@ -6,10 +6,38 @@
     <form class="pe-0 ps-0 d-inline">
       <div class="d-inline ps-1 pe-1" *ngFor="let field of fieldsConfig">
         <app-input
+          *ngIf="isInput(field)"
+          class="row"
+          [fieldConfig]="field | cast : InputConfig"
           [control]="getFormControl(field.field)"
-          [fieldConfig]="field"
         >
         </app-input>
+
+        <app-tabla
+          *ngIf="isTable(field)"
+          [config]="field | cast : TableConfig"
+          [control]="getFormControl(field.field)"
+        >
+        </app-tabla>
+
+        <app-dropdown
+          *ngIf="isDropdown(field)"
+          [fieldConfig]="field | cast : DropdownConfig"
+          [control]="getFormControl(field.field)"
+        >
+        </app-dropdown>
+        <app-datepicker
+          *ngIf="isDatepicker(field)"
+          [fieldConfig]="field | cast : DatePickerConfig"
+          [control]="getFormControl(field.field)"
+        >
+        </app-datepicker>
+        <app-datepicker
+          *ngIf="isDaterange(field)"
+          [fieldConfig]="field | cast : DatePickerConfig"
+          [group]="getFormGroup(field.field)"
+        >
+        </app-datepicker>
       </div>
     </form>
   </mat-dialog-content>

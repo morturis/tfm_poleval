@@ -19,7 +19,9 @@ export class TranslatePipe implements PipeTransform {
       ];
 
     //If translatedValue is undefined, that means the translation is not yet set.
-    if (!translatedValue) return `NOT TRANSLATED ${value}`;
+    if (translatedValue === undefined || translatedValue === null)
+      return `NOT TRANSLATED ${value}`;
+
     return translatedValue;
   }
 }

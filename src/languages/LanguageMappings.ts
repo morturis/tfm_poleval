@@ -103,6 +103,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. Desde Enero 2020 hasta Febrero 2021',
     [PhraseKey.delimitations_time_period_info]:
       'Periodo de la intervención que se desea evaluar. Si se deja vacío, se asume que se desea evaluar la totalidad de la intervención.',
+    [PhraseKey.choose_date]: 'DD/MM/YYYY',
     [PhraseKey.choose_date_range]: 'Periodo temporal',
 
     [PhraseKey.team_manager_table]: 'Líder a cargo de la evaluación',
@@ -225,6 +226,11 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. 5% de PIB / 2 accidentes mortales',
     [PhraseKey.intervention_indicators_targetvalue_info]:
       'Valor del indicador que se menciona como objetivo en el texto de la intervención.',
+
+    [PhraseKey.measurement_table]: 'Nº de Medidas',
+    [PhraseKey.measurement_date]: 'Fecha',
+    [PhraseKey.measurement_value]: 'Valor',
+    [PhraseKey.measurement]: 'medida',
 
     //Evaluation design
     [PhraseKey.tools_use_case]: 'Caso de uso',
@@ -394,6 +400,7 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. From 18th of January 2020 to 19th of March 2021',
     [PhraseKey.delimitations_time_period_info]:
       'Period of the intervention we wish to evaluate. If left empty, it is assumed the entirety of the intervention period should be evaluated.',
+    [PhraseKey.choose_date]: 'DD/MM/YYYY',
     [PhraseKey.choose_date_range]: 'Time period',
 
     [PhraseKey.team_manager_table]: 'Manager in charge of the evaluation',
@@ -515,6 +522,10 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
       'e.g. 2 deadly accidents',
     [PhraseKey.intervention_indicators_targetvalue_info]:
       'Value of the indicator that the intervention is trying to reach. This should be explicitly present in the text of the intervention.',
+    [PhraseKey.measurement_table]: '# of Measurements',
+    [PhraseKey.measurement_date]: 'Date',
+    [PhraseKey.measurement_value]: 'Value',
+    [PhraseKey.measurement]: 'measurement',
 
     //Evaluation design
     [PhraseKey.tools_use_case]: 'Use case',

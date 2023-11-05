@@ -3,11 +3,12 @@ import {
   AnyFieldConfig,
   DatePickerConfig,
   DropdownConfig,
+  FieldConfigDetectorMethods,
   InputConfig,
   TableConfig,
 } from '../../app/types/FieldConfig';
 
-export abstract class DynamicFormView {
+export abstract class DynamicFormView extends FieldConfigDetectorMethods {
   fieldsConfig: AnyFieldConfig[] = [];
   form!: FormGroup; //definite assignment
 
@@ -17,31 +18,8 @@ export abstract class DynamicFormView {
   public DropdownConfig!: DropdownConfig;
   public DatePickerConfig!: DatePickerConfig;
 
-  constructor(private fb: FormBuilder) {}
-
-  isInput(field: AnyFieldConfig) {
-    return field.fieldType == 'input' ? (field as InputConfig) : undefined;
-  }
-
-  isTable(field: AnyFieldConfig) {
-    return field.fieldType == 'table' ? (field as TableConfig) : undefined;
-  }
-
-  isDropdown(field: AnyFieldConfig) {
-    return field.fieldType == 'dropdown'
-      ? (field as DropdownConfig)
-      : undefined;
-  }
-
-  isDatepicker(field: AnyFieldConfig) {
-    return field.fieldType == 'datepicker' && !field.range
-      ? (field as DatePickerConfig)
-      : undefined;
-  }
-  isDaterange(field: AnyFieldConfig) {
-    return field.fieldType == 'datepicker' && field.range
-      ? (field as DatePickerConfig)
-      : undefined;
+  constructor(private fb: FormBuilder) {
+    super();
   }
 
   getFormControl(name: string) {

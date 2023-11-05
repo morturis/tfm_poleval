@@ -24,9 +24,11 @@ export interface TableConfig extends BaseFieldConfig {
   fieldType: 'table';
   itemName: string;
   canAddRemove: boolean;
+  canEdit?: boolean;
   defaultValue?: any[];
+
   //Configs for each field of the table
-  columns: InputConfig[];
+  columns: AnyFieldConfig[];
 
   action?: boolean;
   actionAvailability?: (obj: any) => boolean;
@@ -55,3 +57,30 @@ export type AnyFieldConfig =
   | DropdownConfig
   | DatePickerConfig
   | OtherFieldConfig;
+
+export abstract class FieldConfigDetectorMethods {
+  isInput(field: AnyFieldConfig) {
+    return field.fieldType == 'input' ? (field as InputConfig) : undefined;
+  }
+
+  isTable(field: AnyFieldConfig) {
+    return field.fieldType == 'table' ? (field as TableConfig) : undefined;
+  }
+
+  isDropdown(field: AnyFieldConfig) {
+    return field.fieldType == 'dropdown'
+      ? (field as DropdownConfig)
+      : undefined;
+  }
+
+  isDatepicker(field: AnyFieldConfig) {
+    return field.fieldType == 'datepicker' && !field.range
+      ? (field as DatePickerConfig)
+      : undefined;
+  }
+  isDaterange(field: AnyFieldConfig) {
+    return field.fieldType == 'datepicker' && field.range
+      ? (field as DatePickerConfig)
+      : undefined;
+  }
+}

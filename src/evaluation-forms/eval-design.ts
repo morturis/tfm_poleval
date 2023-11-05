@@ -124,7 +124,7 @@ const criterionTableConfig: TableConfig = {
   errorMessages: { ...CustomErrorMessages.required },
 };
 
-const indicatorsTableConfig: TableConfig = {
+export const indicatorsTableConfig: TableConfig = {
   header: 'eval_indicators_table',
   field: 'eval_indicators_table',
   fieldType: 'table',
