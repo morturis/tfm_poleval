@@ -155,6 +155,7 @@ export enum PhraseKey {
   measurement_date = 'measurement_date',
   measurement_value = 'measurement_value',
   measurement = 'measurement',
+  field_work_indicators_description = 'field_work_indicators_description',
 
   //Evaluation design
   tools_use_case = 'tools_use_case',

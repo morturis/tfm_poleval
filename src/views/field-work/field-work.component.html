@@ -1,6 +1,6 @@
-<div class="ms-4 me-4" publishing>
+<div class="mb-3" publishing>
   <!--TODO make centered -->
-  <p>{{ "make_code_available_text" | translate }}</p>
+  <p class="mb-1">{{ "make_code_available_text" | translate }}</p>
 
   <div class="mb-2">
     <b class="align-middle">{{ form_code_to_show }}</b>
@@ -16,7 +16,7 @@
 </div>
 
 <div indicators>
-  <p>{{ "field_work_indicators_description" | translate }}</p>
+  <p class="mb-2">{{ "field_work_indicators_description" | translate }}</p>
   <div *ngFor="let field of fieldsConfig">
     <app-input
       *ngIf="isInput(field)"
@@ -55,7 +55,7 @@
 </div>
 
 <div responsesSoFar>
-  <p>{{ "field_work_phase_description" | translate }}</p>
+  <p class="mb-2">{{ "field_work_phase_description" | translate }}</p>
   <div>
     <button mat-button class="mb-3" (click)="this.downloadCsv()">
       {{ "so_far_there_are" | translate }}{{ " " }}

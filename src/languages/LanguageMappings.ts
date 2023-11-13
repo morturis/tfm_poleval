@@ -162,6 +162,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.press_to_publish]:
       'Pulse aquí para hacer el cuestionario público',
     [PhraseKey.press_to_unpublish]: 'Despublicar el cuestionario',
+    [PhraseKey.field_work_indicators_description]:
+      'Usando estas tablas los evaluadores pueden registrar medidas para los indicadores previamente introducidos',
 
     //Form builder
     [PhraseKey.form_already_has_responses]:
@@ -458,6 +460,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.so_far_there_are]: 'Press here to download (CSV) the current',
     [PhraseKey.press_to_publish]: 'Press here to make the questionnaire public',
     [PhraseKey.press_to_unpublish]: 'Unpublish the questionnaire',
+    [PhraseKey.field_work_indicators_description]:
+      'Using these tables the evaluators may add measurements for all previously decided indicators',
 
     //Form builder
     [PhraseKey.form_already_has_responses]:
