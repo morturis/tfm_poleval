@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LoginObject, LoginResponse } from 'src/app/types/Login';
 import { StorageService } from '../storage.service';
 
-const baseUrl = 'http://localhost';
+const baseUrl = 'http://34.175.64.33';
 const basePort = '3000';
 
 @Injectable({

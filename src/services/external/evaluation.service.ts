@@ -6,7 +6,7 @@ import { AnyFieldConfig } from 'src/app/types/FieldConfig';
 import { NO_TOAST } from '../http-interceptor.service';
 import { StorageService } from '../storage.service';
 
-const baseUrl = 'http://localhost';
+const baseUrl = 'http://34.175.64.33';
 const basePort = '3000';
 
 @Injectable({
