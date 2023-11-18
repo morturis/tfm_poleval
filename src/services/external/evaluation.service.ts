@@ -118,19 +118,21 @@ export class EvaluationService {
         type: 'other' as 'leader' | 'member' | 'other',
       };
     });
-    const mappedDelimitationActors = Object.values(e?.actor_table || {}).map(
-      (actor) => {
-        actor.actor_name;
-      }
-    );
+    const mappedDelimitationActors = Object.values(e?.actor_table || {})
+      .map((actor) => actor.actor_name)
+      .filter((a) => a);
+    const mappedDelimitationTimePeriod =
+      e.delimitations_time_period?.start && e.delimitations_time_period?.end
+        ? {
+            startDate: e.delimitations_time_period?.start,
+            endDate: e.delimitations_time_period?.end,
+          }
+        : undefined;
     const mappedDelimitations = {
-      other: e?.other_delimitations,
-      timePeriod: {
-        startDate: e.delimitations_time_period?.start,
-        endDate: e.delimitations_time_period?.end,
-      },
-      geo: e?.delimitations_geo,
-      actors: mappedDelimitationActors,
+      other: e?.other_delimitations || undefined,
+      timePeriod: mappedDelimitationTimePeriod,
+      geo: e?.delimitations_geo || undefined,
+      actors: mappedDelimitationActors || undefined,
     };
 
     const mappedTools = Object.values(e?.['tools_table'] || []).map((tool) => {
@@ -161,7 +163,7 @@ export class EvaluationService {
     ).map((indicator) => {
       return {
         name: (indicator as any).eval_indicator_name,
-        targetValue: (indicator as any).eval_indicators_startvalue, //TODO remove
+        targetValue: (indicator as any).eval_indicators_startvalue, 
         type: 'evaluation',
         measurements: Object.values(
           (indicator as any).measurement_table || []
@@ -211,7 +213,7 @@ export class EvaluationService {
 
     const result = {
       code: e.code,
-      published: e.published,
+      published: !!e.published,
       intervention: {
         name: e?.['intervention_name'] || undefined,
         problemToFix: e?.['intervention_problem_to_solve'] || undefined,
@@ -253,7 +255,7 @@ export class EvaluationService {
   ): Partial<OldEvaluation> & Pick<OldEvaluation, 'code'> {
     const result = {
       code: e.code,
-      published: e.published,
+      published: !!e.published,
       form: e.form,
       responses: e.responses,
       //analysis planning
