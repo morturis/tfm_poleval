@@ -163,7 +163,7 @@ export class EvaluationService {
     ).map((indicator) => {
       return {
         name: (indicator as any).eval_indicator_name,
-        targetValue: (indicator as any).eval_indicators_startvalue, 
+        targetValue: (indicator as any).eval_indicators_startvalue,
         type: 'evaluation',
         measurements: Object.values(
           (indicator as any).measurement_table || []
@@ -303,8 +303,12 @@ export class EvaluationService {
       }, {}),
       delimitations_geo: e.delimitation?.geo,
       delimitations_time_period: {
-        start: new Date(e.delimitation?.timePeriod?.startDate),
-        end: new Date(e.delimitation?.timePeriod?.endDate),
+        start: e.delimitation?.timePeriod?.startDate
+          ? new Date(e.delimitation?.timePeriod?.startDate)
+          : undefined,
+        end: e.delimitation?.timePeriod?.endDate
+          ? new Date(e.delimitation?.timePeriod?.endDate)
+          : undefined,
       },
       other_delimitations: e.delimitation?.other,
 

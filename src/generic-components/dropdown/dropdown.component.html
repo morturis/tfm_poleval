@@ -27,7 +27,11 @@
       }}"
       [multiple]="fieldConfig.multiple"
     >
-      <mat-option *ngFor="let item of items" [value]="item">
+      <mat-option
+        *ngFor="let item of items"
+        [value]="item"
+        [disabled]="fieldConfig.viewOnly"
+      >
         {{ fieldConfig.disableTranslation ? item : (item | translate) }}
       </mat-option>
     </mat-select>

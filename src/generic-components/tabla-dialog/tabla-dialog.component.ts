@@ -13,16 +13,20 @@ export class TablaDialogComponent extends DynamicFormView {
   itemName: string = '';
   constructor(@Inject(MAT_DIALOG_DATA) data: DialogData, fb: FormBuilder) {
     super(fb);
-    //Creating form
-    this.buildForm(data.inputsConfig);
-
     this.fieldsConfig = data.inputsConfig;
     this.itemName = data.itemName;
+    //Creating form
+    this.buildForm(data.inputsConfig);
 
     if (data.item)
       this.form.patchValue(data.item, {
         emitEvent: true,
       });
-  }
 
+    this.form.valueChanges.subscribe((v) => {
+      const w = this.form;
+      console.log(w);
+      console.log(v);
+    });
+  }
 }

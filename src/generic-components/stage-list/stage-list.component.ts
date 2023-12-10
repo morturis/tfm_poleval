@@ -48,6 +48,6 @@ export class StageListComponent {
   }
 
   childIsValid(index: number) {
-    return this.childOutput[index]?.status == 'VALID';
+    return this.childOutput[index]?.status == 'VALID' || 'DISABLED';
   }
 }

@@ -297,6 +297,9 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.httpError_unprocessable_entity_title]: 'Entidad no procesable',
     [PhraseKey.not_published]:
       'El formulario no está publicado. Por favor, seleccione otro o vuelva a la pantalla principal',
+    [PhraseKey.not_found]:
+      'El valor solicitado no existe. Por favor, introduzca otro',
+
     [PhraseKey.FIRST_STEPS]: 'Primeros pasos',
     [PhraseKey.DESIGNING_FORM]: 'Diseñando formulario',
     [PhraseKey.ACCEPTING_RESPONSES]: 'Se aceptan respuestas',
@@ -594,6 +597,8 @@ export const LanguageMappings: Record<Language, Record<PhraseKey, string>> = {
     [PhraseKey.httpError_unprocessable_entity_title]: 'Unprocessable entity',
     [PhraseKey.not_published]:
       'El formulario no está publicado. Please choose a different one or return to the main page',
+    [PhraseKey.not_found]:
+      'The requested value does not exist. Please, enter a different one',
     [PhraseKey.FIRST_STEPS]: 'First steps',
     [PhraseKey.DESIGNING_FORM]: 'Designing the questionnaire',
     [PhraseKey.ACCEPTING_RESPONSES]: 'Accepting responses',

@@ -8,6 +8,7 @@ export const interventionIndicatorsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'indicator_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'intervention_indicators_name',

@@ -1,3 +1,9 @@
+<div
+  *ngIf="this.alreadyHasResponses"
+  class="d-flex justify-content-center mh-100 text-danger"
+>
+  <h5>{{ "form_already_has_responses" | translate }}</h5>
+</div>
 <form>
   <div *ngFor="let field of fieldsConfig">
     <app-input

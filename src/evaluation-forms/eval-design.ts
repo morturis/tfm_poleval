@@ -9,6 +9,7 @@ const toolsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'tool_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'tools_name',
@@ -52,53 +53,54 @@ const toolsTableConfig: TableConfig = {
   ],
 };
 const techniquesTableConfig: TableConfig = {
-    header: 'techniques_table',
-    field: 'techniques_table',
-    fieldType: 'table',
-    itemName: 'technique_unit',
-    canAddRemove: true,
-    columns: [
-      {
-        header: 'tools_name',
-        field: 'tools_name',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'tools_name_placeholder',
-        info: 'tools_name_info',
-        validators: [Validators.required],
-        errorMessages: {
-          ...CustomErrorMessages.required,
-        },
+  header: 'techniques_table',
+  field: 'techniques_table',
+  fieldType: 'table',
+  itemName: 'technique_unit',
+  canAddRemove: true,
+  canEdit: true,
+  columns: [
+    {
+      header: 'tools_name',
+      field: 'tools_name',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      placeholder: 'tools_name_placeholder',
+      info: 'tools_name_info',
+      validators: [Validators.required],
+      errorMessages: {
+        ...CustomErrorMessages.required,
       },
-      {
-        header: 'tools_brief_description',
-        field: 'tools_brief_description',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'tools_brief_description_placeholder',
-        info: 'tools_brief_description_info',
-        validators: [Validators.required],
-        errorMessages: {
-          ...CustomErrorMessages.required,
-        },
+    },
+    {
+      header: 'tools_brief_description',
+      field: 'tools_brief_description',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      placeholder: 'tools_brief_description_placeholder',
+      info: 'tools_brief_description_info',
+      validators: [Validators.required],
+      errorMessages: {
+        ...CustomErrorMessages.required,
       },
-      {
-        header: 'tools_use_case',
-        field: 'tools_use_case',
-        fieldType: 'input',
-        defaultValue: undefined,
-        viewOnly: false,
-        placeholder: 'tools_use_case_placeholder',
-        info: 'tools_use_case_info',
-        validators: [Validators.required],
-        errorMessages: {
-          ...CustomErrorMessages.required,
-        },
+    },
+    {
+      header: 'tools_use_case',
+      field: 'tools_use_case',
+      fieldType: 'input',
+      defaultValue: undefined,
+      viewOnly: false,
+      placeholder: 'tools_use_case_placeholder',
+      info: 'tools_use_case_info',
+      validators: [Validators.required],
+      errorMessages: {
+        ...CustomErrorMessages.required,
       },
-    ],
-  };
+    },
+  ],
+};
 
 const criterionTableConfig: TableConfig = {
   header: 'criterion_table',
@@ -106,6 +108,7 @@ const criterionTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'criterion_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'criterion_description',
@@ -130,6 +133,7 @@ export const indicatorsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'indicator_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'eval_indicator_name',

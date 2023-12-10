@@ -14,7 +14,12 @@
   <mat-form-field *ngIf="!fieldConfig.range">
     <mat-label>{{ "choose_date" | translate }}</mat-label>
     <!-- #docregion toggle -->
-    <input matInput [matDatepicker]="picker" [formControl]="control" />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [formControl]="control"
+      [readonly]="fieldConfig.viewOnly"
+    />
     <mat-hint
       class="text-danger text-nowrap h-25"
       *ngFor="let error of listOfErrorsSingleDate()"
@@ -29,7 +34,11 @@
   <!--DATE RANGE-->
   <mat-form-field *ngIf="fieldConfig.range">
     <mat-label>{{ "choose_date_range" | translate }}</mat-label>
-    <mat-date-range-input [rangePicker]="picker" [formGroup]="this.group">
+    <mat-date-range-input
+      [rangePicker]="picker"
+      [formGroup]="this.group"
+      [disabled]="fieldConfig.viewOnly"
+    >
       <input
         matStartDate
         formControlName="start"

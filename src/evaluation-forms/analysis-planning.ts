@@ -9,6 +9,7 @@ const delimitationActorsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'actor_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'actor_name',
@@ -31,6 +32,7 @@ const teamManagersTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'manager_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'manager_name',
@@ -66,6 +68,7 @@ const teamMembersTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'member_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'team_member_name',
@@ -101,6 +104,7 @@ const otherParticipantsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'other_participants_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'other_participants_name',

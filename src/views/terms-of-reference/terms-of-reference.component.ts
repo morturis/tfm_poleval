@@ -16,11 +16,8 @@ import { EvaluationService } from 'src/services/external/evaluation.service';
 export class TermsOfReferenceComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
 
-  override fieldsConfig: AnyFieldConfig[] = [...analysisPlanningFields].map(
-    (field) => {
-      return { ...field, viewOnly: true };
-    }
-  );
+  override fieldsConfig: AnyFieldConfig[] = [...analysisPlanningFields];
+  alreadyHasResponses: boolean = false;
 
   constructor(
     fb: FormBuilder,
@@ -49,6 +46,8 @@ export class TermsOfReferenceComponent extends DynamicFormView {
       this.form.patchValue(transformedValue, {
         emitEvent: true,
       });
+      //This stage should always be disabled
+      this.form.disable();
     });
   }
 }

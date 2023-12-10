@@ -18,6 +18,7 @@ export interface InputConfig extends BaseFieldConfig {
   labelOnLeftSide?: boolean;
   placeholder?: string;
   inputType?: 'date' | 'password' | 'time';
+  translateInTable?: boolean;
 }
 
 export interface TableConfig extends BaseFieldConfig {
@@ -61,6 +62,9 @@ export type AnyFieldConfig =
 export abstract class FieldConfigDetectorMethods {
   isInput(field: AnyFieldConfig) {
     return field.fieldType == 'input' ? (field as InputConfig) : undefined;
+  }
+  shouldTranslateInputInTable(field: AnyFieldConfig) {
+    return (field as InputConfig).translateInTable;
   }
 
   isTable(field: AnyFieldConfig) {

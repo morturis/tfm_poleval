@@ -6,6 +6,7 @@ import {
 import { Component, EventEmitter, Output, Type } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DynamicFormView } from 'src/app/types/DynamicFormView';
 import {
   AnyFieldConfig,
@@ -13,6 +14,7 @@ import {
   InputConfig,
 } from 'src/app/types/FieldConfig';
 import { allEvaluationFormFields } from 'src/evaluation-forms/all';
+import { TranslatePipe } from 'src/pipes/translate.pipe';
 import { EvaluationService } from 'src/services/external/evaluation.service';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -66,6 +68,8 @@ export class FormMakerComponent extends DynamicFormView {
   constructor(
     fb: FormBuilder,
     private evalService: EvaluationService,
+    private toastr: ToastrService,
+    private translate: TranslatePipe,
     private route: ActivatedRoute
   ) {
     super(fb);
@@ -199,9 +203,10 @@ export class FormMakerComponent extends DynamicFormView {
         .subscribe((res) => this.outputEvent.emit({ status: 'VALID' }));
 
       //Tell parent component we are valid to go to next step
-    } catch (e) {
+    } catch (e: any) {
+      //errors look like {message:string}
       //Catch possible errors in the form
-      alert(e);
+      this.toastr.error(this.translate.transform(e.message));
     }
   }
 }

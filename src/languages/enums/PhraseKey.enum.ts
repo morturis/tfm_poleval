@@ -246,6 +246,7 @@ export enum PhraseKey {
   httpError_conflict_title = 'httpError_conflict_title',
   httpError_unprocessable_entity_title = 'httpError_unprocessable_entity_title',
   not_published = 'not_published',
+  not_found = 'not_found',
 
   FIRST_STEPS = 'FIRST_STEPS',
   DESIGNING_FORM = 'DESIGNING_FORM',

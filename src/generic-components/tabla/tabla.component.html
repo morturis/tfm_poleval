@@ -18,7 +18,17 @@
 
     <mat-cell *matCellDef="let element">
       <div *ngIf="isInput(column)">
-        {{ element[column.field] }}
+        <div
+          *ngIf="
+            shouldTranslateInputInTable(column);
+            then thenBlock;
+            else elseBlock
+          "
+        ></div>
+        <ng-template #thenBlock
+          >{{ element[column.field] | translate }}
+        </ng-template>
+        <ng-template #elseBlock>{{ element[column.field] }} </ng-template>
       </div>
       <div *ngIf="isDropdown(column)">
         {{ element[column.field] }}
@@ -45,7 +55,7 @@
     >
       <!--action-->
       <button
-        *ngIf="config.action"
+        *ngIf="config.action && !control.disabled"
         mat-button
         [disabled]="
           this.config.actionAvailability
@@ -63,7 +73,7 @@
       </button>
       <!--edit-->
       <button
-        *ngIf="config.canEdit"
+        *ngIf="config.canEdit && !control.disabled"
         mat-button
         style="width: auto"
         (click)="this.editItem(i, element)"
@@ -88,7 +98,10 @@
   >
     {{ error | translate }}
   </div>
-  <div *ngIf="canAddRemove" class="mt-2 me-2 d-flex flex-row-reverse col">
+  <div
+    *ngIf="canAddRemove && !control.disabled"
+    class="mt-2 me-2 d-flex flex-row-reverse col"
+  >
     <button
       mat-raised-button
       [disabled]="!items.length"

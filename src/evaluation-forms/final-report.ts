@@ -9,6 +9,7 @@ const conclusionsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'conclusion_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'conclusion_description',
@@ -42,6 +43,7 @@ const recomendationsTableConfig: TableConfig = {
   fieldType: 'table',
   itemName: 'recomendation_unit',
   canAddRemove: true,
+  canEdit: true,
   columns: [
     {
       header: 'recomendation_description',

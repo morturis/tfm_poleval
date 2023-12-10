@@ -17,6 +17,7 @@ export class AnalysisPlanningComponent extends DynamicFormView {
   @Output() outputEvent = new EventEmitter<any>();
 
   override fieldsConfig: AnyFieldConfig[] = analysisPlanningFields;
+  alreadyHasResponses: boolean = false;
 
   constructor(
     fb: FormBuilder,
@@ -50,6 +51,9 @@ export class AnalysisPlanningComponent extends DynamicFormView {
       this.form.patchValue(transformedValue, {
         emitEvent: true,
       });
+      //Check if this form already has responses
+      this.alreadyHasResponses = !!res.responses?.length; //If 0 or undefined, this will be false, else it will be true
+      if (this.alreadyHasResponses) this.form.disable();
     });
   }
 }
